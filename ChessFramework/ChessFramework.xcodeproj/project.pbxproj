@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		63791948179A6784000C98E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63791947179A6784000C98E2 /* main.cpp */; };
 		6379194A179A6784000C98E2 /* ChessFramework.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63791949179A6784000C98E2 /* ChessFramework.1 */; };
+		63E0C048179AB70500C57B69 /* Square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63E0C046179AB70500C57B69 /* Square.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		63791944179A6784000C98E2 /* ChessFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChessFramework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63791947179A6784000C98E2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		63791949179A6784000C98E2 /* ChessFramework.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ChessFramework.1; sourceTree = "<group>"; };
+		63E0C046179AB70500C57B69 /* Square.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Square.cpp; sourceTree = "<group>"; };
+		63E0C047179AB70500C57B69 /* Square.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Square.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 			children = (
 				63791947179A6784000C98E2 /* main.cpp */,
 				63791949179A6784000C98E2 /* ChessFramework.1 */,
+				63E0C046179AB70500C57B69 /* Square.cpp */,
+				63E0C047179AB70500C57B69 /* Square.h */,
 			);
 			path = ChessFramework;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63E0C048179AB70500C57B69 /* Square.cpp in Sources */,
 				63791948179A6784000C98E2 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,6 +233,7 @@
 				6379194F179A6784000C98E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
