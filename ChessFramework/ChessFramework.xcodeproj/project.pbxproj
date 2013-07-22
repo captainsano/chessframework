@@ -9,7 +9,19 @@
 /* Begin PBXBuildFile section */
 		63791948179A6784000C98E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63791947179A6784000C98E2 /* main.cpp */; };
 		6379194A179A6784000C98E2 /* ChessFramework.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63791949179A6784000C98E2 /* ChessFramework.1 */; };
+		EDD926E1179DB4BA00225C0A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD926E0179DB4BA00225C0A /* XCTest.framework */; };
+		EDD926E7179DB4BA00225C0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDD926E5179DB4BA00225C0A /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EDD926EB179DB4BA00225C0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6379193C179A6784000C98E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63791943179A6784000C98E2;
+			remoteInfo = ChessFramework;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		63791942179A6784000C98E2 /* CopyFiles */ = {
@@ -28,6 +40,11 @@
 		63791944179A6784000C98E2 /* ChessFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChessFramework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63791947179A6784000C98E2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		63791949179A6784000C98E2 /* ChessFramework.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ChessFramework.1; sourceTree = "<group>"; };
+		EDD926DE179DB4BA00225C0A /* ChessFramework Tests.xctest */ = {isa = PBXFileReference; explicitFileType = folder; includeInIndex = 0; path = "ChessFramework Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDD926E0179DB4BA00225C0A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		EDD926E4179DB4BA00225C0A /* ChessFramework Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ChessFramework Tests-Info.plist"; sourceTree = "<group>"; };
+		EDD926E6179DB4BA00225C0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EDD926EA179DB4BA00225C0A /* ChessFramework Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChessFramework Tests-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +55,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EDD926DB179DB4BA00225C0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDD926E1179DB4BA00225C0A /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -45,6 +70,8 @@
 			isa = PBXGroup;
 			children = (
 				63791946179A6784000C98E2 /* ChessFramework */,
+				EDD926E2179DB4BA00225C0A /* ChessFramework Tests */,
+				EDD926DF179DB4BA00225C0A /* Frameworks */,
 				63791945179A6784000C98E2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				63791944179A6784000C98E2 /* ChessFramework */,
+				EDD926DE179DB4BA00225C0A /* ChessFramework Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +92,32 @@
 				63791949179A6784000C98E2 /* ChessFramework.1 */,
 			);
 			path = ChessFramework;
+			sourceTree = "<group>";
+		};
+		EDD926DF179DB4BA00225C0A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EDD926E0179DB4BA00225C0A /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EDD926E2179DB4BA00225C0A /* ChessFramework Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EDD926E3179DB4BA00225C0A /* Supporting Files */,
+			);
+			path = "ChessFramework Tests";
+			sourceTree = "<group>";
+		};
+		EDD926E3179DB4BA00225C0A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EDD926E4179DB4BA00225C0A /* ChessFramework Tests-Info.plist */,
+				EDD926E5179DB4BA00225C0A /* InfoPlist.strings */,
+				EDD926EA179DB4BA00225C0A /* ChessFramework Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +140,24 @@
 			productReference = 63791944179A6784000C98E2 /* ChessFramework */;
 			productType = "com.apple.product-type.tool";
 		};
+		EDD926DD179DB4BA00225C0A /* ChessFramework Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDD926EF179DB4BA00225C0A /* Build configuration list for PBXNativeTarget "ChessFramework Tests" */;
+			buildPhases = (
+				EDD926DA179DB4BA00225C0A /* Sources */,
+				EDD926DB179DB4BA00225C0A /* Frameworks */,
+				EDD926DC179DB4BA00225C0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EDD926EC179DB4BA00225C0A /* PBXTargetDependency */,
+			);
+			name = "ChessFramework Tests";
+			productName = "ChessFramework Tests";
+			productReference = EDD926DE179DB4BA00225C0A /* ChessFramework Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -94,6 +166,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = 64cloud;
+				TargetAttributes = {
+					EDD926DD179DB4BA00225C0A = {
+						TestTargetID = 63791943179A6784000C98E2;
+					};
+				};
 			};
 			buildConfigurationList = 6379193F179A6784000C98E2 /* Build configuration list for PBXProject "ChessFramework" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -108,9 +185,21 @@
 			projectRoot = "";
 			targets = (
 				63791943179A6784000C98E2 /* ChessFramework */,
+				EDD926DD179DB4BA00225C0A /* ChessFramework Tests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EDD926DC179DB4BA00225C0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDD926E7179DB4BA00225C0A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		63791940179A6784000C98E2 /* Sources */ = {
@@ -121,7 +210,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EDD926DA179DB4BA00225C0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EDD926EC179DB4BA00225C0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63791943179A6784000C98E2 /* ChessFramework */;
+			targetProxy = EDD926EB179DB4BA00225C0A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EDD926E5179DB4BA00225C0A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDD926E6179DB4BA00225C0A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6379194B179A6784000C98E2 /* Debug */ = {
@@ -208,6 +323,42 @@
 			};
 			name = Release;
 		};
+		EDD926ED179DB4BA00225C0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ChessFramework Tests/ChessFramework Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ChessFramework Tests/ChessFramework Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		EDD926EE179DB4BA00225C0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ChessFramework Tests/ChessFramework Tests-Prefix.pch";
+				INFOPLIST_FILE = "ChessFramework Tests/ChessFramework Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -228,6 +379,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		EDD926EF179DB4BA00225C0A /* Build configuration list for PBXNativeTarget "ChessFramework Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDD926ED179DB4BA00225C0A /* Debug */,
+				EDD926EE179DB4BA00225C0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

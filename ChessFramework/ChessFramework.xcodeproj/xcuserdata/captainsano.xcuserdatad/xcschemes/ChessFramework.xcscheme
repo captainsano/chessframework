@@ -28,6 +28,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EDD926DD179DB4BA00225C0A"
+               BuildableName = "ChessFramework Tests.xctest"
+               BlueprintName = "ChessFramework Tests"
+               ReferencedContainer = "container:ChessFramework.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
