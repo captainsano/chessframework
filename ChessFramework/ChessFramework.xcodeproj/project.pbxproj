@@ -11,6 +11,7 @@
 		6379194A179A6784000C98E2 /* ChessFramework.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63791949179A6784000C98E2 /* ChessFramework.1 */; };
 		EDD926E1179DB4BA00225C0A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD926E0179DB4BA00225C0A /* XCTest.framework */; };
 		EDD926E7179DB4BA00225C0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDD926E5179DB4BA00225C0A /* InfoPlist.strings */; };
+		EDE51CBD179E7CA900FD6CA8 /* Square_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = EDE51CBC179E7CA900FD6CA8 /* Square_Tests.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		EDD926E4179DB4BA00225C0A /* ChessFramework Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ChessFramework Tests-Info.plist"; sourceTree = "<group>"; };
 		EDD926E6179DB4BA00225C0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EDD926EA179DB4BA00225C0A /* ChessFramework Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChessFramework Tests-Prefix.pch"; sourceTree = "<group>"; };
+		EDE51CBC179E7CA900FD6CA8 /* Square_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Square_Tests.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				EDD926E3179DB4BA00225C0A /* Supporting Files */,
+				EDE51CBC179E7CA900FD6CA8 /* Square_Tests.mm */,
 			);
 			path = "ChessFramework Tests";
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDE51CBD179E7CA900FD6CA8 /* Square_Tests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +391,7 @@
 				EDD926EE179DB4BA00225C0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
