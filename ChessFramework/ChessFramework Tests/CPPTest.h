@@ -9,6 +9,8 @@
 #ifndef ChessFramework_CPPTest_h
 #define ChessFramework_CPPTest_h
 
+#include <exception>
+
 #define CPPAssertNoThrow(expression, format...) \
 { \
 BOOL exceptionTriggered = NO; \
