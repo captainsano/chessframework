@@ -7,7 +7,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "CPPTest.h"
 
 #import <vector>
 #import "Square.h"

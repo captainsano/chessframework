@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		63791948179A6784000C98E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63791947179A6784000C98E2 /* main.cpp */; };
 		6379194A179A6784000C98E2 /* ChessFramework.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63791949179A6784000C98E2 /* ChessFramework.1 */; };
+		63DACE1A179ED7C900593AED /* Position_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63DACE19179ED7C900593AED /* Position_Tests.mm */; };
 		EDD926E1179DB4BA00225C0A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD926E0179DB4BA00225C0A /* XCTest.framework */; };
 		EDD926E7179DB4BA00225C0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDD926E5179DB4BA00225C0A /* InfoPlist.strings */; };
 		EDE51CBD179E7CA900FD6CA8 /* Square_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = EDE51CBC179E7CA900FD6CA8 /* Square_Tests.mm */; };
@@ -43,6 +44,7 @@
 		63791944179A6784000C98E2 /* ChessFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChessFramework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63791947179A6784000C98E2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		63791949179A6784000C98E2 /* ChessFramework.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ChessFramework.1; sourceTree = "<group>"; };
+		63DACE19179ED7C900593AED /* Position_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Position_Tests.mm; sourceTree = "<group>"; };
 		EDD926DE179DB4BA00225C0A /* ChessFramework Tests.xctest */ = {isa = PBXFileReference; explicitFileType = folder; includeInIndex = 0; path = "ChessFramework Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD926E0179DB4BA00225C0A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		EDD926E4179DB4BA00225C0A /* ChessFramework Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ChessFramework Tests-Info.plist"; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				EDE51CC2179E908700FD6CA8 /* CPPTest.h */,
 				EDD926E3179DB4BA00225C0A /* Supporting Files */,
 				EDE51CBC179E7CA900FD6CA8 /* Square_Tests.mm */,
+				63DACE19179ED7C900593AED /* Position_Tests.mm */,
 			);
 			path = "ChessFramework Tests";
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDE51CC1179E847100FD6CA8 /* Square.cpp in Sources */,
+				63DACE1A179ED7C900593AED /* Position_Tests.mm in Sources */,
 				EDE51CBD179E7CA900FD6CA8 /* Square_Tests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
