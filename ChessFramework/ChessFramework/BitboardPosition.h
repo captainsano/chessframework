@@ -16,17 +16,25 @@
 namespace sfc {
 	namespace cfw {
 				
+		/*!
+		 @class BitboardPosition
+		 @brief Represents a position with a bitboard data structure internally.
+		 @note C++ bitset index convention: LSB=0, MSB=63. Don't follow Hyatt bitboard convention!
+		 */
 		class BitboardPosition : public sfc::cfw::Position {
 			std::bitset<64> wPawn	= 0x0000000000000000;
 			std::bitset<64> wKing	= 0x0000000000000000;
 			std::bitset<64> wQueen	= 0x0000000000000000;
 			std::bitset<64> wRook	= 0x0000000000000000;
 			std::bitset<64> wBishop	= 0x0000000000000000;
+			std::bitset<64> wKnight	= 0x0000000000000000;
+			
 			std::bitset<64> bPawn	= 0x0000000000000000;
 			std::bitset<64> bKing	= 0x0000000000000000;
 			std::bitset<64> bQueen	= 0x0000000000000000;
 			std::bitset<64> bRook	= 0x0000000000000000;
 			std::bitset<64> bBishop	= 0x0000000000000000;
+			std::bitset<64> bKnight	= 0x0000000000000000;
 						
 		public:			
 			BitboardPosition() = default;
