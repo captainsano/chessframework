@@ -7,11 +7,16 @@
 //
 
 #include <vector>
+#include <exception>
 #include "BitboardPosition.h"
 #include "Square.h"
 
 sfc::cfw::BitboardPosition::BitboardPosition(const std::string & FENString) {
-	/// @todo Validate the position
+	if (sfc::cfw::Position::validateFEN(FENString)) {
+		// Proceed to set the bitboard structure
+	} else {
+		throw std::invalid_argument("FEN String format or count is invalid");
+	}
 }
 
 int sfc::cfw::BitboardPosition::operator[] (const sfc::cfw::Square & aSquare) {

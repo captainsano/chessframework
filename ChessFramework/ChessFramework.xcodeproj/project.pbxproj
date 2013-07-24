@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6363A74B179F9102003E2B51 /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6363A74A179F9102003E2B51 /* Position.cpp */; };
+		6363A74C179F9102003E2B51 /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6363A74A179F9102003E2B51 /* Position.cpp */; };
 		63791948179A6784000C98E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63791947179A6784000C98E2 /* main.cpp */; };
 		6379194A179A6784000C98E2 /* ChessFramework.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63791949179A6784000C98E2 /* ChessFramework.1 */; };
 		63DACE1A179ED7C900593AED /* Position_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63DACE19179ED7C900593AED /* Position_Tests.mm */; };
@@ -43,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6363A74A179F9102003E2B51 /* Position.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Position.cpp; sourceTree = "<group>"; };
 		63791944179A6784000C98E2 /* ChessFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChessFramework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63791947179A6784000C98E2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		63791949179A6784000C98E2 /* ChessFramework.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ChessFramework.1; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 				63791949179A6784000C98E2 /* ChessFramework.1 */,
 				EDE51CBE179E847100FD6CA8 /* Square.cpp */,
 				EDE51CBF179E847100FD6CA8 /* Square.h */,
+				6363A74A179F9102003E2B51 /* Position.cpp */,
 				63DACE1C179F089800593AED /* Position.h */,
 				63DACE1F179F0BBA00593AED /* BitboardPosition.cpp */,
 				63DACE20179F0BBA00593AED /* BitboardPosition.h */,
@@ -228,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6363A74B179F9102003E2B51 /* Position.cpp in Sources */,
 				EDE51CC0179E847100FD6CA8 /* Square.cpp in Sources */,
 				63DACE21179F0BBA00593AED /* BitboardPosition.cpp in Sources */,
 				63791948179A6784000C98E2 /* main.cpp in Sources */,
@@ -242,6 +247,7 @@
 				63DACE22179F0BBA00593AED /* BitboardPosition.cpp in Sources */,
 				63DACE1A179ED7C900593AED /* Position_Tests.mm in Sources */,
 				EDE51CBD179E7CA900FD6CA8 /* Square_Tests.mm in Sources */,
+				6363A74C179F9102003E2B51 /* Position.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

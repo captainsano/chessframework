@@ -20,6 +20,9 @@ namespace sfc {
 		
 		class Position {
 			
+		protected:
+			virtual bool validateFEN(const std::string &FENString);
+			
 		public:
 			virtual int operator[] (const sfc::cfw::Square & aSquare) = 0;	/// @todo Replace with pieceType enum as return
 			virtual std::vector<std::shared_ptr<sfc::cfw::Square>> attacksFrom(const sfc::cfw::Square & aSquare) const = 0;
