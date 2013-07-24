@@ -65,8 +65,8 @@ using sfc::cfw::BitboardPosition;
 	p = std::make_shared<BitboardPosition>("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
 	XCTAssertEquals(p->getFEN(), "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", @"Test if the position is being set");
 	
-	p = std::make_shared<BitboardPosition>("8/8/3K5/5k3/8/8/8/8");
-	XCTAssertEquals(p->getFEN(), "8/8/3K5/5k3/8/8/8/8", @"Test if the position is being set");
+	p = std::make_shared<BitboardPosition>("8/8/3K4/4k3/8/8/8/8");
+	XCTAssertEquals(p->getFEN(), "8/8/4K3/4k3/8/8/8/8", @"Test if the position is being set");
 }
 
 /// @todo Write test for attacksFrom, attacksTo, attacksFromPiece and operator[]
