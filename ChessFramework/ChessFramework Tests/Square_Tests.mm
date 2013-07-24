@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import <vector>
+#import <iostream>
 #import "Square.h"
 
 using sfc::cfw::Square;
@@ -71,13 +72,17 @@ using sfc::cfw::Square;
 }
 
 - (void)testReturnsTheAppropriateIndexValue {
-    for (unsigned short file = 0; file < 8; file++) {
-        for (unsigned short rank = 0; rank < 8; rank++) {
+	std::vector<Square> squares;
+    for (unsigned short rank = 0; rank < 8; rank++) {
+        for (unsigned short file = 0; file < 8; file++) {
             Square s(file, rank);
-            unsigned short calculatedIndex = (rank << 3) | file;
-            XCTAssertEquals(s.getIndex(), calculatedIndex, @"The index value should match file and rank");
+            squares.push_back(s);
         }
     }
+	
+	for (int i = 0; i < 64; i++) {
+		XCTAssertTrue(squares[i].getIndex() == i, @"Square Indices should match");
+	}
 }
 
 - (void)testReturnsTheAppropriateSquareLabels {
