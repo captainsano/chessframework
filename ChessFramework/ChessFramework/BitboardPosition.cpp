@@ -29,10 +29,11 @@ sfc::cfw::BitboardPosition::BitboardPosition(const std::string & FENString) {
 		expandedFEN = std::regex_replace(expandedFEN, std::regex("2"), "11");
 		expandedFEN = std::regex_replace(expandedFEN, std::regex("/"), "");
 		
+		std::string::size_type StringIndex = 0;
 		for (int rank = 7; rank >= 0; rank--) {
 			for (int file = 0; file < 8; file++) {
 				Square s(file, rank);
-				switch (expandedFEN[s]) {
+				switch (expandedFEN[StringIndex++]) {
 					case 'P':
 						wPawn.set(s);
 						break;
@@ -79,6 +80,33 @@ sfc::cfw::BitboardPosition::BitboardPosition(const std::string & FENString) {
 }
 
 sfc::cfw::Piece sfc::cfw::BitboardPosition::operator[] (const sfc::cfw::Square & aSquare) const {
+	
+	if (wPawn[aSquare]) {
+		return sfc::cfw::PieceWPawn;
+	} else if (wKing[aSquare]) {
+		return sfc::cfw::PieceWKing;
+	} else if (wQueen[aSquare]) {
+		return sfc::cfw::PieceWQueen;
+	} else if (wRook[aSquare]) {
+		return sfc::cfw::PieceWRook;
+	} else if (wBishop[aSquare]) {
+		return sfc::cfw::PieceWBishop;
+	} else if (wKnight[aSquare]) {
+		return sfc::cfw::PieceWKnight;
+	} else if (bPawn[aSquare]) {
+		return sfc::cfw::PieceBPawn;
+	} else if (bKing[aSquare]) {
+		return sfc::cfw::PieceBKing;
+	} else if (bQueen[aSquare]) {
+		return sfc::cfw::PieceBQueen;
+	} else if (bRook[aSquare]) {
+		return sfc::cfw::PieceBRook;
+	} else if (bBishop[aSquare]) {
+		return sfc::cfw::PieceBBishop;
+	} else if (bKnight[aSquare]) {
+		return sfc::cfw::PieceBKnight;
+	}
+	
 	return sfc::cfw::PieceNone;
 }
 
@@ -135,9 +163,9 @@ std::string sfc::cfw::BitboardPosition::getFEN() const {
 			}
 		}
 		
-		if (rank != 7) rankString += "/";
+		if (rank != 0) rankString += "/";
 		
-		FENString = rankString + FENString;
+		FENString += rankString;
 	}
 	
 	return FENString;
@@ -180,9 +208,9 @@ std::string sfc::cfw::BitboardPosition::prettyString() const {
 			rankString += " ";
 		}
 		
-		if (rank != 7) rankString += "\n";
+		if (rank != 0) rankString += "\n";
 		
-		toReturn = rankString + toReturn;
+		toReturn += rankString;
 	}
 	
 	return "\n" + toReturn + "\n";

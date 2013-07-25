@@ -15,8 +15,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "validateFEN()"
-            landmarkType = "7">
+            landmarkName = "sfc::cfw::Position::validateFEN(const std::string &amp;FENString)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -31,8 +31,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
             endingLineNumber = "32"
-            landmarkName = "validateFEN()"
-            landmarkType = "7">
+            landmarkName = "sfc::cfw::Position::validateFEN(const std::string &amp;FENString)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,73 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ChessFramework/BitboardPosition.cpp"
-            timestampString = "396346544.915965"
+            timestampString = "396425136.373135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "sfc::cfw::BitboardPosition::getFEN()"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ChessFramework/BitboardPosition.cpp"
-            timestampString = "396346189.421748"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "sfc::cfw::BitboardPosition::BitboardPosition(const std::string &amp; FENString)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "sfc::cfw::BitboardPosition::BitboardPosition(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;)"
-                  moduleName = "ChessFramework Tests"
-                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/ChessFramework/ChessFramework/ChessFramework/BitboardPosition.cpp"
-                  timestampString = "396343676.459322"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "sfc::cfw::BitboardPosition::BitboardPosition(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;)"
-                  moduleName = "ChessFramework Tests"
-                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/ChessFramework/ChessFramework/ChessFramework/BitboardPosition.cpp"
-                  timestampString = "396343676.459625"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "2559">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "sfc::cfw::BitboardPosition::BitboardPosition(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;)"
-                  moduleName = "ChessFramework Tests"
-                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/ChessFramework/ChessFramework/ChessFramework/BitboardPosition.cpp"
-                  timestampString = "396343676.459971"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "3430">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
