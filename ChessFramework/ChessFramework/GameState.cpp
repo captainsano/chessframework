@@ -78,6 +78,14 @@ sfc::cfw::GameState::GameState(std::string && FENString,
 			throw std::invalid_argument("Rook not present at location indicated by castling options");
 		}
 	}
+	
+	// Check for errors in king piece count - only 1 king should be there
+	if (tempPosition->pieceCount(sfc::cfw::PieceWKing) != 1 || tempPosition->pieceCount(sfc::cfw::PieceBKing) != 1) {
+		throw std::invalid_argument("Position should contain only one white and black king");
+	}
+	
+	
+	// Check for errors in king status
 		
 	// Assign values if everything is right
 	this->position = tempPosition;
