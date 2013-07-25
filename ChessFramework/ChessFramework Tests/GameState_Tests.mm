@@ -30,7 +30,7 @@ using sfc::cfw::GameState;
 }
 
 - testDefaultInitializationDoesNotThrow() {
-	CPPAssertNoThrow(new GameState(), @"Default initialization of GameState should throw");
+	CPPAssertNoThrow(new GameState(), @"Default initialization of GameState should not throw");
 }
 
 - testInitializationWithValidPositionAndWhiteSideDoesNotThrow() {
