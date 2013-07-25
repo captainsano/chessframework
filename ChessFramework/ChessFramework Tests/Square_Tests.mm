@@ -50,6 +50,32 @@ using sfc::cfw::Square;
     }
 }
 
+- (void)testInitializedFromLabelDoesNotThrow {
+	CPPAssertNoThrow(new Square("e4"), @"Valid square initialization throw label does not throw");
+}
+
+- (void)testInitializedFromInvalidLabelThrows {
+	CPPAssertThrows(new Square("e9"), @"Invalid square initialization should throw");
+	CPPAssertThrows(new Square("x3"), @"Invalid square initialization should throw");
+	CPPAssertThrows(new Square("e0"), @"Invalid square initialization should throw");
+	CPPAssertThrows(new Square("h9"), @"Invalid square initialization should throw");
+}
+
+- (void)testReturnsCorrespondingValuesForLabels {
+	std::vector<Square> squares;
+	
+	for (char rank = '1'; rank <= '8'; rank++) {
+		for (char file = 'a'; file <= 'h'; file++) {
+			std::string label{file, rank};
+			squares.push_back(Square(label));
+		}
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertEquals(squares[i].getIndex(), i, @"Squares should store corresponding index from label");
+	}
+}
+
 - (void)testReturnsTheAppropriateFileAndRankValues {
     for (unsigned short file = 0; file < 8; file++) {
         for (unsigned short rank = 0; rank < 8; rank++) {
