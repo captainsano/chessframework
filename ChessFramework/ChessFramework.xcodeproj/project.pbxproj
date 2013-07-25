@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63199A0217A0D9C500A9F1E9 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63199A0017A0D9C500A9F1E9 /* Piece.cpp */; };
+		63199A0317A0D9C500A9F1E9 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63199A0017A0D9C500A9F1E9 /* Piece.cpp */; };
 		6363A74B179F9102003E2B51 /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6363A74A179F9102003E2B51 /* Position.cpp */; };
 		6363A74C179F9102003E2B51 /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6363A74A179F9102003E2B51 /* Position.cpp */; };
 		63791948179A6784000C98E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63791947179A6784000C98E2 /* main.cpp */; };
@@ -45,6 +47,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		63199A0017A0D9C500A9F1E9 /* Piece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Piece.cpp; sourceTree = "<group>"; };
+		63199A0117A0D9C500A9F1E9 /* Piece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Piece.h; sourceTree = "<group>"; };
 		6363A74A179F9102003E2B51 /* Position.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Position.cpp; sourceTree = "<group>"; };
 		63791944179A6784000C98E2 /* ChessFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChessFramework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63791947179A6784000C98E2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				63DACE1C179F089800593AED /* Position.h */,
 				63DACE1F179F0BBA00593AED /* BitboardPosition.cpp */,
 				63DACE20179F0BBA00593AED /* BitboardPosition.h */,
+				63199A0017A0D9C500A9F1E9 /* Piece.cpp */,
+				63199A0117A0D9C500A9F1E9 /* Piece.h */,
 			);
 			path = ChessFramework;
 			sourceTree = "<group>";
@@ -234,6 +240,7 @@
 			files = (
 				6363A74B179F9102003E2B51 /* Position.cpp in Sources */,
 				EDE51CC0179E847100FD6CA8 /* Square.cpp in Sources */,
+				63199A0217A0D9C500A9F1E9 /* Piece.cpp in Sources */,
 				63DACE21179F0BBA00593AED /* BitboardPosition.cpp in Sources */,
 				63791948179A6784000C98E2 /* main.cpp in Sources */,
 			);
@@ -243,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63199A0317A0D9C500A9F1E9 /* Piece.cpp in Sources */,
 				EDE51CC1179E847100FD6CA8 /* Square.cpp in Sources */,
 				63DACE22179F0BBA00593AED /* BitboardPosition.cpp in Sources */,
 				63DACE1A179ED7C900593AED /* Position_Tests.mm in Sources */,
