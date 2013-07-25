@@ -171,6 +171,28 @@ std::string sfc::cfw::BitboardPosition::getFEN() const {
 	return FENString;
 }
 
+unsigned short sfc::cfw::BitboardPosition::pieceCount(const Piece aPieceType) const {
+	switch (aPieceType) {
+		case sfc::cfw::PieceWPawn: 		return this->wPawn.count();
+		case sfc::cfw::PieceWKing:		return this->wKing.count();
+		case sfc::cfw::PieceWQueen:		return this->wQueen.count();
+		case sfc::cfw::PieceWRook:		return this->wRook.count();
+		case sfc::cfw::PieceWBishop:	return this->wBishop.count();
+		case sfc::cfw::PieceWKnight:	return this->wKnight.count();
+		case sfc::cfw::PieceBPawn: 		return this->bPawn.count();
+		case sfc::cfw::PieceBKing:		return this->bKing.count();
+		case sfc::cfw::PieceBQueen:		return this->bQueen.count();
+		case sfc::cfw::PieceBRook:		return this->bRook.count();
+		case sfc::cfw::PieceBBishop:	return this->bBishop.count();
+		case sfc::cfw::PieceBKnight:	return this->bKnight.count();
+		// Unoccupied Squares
+		case sfc::cfw::PieceNone:		return 64 - std::bitset<64>(this->wPawn | this->wKing | this->wQueen | this->wRook | this->wBishop | this->wKnight |
+																	this->bPawn | this->bKing | this->bQueen | this->bRook | this->bBishop | this->bKnight).count();
+	}
+	
+	return 0;
+}
+
 std::string sfc::cfw::BitboardPosition::prettyString() const {
 	std::string toReturn;
 	for (int rank = 7; rank >= 0; rank--) {

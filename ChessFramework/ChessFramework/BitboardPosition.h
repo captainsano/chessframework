@@ -50,6 +50,8 @@ namespace sfc {
 			operator std::string () const override { return this->getFEN(); }
 			std::string getFEN() const override;
 			
+			unsigned short pieceCount(const Piece aPieceType) const override;
+			
 			// For debugging purposes only
 			std::string prettyString() const override;
 		};

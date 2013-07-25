@@ -35,6 +35,8 @@ namespace sfc {
 			virtual operator std::string () const = 0;
 			virtual std::string getFEN() const = 0;
 			
+			virtual unsigned short pieceCount(const Piece aPieceType) const = 0;
+			
 			// For debugging purposes only
 			virtual std::string prettyString() const = 0;
 			
