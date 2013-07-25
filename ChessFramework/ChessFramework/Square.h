@@ -30,10 +30,10 @@ namespace sfc {
             
         public:
 			Square() = default;
-            Square(unsigned short aIndex);
-            Square(unsigned short aFile, unsigned short aRank);
-			Square(std::string label) : Square(label[0] - 'a', label[1] - '1') { }
-            
+            Square(const unsigned short & aIndex);
+            Square(const unsigned short & aFile, const unsigned short & aRank);
+			Square(const std::string & label) : Square(label[0] - 'a', label[1] - '1') { }
+			
 			operator unsigned short() const;
             
 			unsigned short  getFile() const;

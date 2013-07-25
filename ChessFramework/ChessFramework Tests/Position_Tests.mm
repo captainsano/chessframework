@@ -150,23 +150,24 @@ using sfc::cfw::BitboardPosition;
 	}
 	
 	// In rank 5, first four squares and last 3 squares should be vacant and 5th square contains black king.
-	XCTAssertEquals((*p)[Square(0, 4)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(1, 4)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(2, 4)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(3, 4)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(4, 4)], sfc::cfw::PieceBKing, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(5, 4)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(6, 4)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("a5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("b5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("c5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("d5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("e5")], sfc::cfw::PieceBKing, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("f5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("g5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("h5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
 
 	// In rank 6, first 3 squares and last 4 squares should be vacant and 4the square contains white king.
-	XCTAssertEquals((*p)[Square(0, 5)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(1, 5)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(2, 5)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(3, 5)], sfc::cfw::PieceWKing, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(4, 5)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(5, 5)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(6, 5)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square(7, 5)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("a6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("b6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("c6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("d6")], sfc::cfw::PieceWKing, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("e6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("f6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("g6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEquals((*p)[Square("h6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
 }
 
 

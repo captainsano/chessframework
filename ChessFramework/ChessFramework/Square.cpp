@@ -9,7 +9,7 @@
 #include "Square.h"
 #include <exception>
 
-sfc::cfw::Square::Square(unsigned short aIndex) {
+sfc::cfw::Square::Square(const unsigned short & aIndex) {
     if (aIndex > 63) {
         throw std::out_of_range("Square index must be 0-63");
     }
@@ -17,7 +17,7 @@ sfc::cfw::Square::Square(unsigned short aIndex) {
     this->index = aIndex;
 }
 
-sfc::cfw::Square::Square(unsigned short aFile, unsigned short aRank) {
+sfc::cfw::Square::Square(const unsigned short & aFile, const unsigned short & aRank) {
     if (aFile > 7) {
         throw std::out_of_range("file index must be 0-7");
     }
