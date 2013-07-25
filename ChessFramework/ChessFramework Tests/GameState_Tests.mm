@@ -97,19 +97,19 @@ using sfc::cfw::GameState;
 }
 
 - testInitializationWithoutWhiteKingThrows() {
-	CPPAssertThrows(new GameState("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQ1BNR", sfc::cfw::ColorWhite, "GQkq"), @"Initialization without white king should throw");
+	CPPAssertThrows(new GameState("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQ1BNR", sfc::cfw::ColorWhite, "KQkq"), @"Initialization without white king should throw");
 }
 
 - testInitializationWithoutBlackKingThrows() {
-	CPPAssertThrows(new GameState("rnbq1bnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR", sfc::cfw::ColorWhite, "GQkq"), @"Initialization without black king should throw");
+	CPPAssertThrows(new GameState("rnbq1bnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR", sfc::cfw::ColorWhite, "KQkq"), @"Initialization without black king should throw");
 }
 
 - testInitializationWithMultipleWhiteKingsThrows() {
-	CPPAssertThrows(new GameState("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPK/RNBQKBNR", sfc::cfw::ColorWhite, "GQkq"), @"Initialization with multiple white king should throw");
+	CPPAssertThrows(new GameState("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPK/RNBQKBNR", sfc::cfw::ColorWhite, "KQkq"), @"Initialization with multiple white king should throw");
 }
 
 - testInitializationWithMultipleBlackKingsThrows() {
-	CPPAssertThrows(new GameState("rnbqkbnr/pppp1ppp/k7/4p3/4P3/8/PPPP1PPP/RNBQKBNR", sfc::cfw::ColorWhite, "GQkq"), @"Initialization with multiple black king should throw");
+	CPPAssertThrows(new GameState("rnbqkbnr/pppp1ppp/k7/4p3/4P3/8/PPPP1PPP/RNBQKBNR", sfc::cfw::ColorWhite, "KQkq"), @"Initialization with multiple black king should throw");
 }
 
 
