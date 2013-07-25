@@ -40,16 +40,18 @@ namespace sfc {
 			BitboardPosition() = default;
 			BitboardPosition(const std::string & FENString);			
 			
-			virtual int operator[] (const sfc::cfw::Square & aSquare) override;	/// @todo Replace with pieceType enum as return
-			virtual std::vector<std::shared_ptr<sfc::cfw::Square>> attacksFrom(const sfc::cfw::Square & aSquare) const override;
-			virtual std::vector<std::shared_ptr<sfc::cfw::Square>> attacksTo(const sfc::cfw::Square & aSquare, int side) const override;	// Second parameter determines the side to return
-			virtual std::vector<std::shared_ptr<sfc::cfw::Square>> attacksByPiece(int pieceType) const override;	/// @todo Replace with pieceType enum
+			sfc::cfw::Piece operator[] (const sfc::cfw::Square & aSquare) const override;
 			
-			virtual operator std::string () const override { return this->getFEN(); }
-			virtual std::string getFEN() const override;
+			
+			std::vector<std::shared_ptr<sfc::cfw::Square>> attacksFrom(const sfc::cfw::Square & aSquare) const override;
+			std::vector<std::shared_ptr<sfc::cfw::Square>> attacksTo(const sfc::cfw::Square & aSquare, const sfc::cfw::Color & aSide) const override;
+			std::vector<std::shared_ptr<sfc::cfw::Square>> attacksByPiece(const Piece & aPieceType) const override;
+			
+			operator std::string () const override { return this->getFEN(); }
+			std::string getFEN() const override;
 			
 			// For debugging purposes only
-			virtual std::string prettyString() const override;
+			std::string prettyString() const override;
 		};
 	}
 }

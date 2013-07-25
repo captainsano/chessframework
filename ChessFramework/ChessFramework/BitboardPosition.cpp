@@ -78,19 +78,19 @@ sfc::cfw::BitboardPosition::BitboardPosition(const std::string & FENString) {
 	
 }
 
-int sfc::cfw::BitboardPosition::operator[] (const sfc::cfw::Square & aSquare) {
-	return -1;
+sfc::cfw::Piece sfc::cfw::BitboardPosition::operator[] (const sfc::cfw::Square & aSquare) const {
+	return sfc::cfw::PieceNone;
 }
 
 std::vector<std::shared_ptr<sfc::cfw::Square>> sfc::cfw::BitboardPosition::attacksFrom(const sfc::cfw::Square & aSquare) const {
 	return {};
 }
 
-std::vector<std::shared_ptr<sfc::cfw::Square>> sfc::cfw::BitboardPosition::attacksTo(const sfc::cfw::Square & aSquare, int side) const {
+std::vector<std::shared_ptr<sfc::cfw::Square>> sfc::cfw::BitboardPosition::attacksTo(const sfc::cfw::Square & aSquare, const sfc::cfw::Color & aSide) const {
 	return {};
 }
 
-std::vector<std::shared_ptr<sfc::cfw::Square>> sfc::cfw::BitboardPosition::attacksByPiece(int pieceType) const {
+std::vector<std::shared_ptr<sfc::cfw::Square>> sfc::cfw::BitboardPosition::attacksByPiece(const Piece & aPieceType) const {
 	return {};
 }
 
