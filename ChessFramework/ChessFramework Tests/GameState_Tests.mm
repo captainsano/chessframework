@@ -65,8 +65,12 @@ using sfc::cfw::GameState;
 	CPPAssertThrows(new GameState("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR", sfc::cfw::ColorWhite, "---"), @"Insufficient information in castling string");
 }
 
-- (void)testInitializationWithInvalidCastlingOptionFormatThrows {
+- (void)testInitializationWithMalformedCastlingOptionsThrows {
 	CPPAssertThrows(new GameState("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR", sfc::cfw::ColorWhite, "1Qin"), @"Invalid castling options format should throw");
+}
+
+- (void)testInitializationWithCastlingOptionsChess960InvalidRookPlacementThrows {
+	CPPAssertThrows(new GameState("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RRBQKBNR", sfc::cfw::ColorWhite, "ABkq"), @"Invalid castling options format should throw");
 }
 
 - (void)testInitializationWithInapplicableWhiteKingsideCastlingOptionThrows {
@@ -86,11 +90,19 @@ using sfc::cfw::GameState;
 }
 
 - (void)testInitializationWithWhiteInCheckAndBlackToPlayThrows {
-	/// @todo
+	CPPAssertThrows(new GameState("r1bqk2r/pppp1ppp/2n2n2/8/1bBPP3/5N2/PP3PPP/RNBQK2R", sfc::cfw::ColorBlack), @"Initialization with black to play and white king in check should throw");
 }
 
 - (void)testInitializationWithBlackInCheckAndWhiteToPlayThrows {
-	/// @todo
+	CPPAssertThrows(new GameState("r1bqk2r/pppp1Bpp/2n5/8/3P4/1Q3N2/P4PPP/b1B2RK1", sfc::cfw::ColorWhite), @"Initialization with white to play and black king in check should throw");
+}
+
+- (void)testInitializationWithWhiteInCheckMateAndBlackToPlayThrows {
+	CPPAssertThrows(new GameState("8/6k1/8/8/8/8/5PPP/1r4K1", sfc::cfw::ColorBlack), @"Initialization with black to play and white king in check mate should throw");
+}
+
+- (void)testInitializationWithBlackInCheckMateAndWhiteToPlayThrows {
+	CPPAssertThrows(new GameState("r1bq3r/ppppnQkp/8/4N1Bp/3P4/8/P4PPP/b4RK1", sfc::cfw::ColorWhite), @"Initialization with white to play and black king in check mat should throw");
 }
 
 - (void)testInitializationWithoutWhiteKingThrows {
