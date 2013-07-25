@@ -32,7 +32,7 @@ namespace sfc {
 			// due to the ambiguity introduced by the other constructor
 			GameState(std::string && FENString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
 					  const sfc::cfw::Color & aSideToMove = sfc::cfw::ColorWhite,
-					  const std::string castlingOptions = "----",
+					  const std::string & aCastlingOptions = "----",
 					  const sfc::cfw::Square & aEnpassantTarget = sfc::cfw::Square(0)
 					  );
 		};
