@@ -224,7 +224,173 @@ using sfc::cfw::BitboardPosition;
 	XCTAssertTrue(p->pieceCount(sfc::cfw::PieceBKnight) == 2, @"Black Knight count should be corresponding");
 }
 
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithWPawn {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceWPawn);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceWPawn);
+	}
+}
 
-/// @todo Write test for attacksFrom, attacksTo, attacksFromPiece
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithWKing {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceWKing);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceWKing);
+	}
+}
+
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithWQueen {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceWQueen);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceWQueen);
+	}
+}
+
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithWRook {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceWRook);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceWRook);
+	}
+}
+
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithWBishop {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceWBishop);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceWBishop);
+	}
+}
+
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithWKnight {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceWKnight);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceWKnight);
+	}
+}
+
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithBPawn {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceBPawn);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceBPawn);
+	}
+}
+
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithBKing {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceBKing);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceBKing);
+	}
+}
+
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithBQueen {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceBQueen);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceBQueen);
+	}
+}
+
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithBRook {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceBRook);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceBRook);
+	}
+}
+
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithBBishop {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceBBishop);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceBBishop);
+	}
+}
+
+- (void)testClearBoardVacateReturnsCorrectValueOccupyWithBKnight {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/8");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone);
+		p->occupy(i, sfc::cfw::PieceBKnight);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceBKnight);
+	}
+}
+
+- (void)testOccupiedBoardCompleteVacateReturnsClearBoard {
+	std::shared_ptr<Position> p = std::make_shared<BitboardPosition>("rnbqkbnr/pppppppp/pppppppp/pppppppp/pppppppp/pppppppp/PPPPPPPP/RNBQKBNR");
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertFalse((*p)[i] == sfc::cfw::PieceNone, @"All squares should be occupied");
+		p->vacate(i);
+	}
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		XCTAssertTrue((*p)[i] == sfc::cfw::PieceNone, @"All squares should be empty");
+	}
+}
 
 @end

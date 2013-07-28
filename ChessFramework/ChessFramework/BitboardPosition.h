@@ -42,10 +42,8 @@ namespace sfc {
 			
 			sfc::cfw::Piece operator[] (const sfc::cfw::Square & aSquare) const override;
 			
-			
-			std::vector<std::shared_ptr<sfc::cfw::Square>> attacksFrom(const sfc::cfw::Square & aSquare) const override;
-			std::vector<std::shared_ptr<sfc::cfw::Square>> attacksTo(const sfc::cfw::Square & aSquare, const sfc::cfw::Color & aSide) const override;
-			std::vector<std::shared_ptr<sfc::cfw::Square>> attacksByPiece(const Piece & aPieceType) const override;
+			sfc::cfw::Piece vacate(const sfc::cfw::Square & aSquare) override;
+			sfc::cfw::Piece	occupy(const sfc::cfw::Square & aSquare, const Piece aPieceType) override;
 			
 			operator std::string () const override { return this->getFEN(); }
 			std::string getFEN() const override;

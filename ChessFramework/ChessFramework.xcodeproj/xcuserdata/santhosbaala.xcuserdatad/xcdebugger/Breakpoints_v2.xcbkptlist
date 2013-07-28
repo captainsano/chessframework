@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ChessFramework/BitboardPosition.cpp"
-            timestampString = "396425136.373135"
+            timestampString = "396678739.253544"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "sfc::cfw::BitboardPosition::getFEN()"
             landmarkType = "5">
          </BreakpointContent>

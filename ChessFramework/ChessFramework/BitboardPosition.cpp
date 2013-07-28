@@ -110,17 +110,148 @@ sfc::cfw::Piece sfc::cfw::BitboardPosition::operator[] (const sfc::cfw::Square &
 	return sfc::cfw::PieceNone;
 }
 
-std::vector<std::shared_ptr<sfc::cfw::Square>> sfc::cfw::BitboardPosition::attacksFrom(const sfc::cfw::Square & aSquare) const {
-	return {};
+sfc::cfw::Piece sfc::cfw::BitboardPosition::vacate(const sfc::cfw::Square & aSquare) {
+	// First, find out which piece has occupied the square.
+	switch ((*this)[aSquare]) {
+		case sfc::cfw::PieceWPawn: {
+			wPawn[aSquare] = 0;
+			return sfc::cfw::PieceWPawn;
+		}
+			
+		case sfc::cfw::PieceWKing: {
+			wKing[aSquare] = 0;
+			return sfc::cfw::PieceWKing;
+		}
+			
+		case sfc::cfw::PieceWQueen: {
+			wQueen[aSquare] = 0;
+			return sfc::cfw::PieceWQueen;
+		}
+			
+		case sfc::cfw::PieceWRook: {
+			wRook[aSquare] = 0;
+			return sfc::cfw::PieceWRook;
+		}
+			
+		case sfc::cfw::PieceWBishop: {
+			wBishop[aSquare] = 0;
+			return sfc::cfw::PieceWBishop;
+		}
+			
+		case sfc::cfw::PieceWKnight: {
+			wKnight[aSquare] = 0;
+			return sfc::cfw::PieceWKnight;
+		}
+			
+		case sfc::cfw::PieceBPawn: {
+			bPawn[aSquare] = 0;
+			return sfc::cfw::PieceBPawn;
+		}
+			
+		case sfc::cfw::PieceBKing: {
+			bKing[aSquare] = 0;
+			return sfc::cfw::PieceBKing;
+		}
+			
+		case sfc::cfw::PieceBQueen: {
+			bQueen[aSquare] = 0;
+			return sfc::cfw::PieceBQueen;
+		}
+			
+		case sfc::cfw::PieceBRook: {
+			bRook[aSquare] = 0;
+			return sfc::cfw::PieceBRook;
+		}
+			
+		case sfc::cfw::PieceBBishop: {
+			bBishop[aSquare] = 0;
+			return sfc::cfw::PieceBBishop;
+		}
+			
+		case sfc::cfw::PieceBKnight: {
+			bKnight[aSquare] = 0;
+			return sfc::cfw::PieceBKnight;
+		}
+			
+		case sfc::cfw::PieceNone: {
+			return sfc::cfw::PieceNone;
+		}
+	}
+	
+	return sfc::cfw::PieceNone;
 }
 
-std::vector<std::shared_ptr<sfc::cfw::Square>> sfc::cfw::BitboardPosition::attacksTo(const sfc::cfw::Square & aSquare, const sfc::cfw::Color & aSide) const {
-	return {};
+sfc::cfw::Piece sfc::cfw::BitboardPosition::occupy(const sfc::cfw::Square & aSquare, const Piece aPieceType) {
+	// Make sure that the other pieces occupying the same square are vacated
+	Piece vacatedPiece = vacate(aSquare);
+	switch (aPieceType) {
+		case sfc::cfw::PieceWPawn: {
+			wPawn.set(aSquare);
+			break;
+		}
+			
+		case sfc::cfw::PieceWKing: {
+			wKing.set(aSquare);
+			break;
+		}
+			
+		case sfc::cfw::PieceWQueen: {
+			wQueen.set(aSquare);
+			break;
+		}
+			
+		case sfc::cfw::PieceWRook: {
+			wRook.set(aSquare);
+			break;
+		}
+			
+		case sfc::cfw::PieceWBishop: {
+			wBishop.set(aSquare);
+			break;
+		}
+			
+		case sfc::cfw::PieceWKnight: {
+			wKnight.set(aSquare);
+			break;
+		}
+			
+		case sfc::cfw::PieceBPawn: {
+			bPawn.set(aSquare);
+			break;
+		}
+			
+		case sfc::cfw::PieceBKing: {
+			bKing.set(aSquare);
+			break;
+		}
+			
+		case sfc::cfw::PieceBQueen: {
+			bQueen.set(aSquare);
+			break;
+		}
+			
+		case sfc::cfw::PieceBRook: {
+			bRook.set(aSquare);
+			break;
+		}
+			
+		case sfc::cfw::PieceBBishop: {
+			bBishop.set(aSquare);
+			break;
+		}
+			
+		case sfc::cfw::PieceBKnight: {
+			bKnight.set(aSquare);
+			break;
+		}
+		case sfc::cfw::PieceNone:
+			// no action
+			break;
+	}
+	
+	return vacatedPiece;
 }
 
-std::vector<std::shared_ptr<sfc::cfw::Square>> sfc::cfw::BitboardPosition::attacksByPiece(const Piece & aPieceType) const {
-	return {};
-}
 
 std::string sfc::cfw::BitboardPosition::getFEN() const {
 	std::string FENString;

@@ -26,11 +26,9 @@ namespace sfc {
 			
 		public:
 			virtual sfc::cfw::Piece operator[] (const sfc::cfw::Square & aSquare) const = 0;
-			// The subclasses have to support operator[] that supplies a reference for assignment.
 			
-			virtual std::vector<std::shared_ptr<sfc::cfw::Square>> attacksFrom(const sfc::cfw::Square & aSquare) const = 0;
-			virtual std::vector<std::shared_ptr<sfc::cfw::Square>> attacksTo(const sfc::cfw::Square & aSquare, const sfc::cfw::Color & aSide) const = 0;
-			virtual std::vector<std::shared_ptr<sfc::cfw::Square>> attacksByPiece(const Piece & aPieceType) const = 0;
+			virtual sfc::cfw::Piece vacate(const sfc::cfw::Square & aSquare) = 0;
+			virtual sfc::cfw::Piece	occupy(const sfc::cfw::Square & aSquare, const Piece aPieceType) = 0;
 			
 			virtual operator std::string () const = 0;
 			virtual std::string getFEN() const = 0;
@@ -39,6 +37,8 @@ namespace sfc {
 			
 			// For debugging purposes only
 			virtual std::string prettyString() const = 0;
+			
+			/// @todo API to vacate/occupy a square.
 			
 			virtual ~Position() = default;
 		};
