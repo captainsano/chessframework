@@ -22,6 +22,7 @@
 		ED5552D417A55331005AA510 /* PositionQuerier_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = ED5552D317A55331005AA510 /* PositionQuerier_Tests.mm */; };
 		ED68429817A6139600AED4A8 /* BitboardPositionQuerier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED68429617A6139600AED4A8 /* BitboardPositionQuerier.cpp */; };
 		ED68429917A6139600AED4A8 /* BitboardPositionQuerier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED68429617A6139600AED4A8 /* BitboardPositionQuerier.cpp */; };
+		ED68429B17A618C200AED4A8 /* PositionQuerierKnightAttack_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = ED68429A17A618C200AED4A8 /* PositionQuerierKnightAttack_Tests.mm */; };
 		EDD926E1179DB4BA00225C0A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD926E0179DB4BA00225C0A /* XCTest.framework */; };
 		EDD926E7179DB4BA00225C0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDD926E5179DB4BA00225C0A /* InfoPlist.strings */; };
 		EDE51CBD179E7CA900FD6CA8 /* Square_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = EDE51CBC179E7CA900FD6CA8 /* Square_Tests.mm */; };
@@ -69,6 +70,7 @@
 		ED5552D317A55331005AA510 /* PositionQuerier_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PositionQuerier_Tests.mm; sourceTree = "<group>"; };
 		ED68429617A6139600AED4A8 /* BitboardPositionQuerier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitboardPositionQuerier.cpp; sourceTree = "<group>"; };
 		ED68429717A6139600AED4A8 /* BitboardPositionQuerier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitboardPositionQuerier.h; sourceTree = "<group>"; };
+		ED68429A17A618C200AED4A8 /* PositionQuerierKnightAttack_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PositionQuerierKnightAttack_Tests.mm; sourceTree = "<group>"; };
 		EDD926DE179DB4BA00225C0A /* ChessFramework Tests.xctest */ = {isa = PBXFileReference; explicitFileType = folder; includeInIndex = 0; path = "ChessFramework Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD926E0179DB4BA00225C0A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		EDD926E4179DB4BA00225C0A /* ChessFramework Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ChessFramework Tests-Info.plist"; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				63DACE19179ED7C900593AED /* Position_Tests.mm */,
 				63F388F717A1131D00B44555 /* GameState_Tests.mm */,
 				ED5552D317A55331005AA510 /* PositionQuerier_Tests.mm */,
+				ED68429A17A618C200AED4A8 /* PositionQuerierKnightAttack_Tests.mm */,
 			);
 			path = "ChessFramework Tests";
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				6363A74C179F9102003E2B51 /* Position.cpp in Sources */,
 				ED5552D417A55331005AA510 /* PositionQuerier_Tests.mm in Sources */,
 				63F388F817A1131D00B44555 /* GameState_Tests.mm in Sources */,
+				ED68429B17A618C200AED4A8 /* PositionQuerierKnightAttack_Tests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+
 #import <set>
 #import "Position.h"
 #import "Square.h"
@@ -59,6 +60,5 @@ using namespace sfc::cfw;
         XCTAssertTrue(attacksTo.empty(), @"There should not be any attacks from on an empty board");
     }
 }
-
 
 @end
