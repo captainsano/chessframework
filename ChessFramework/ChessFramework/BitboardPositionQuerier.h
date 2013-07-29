@@ -17,10 +17,15 @@ namespace sfc {
     namespace cfw {
         
         class BitboardPositionQuerier : public PositionQuerier {
+            std::shared_ptr<sfc::cfw::BitboardPosition> position = nullptr;
             
         public:
             BitboardPositionQuerier() = default;
-            BitboardPositionQuerier(std::shared_ptr<BitboardPosition> aPosition) : PositionQuerier(aPosition) { }
+            BitboardPositionQuerier(std::shared_ptr<BitboardPosition> aPosition) : position(aPosition) {
+                if (aPosition == nullptr) {
+                    throw std::invalid_argument("Position cannot be a null pointer");
+                }
+            }
             
             std::set<sfc::cfw::Square> attacksTo(const sfc::cfw::Square & aSquare) const override;
             std::set<sfc::cfw::Square> attacksFrom(const sfc::cfw::Square & aSquare) const override;
