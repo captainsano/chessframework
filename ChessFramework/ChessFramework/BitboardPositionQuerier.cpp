@@ -25,7 +25,11 @@ std::set<sfc::cfw::Square> sfc::cfw::BitboardPositionQuerier::attacksFrom(const 
     std::bitset<64> blackOccupied = position->bPawn | position->bKing | position->bQueen | position->bRook | position->bBishop | position->bKnight;
     
     switch ((*position)[aSquare]) {
-        case PieceWPawn:
+        case PieceWPawn: {
+            attackedSquares = KGBitboardUtil::pawnAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), aSquare, true);
+            break;
+        }
+            
         case PieceWKing:
             
         case PieceWBishop:
@@ -39,7 +43,10 @@ std::set<sfc::cfw::Square> sfc::cfw::BitboardPositionQuerier::attacksFrom(const 
             break;  
         }
             
-        case PieceBPawn:
+        case PieceBPawn: {
+            attackedSquares = KGBitboardUtil::pawnAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), aSquare, false);
+            break;
+        }
         case PieceBKing:
             
         case PieceWQueen:
