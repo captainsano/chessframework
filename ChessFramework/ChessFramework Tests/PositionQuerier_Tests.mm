@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <vector>
+#import <set>
 #import "Position.h"
 #import "Square.h"
 #import "BitboardPosition.h"
@@ -45,7 +45,7 @@ using namespace sfc::cfw;
     std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
     
     for (unsigned short i = 0; i < 64; i++) {
-        std::vector<Square> attacksFrom = q->attacksFrom(q);
+        std::set<Square> attacksFrom = q->attacksFrom(i);
         XCTAssertTrue(attacksFrom.empty(), @"There should not be any attacks from on an empty board");
     }
 }
@@ -55,9 +55,10 @@ using namespace sfc::cfw;
     std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
     
     for (unsigned short i = 0; i < 64; i++) {
-        std::vector<Square> attacksTo = q->attacksTo(q);
+        std::set<Square> attacksTo = q->attacksTo(i);
         XCTAssertTrue(attacksTo.empty(), @"There should not be any attacks from on an empty board");
     }
 }
+
 
 @end

@@ -11,7 +11,8 @@
 #define ChessFramework_PositionQuerier_h
 
 #include <memory>
-#include <vector>
+#include <set>
+#include <exception>
 #include "Square.h"
 
 namespace sfc {
@@ -22,14 +23,18 @@ namespace sfc {
         class PositionQuerier {
             
         protected:
-            std::shared_ptr<sfc::cfw::Position> position;
+            std::shared_ptr<sfc::cfw::Position> position = nullptr;
             
         public:
             PositionQuerier() = default;
-            PositionQuerier(std::shared_ptr<sfc::cfw::Position> aPosition) : position(aPosition) { }
+            PositionQuerier(std::shared_ptr<sfc::cfw::Position> aPosition) : position(aPosition) {
+                if (aPosition == nullptr) {
+                    throw std::invalid_argument("Position cannot be null");
+                }
+            }
             
-            virtual std::vector<sfc::cfw::Square> attacksTo(const sfc::cfw::Square & aSquare) const = 0;
-            virtual std::vector<sfc::cfw::Square> attacksFrom(const sfc::cfw::Square & aSquare) const = 0;
+            virtual std::set<sfc::cfw::Square> attacksTo(const sfc::cfw::Square & aSquare) const = 0;
+            virtual std::set<sfc::cfw::Square> attacksFrom(const sfc::cfw::Square & aSquare) const = 0;
         };
     }
 }
