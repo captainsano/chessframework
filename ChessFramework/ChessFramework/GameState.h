@@ -43,7 +43,8 @@ namespace sfc {
 					  const std::string & aCastlingOptions = "----",
 					  const Square & aEnpassantTarget = Square(0)
 					  );
-		};
+            
+        };
 	}
 }
 

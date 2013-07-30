@@ -179,3 +179,15 @@ bool sfc::cfw::PositionQuerier::attackIntersectsPiece(const Piece aPiece1, const
     
     return false;
 }
+
+bool sfc::cfw::PositionQuerier::isKingInCheck(Color kingColor) {
+    for (Piece i = ((kingColor == ColorWhite)?PieceBPawn:PieceWPawn);
+         i <= ((kingColor == ColorWhite)?PieceBKnight:PieceWKnight);
+         i++) {
+        if (attackIntersectsPiece(i, (kingColor == ColorWhite)?PieceWKing:PieceBKing)) {
+            return true;
+        }
+    }
+    
+    return false;
+}

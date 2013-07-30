@@ -38,8 +38,7 @@ namespace sfc {
             
             // Method checks if attacks from first argument intersects with the positions of second argument.
             bool attackIntersectsPiece(const Piece aPiece1, const Piece aPiece2) const;
-            
-            
+            bool isKingInCheck(Color kingColor);
         };
     }
 }

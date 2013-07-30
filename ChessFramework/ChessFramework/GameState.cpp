@@ -87,27 +87,15 @@ sfc::cfw::GameState::GameState(std::string && FENString,
 		throw std::invalid_argument("Position should contain only one white and black king");
 	}
     
-    /*--------- Check for opposite kings in adjacent squares ---------*/
-    // Find the location of white king and check if its attack set holds the black king's location
-    for (unsigned short i = 0; i < 64; i++) {
-        if ((*tempPosition)[i] == PieceWKing) {
-            std::set<Square> attacks = querier->attacksFrom(i);
-         
-            // Iterate the set and check if any of the attacked squares hold a black king
-            for (auto s : attacks) {
-                if ((*tempPosition)[s] == PieceBKing) {
-                    throw std::invalid_argument("Kings are located in adjacent squares");
-                }
-            }
-            
-            break;
-        }
-    }
-	
-    /// @todo Do error check on king status after auto-inferring their status
 	/*------------ Check for errors in king status -------------*/
     if (querier->attackIntersectsPiece(PieceWKing, PieceBKing)) {
         throw std::invalid_argument("Kings should not be placed adjacent to each other");
+    }
+    
+    // Checked side should be the one to move
+    if ((querier->isKingInCheck(ColorWhite) && aSideToMove == ColorBlack) ||
+        (querier->isKingInCheck(ColorBlack) && aSideToMove == ColorWhite)) {
+        throw std::invalid_argument("The checked side should be the one to move");
     }
     
 	// Assign values if everything is right
