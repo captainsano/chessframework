@@ -33,7 +33,7 @@ namespace sfc {
             /*---------------- Experimental ---------------*/
             
             // Method checks if attacks from first argument intersects with the positions of second argument.
-            bool attackIntersectsPiece(const sfc::cfw::Piece aPiece1, const sfc::cfw::Piece aPiece2);
+            bool attackIntersectsPiece(const sfc::cfw::Piece aPiece1, const sfc::cfw::Piece aPiece2) const;
         };
     }
 }

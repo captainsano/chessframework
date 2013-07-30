@@ -40,6 +40,9 @@ namespace sfc {
 			std::bitset<64> bBishop	= 0x0000000000000000;
 			std::bitset<64> bKnight	= 0x0000000000000000;
 						
+            std::bitset<64> & pieceBitmap(const sfc::cfw::Piece aPieceType);
+            const std::bitset<64> & pieceBitmap(const sfc::cfw::Piece aPieceType) const;
+            
 		public:			
 			BitboardPosition() = default;
 			BitboardPosition(const std::string & FENString);			

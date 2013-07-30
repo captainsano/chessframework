@@ -14,6 +14,48 @@
 #include "BitboardPosition.h"
 #include "Square.h"
 
+std::bitset<64> & sfc::cfw::BitboardPosition::pieceBitmap(const sfc::cfw::Piece aPieceType) {
+    switch (aPieceType) {
+        case PieceWPawn:    return this->wPawn;
+        case PieceWKing:    return this->wKing;
+        case PieceWQueen:   return this->wQueen;
+        case PieceWRook:    return this->wRook;
+        case PieceWBishop:  return this->wBishop;
+        case PieceWKnight:  return this->wKnight;
+        case PieceBPawn:    return this->bPawn;
+        case PieceBKing:    return this->bKing;
+        case PieceBQueen:   return this->bQueen;
+        case PieceBRook:    return this->bRook;
+        case PieceBBishop:  return this->bBishop;
+        case PieceBKnight:  return this->bKnight;
+            
+        PieceNone:
+        default:
+            throw std::invalid_argument("Cannot return a reference to PieceNone bitmap");
+    }
+}
+
+const std::bitset<64> & sfc::cfw::BitboardPosition::pieceBitmap(const sfc::cfw::Piece aPieceType) const {
+    switch (aPieceType) {
+        case PieceWPawn:    return this->wPawn;
+        case PieceWKing:    return this->wKing;
+        case PieceWQueen:   return this->wQueen;
+        case PieceWRook:    return this->wRook;
+        case PieceWBishop:  return this->wBishop;
+        case PieceWKnight:  return this->wKnight;
+        case PieceBPawn:    return this->bPawn;
+        case PieceBKing:    return this->bKing;
+        case PieceBQueen:   return this->bQueen;
+        case PieceBRook:    return this->bRook;
+        case PieceBBishop:  return this->bBishop;
+        case PieceBKnight:  return this->bKnight;
+            
+        PieceNone:
+        default:
+            throw std::invalid_argument("Cannot return a reference to PieceNone bitmap");
+    }
+}
+
 sfc::cfw::BitboardPosition::BitboardPosition(const std::string & FENString) {
 	if (sfc::cfw::Position::validateFEN(FENString)) {
 		
@@ -112,71 +154,11 @@ sfc::cfw::Piece sfc::cfw::BitboardPosition::operator[] (const sfc::cfw::Square &
 
 sfc::cfw::Piece sfc::cfw::BitboardPosition::vacate(const sfc::cfw::Square & aSquare) {
 	// First, find out which piece has occupied the square.
-	switch ((*this)[aSquare]) {
-		case sfc::cfw::PieceWPawn: {
-			wPawn[aSquare] = 0;
-			return sfc::cfw::PieceWPawn;
-		}
-			
-		case sfc::cfw::PieceWKing: {
-			wKing[aSquare] = 0;
-			return sfc::cfw::PieceWKing;
-		}
-			
-		case sfc::cfw::PieceWQueen: {
-			wQueen[aSquare] = 0;
-			return sfc::cfw::PieceWQueen;
-		}
-			
-		case sfc::cfw::PieceWRook: {
-			wRook[aSquare] = 0;
-			return sfc::cfw::PieceWRook;
-		}
-			
-		case sfc::cfw::PieceWBishop: {
-			wBishop[aSquare] = 0;
-			return sfc::cfw::PieceWBishop;
-		}
-			
-		case sfc::cfw::PieceWKnight: {
-			wKnight[aSquare] = 0;
-			return sfc::cfw::PieceWKnight;
-		}
-			
-		case sfc::cfw::PieceBPawn: {
-			bPawn[aSquare] = 0;
-			return sfc::cfw::PieceBPawn;
-		}
-			
-		case sfc::cfw::PieceBKing: {
-			bKing[aSquare] = 0;
-			return sfc::cfw::PieceBKing;
-		}
-			
-		case sfc::cfw::PieceBQueen: {
-			bQueen[aSquare] = 0;
-			return sfc::cfw::PieceBQueen;
-		}
-			
-		case sfc::cfw::PieceBRook: {
-			bRook[aSquare] = 0;
-			return sfc::cfw::PieceBRook;
-		}
-			
-		case sfc::cfw::PieceBBishop: {
-			bBishop[aSquare] = 0;
-			return sfc::cfw::PieceBBishop;
-		}
-			
-		case sfc::cfw::PieceBKnight: {
-			bKnight[aSquare] = 0;
-			return sfc::cfw::PieceBKnight;
-		}
-			
-		case sfc::cfw::PieceNone: {
-			return sfc::cfw::PieceNone;
-		}
-	}
+    if ((*this)[aSquare] != PieceNone) {
+        Piece previousOccupied = (*this)[aSquare];
+        this->pieceBitmap((*this)[aSquare])[aSquare] = 0;
+        return previousOccupied;
+    }
 	
 	return sfc::cfw::PieceNone;
 }
@@ -303,25 +285,12 @@ std::string sfc::cfw::BitboardPosition::getFEN() const {
 }
 
 unsigned short sfc::cfw::BitboardPosition::pieceCount(const Piece aPieceType) const {
-	switch (aPieceType) {
-		case sfc::cfw::PieceWPawn: 		return this->wPawn.count();
-		case sfc::cfw::PieceWKing:		return this->wKing.count();
-		case sfc::cfw::PieceWQueen:		return this->wQueen.count();
-		case sfc::cfw::PieceWRook:		return this->wRook.count();
-		case sfc::cfw::PieceWBishop:	return this->wBishop.count();
-		case sfc::cfw::PieceWKnight:	return this->wKnight.count();
-		case sfc::cfw::PieceBPawn: 		return this->bPawn.count();
-		case sfc::cfw::PieceBKing:		return this->bKing.count();
-		case sfc::cfw::PieceBQueen:		return this->bQueen.count();
-		case sfc::cfw::PieceBRook:		return this->bRook.count();
-		case sfc::cfw::PieceBBishop:	return this->bBishop.count();
-		case sfc::cfw::PieceBKnight:	return this->bKnight.count();
-		// Unoccupied Squares
-		case sfc::cfw::PieceNone:		return 64 - std::bitset<64>(this->wPawn | this->wKing | this->wQueen | this->wRook | this->wBishop | this->wKnight |
-																	this->bPawn | this->bKing | this->bQueen | this->bRook | this->bBishop | this->bKnight).count();
-	}
-	
-	return 0;
+    if (aPieceType == PieceNone) {
+        return 64 - (this->wPawn | this->wKing | this->wQueen | this->wRook | this->wBishop | this->wKnight |
+                     this->bPawn | this->bKing | this->bQueen | this->bRook | this->bBishop | this->bKnight).count();
+    }
+    
+    return this->pieceBitmap(aPieceType).count();
 }
 
 std::string sfc::cfw::BitboardPosition::prettyString() const {
