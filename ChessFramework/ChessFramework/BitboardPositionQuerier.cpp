@@ -195,3 +195,119 @@ std::set<sfc::cfw::Square> sfc::cfw::BitboardPositionQuerier::attacksFrom(const 
     
     return attacksFrom;
 }
+
+#pragma mark - Experimental
+
+bool sfc::cfw::BitboardPositionQuerier::attackIntersectsPiece(const sfc::cfw::Piece aPiece1, const sfc::cfw::Piece aPiece2) {
+    if (aPiece1 == PieceNone || aPiece2 == PieceNone) {
+        return false;
+    }
+    
+    std::bitset<64> attacks = 0;
+    std::bitset<64> whiteOccupied = position->wPawn | position->wKing | position->wQueen | position->wRook | position->wBishop | position->wKnight;
+    std::bitset<64> blackOccupied = position->bPawn | position->bKing | position->bQueen | position->bRook | position->bBishop | position->bKnight;
+    
+    // Get the square for aPiece
+    for (unsigned int i = 0; i < 64; i++) {
+        if ((*position)[i] == aPiece1) {
+            switch (aPiece1) {
+                case PieceWPawn: {
+                    attacks |= KGBitboardUtil::pawnAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), i, true);
+                    break;
+                }
+                    
+                case PieceWKing: {
+                    attacks |= KGBitboardUtil::kingAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), i, true);
+                    /// @todo: Handle castling
+                    break;
+                }
+                    
+                case PieceWBishop:
+                case PieceBBishop: {
+                    attacks |= KGBitboardUtil::bishopAttacks((whiteOccupied | blackOccupied).to_ullong(), i);
+                    break;
+                }
+                    
+                case PieceWKnight: {
+                    attacks |= KGBitboardUtil::knightAttacks(whiteOccupied.to_ullong(), i);
+                    break;
+                }
+                    
+                case PieceBPawn: {
+                    attacks |= KGBitboardUtil::pawnAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), i, false);
+                    break;
+                }
+                case PieceBKing: {
+                    attacks |= KGBitboardUtil::kingAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), i, false);
+                    /// @todo: Handle castling
+                    break;
+                }
+                    
+                case PieceWQueen:
+                case PieceBQueen: {
+                    attacks |= KGBitboardUtil::queenAttacks((whiteOccupied | blackOccupied).to_ullong(), i);
+                    break;
+                }
+                    
+                case PieceWRook:
+                case PieceBRook: {
+                    attacks |= KGBitboardUtil::rookAttacks((whiteOccupied | blackOccupied).to_ullong(), i);
+                    break;
+                }
+                    
+                case PieceBKnight: {
+                    attacks |= KGBitboardUtil::knightAttacks(blackOccupied.to_ullong(), i);
+                    break;
+                }
+                    
+                default: break;
+            }
+        }
+    }
+    
+    if (attacks.none()) {
+        return false;
+    }
+        
+    switch (aPiece2) {
+        case PieceWPawn: {
+            if ((attacks & position->wPawn).any()) return true;
+        }
+        case PieceWKing: {
+            if ((attacks & position->wKing).any()) return true;
+        }
+        case PieceWQueen: {
+            if ((attacks & position->wQueen).any()) return true;
+        }
+        case PieceWRook: {
+            if ((attacks & position->wRook).any()) return true;
+        }
+        case PieceWBishop: {
+            if ((attacks & position->wBishop).any()) return true;
+        }
+        case PieceWKnight: {
+            if ((attacks & position->wKnight).any()) return true;
+        }
+        case PieceBPawn: {
+            if ((attacks & position->bPawn).any()) return true;
+        }
+        case PieceBKing: {
+            if ((attacks & position->bKing).any()) return true;
+        }
+        case PieceBQueen: {
+            if ((attacks & position->wQueen).any()) return true;
+        }
+        case PieceBRook: {
+            if ((attacks & position->bRook).any()) return true;
+        }
+        case PieceBBishop: {
+            if ((attacks & position->bBishop).any()) return true;
+        }
+        case PieceBKnight: {
+            if ((attacks & position->bKnight).any()) return true;
+        }
+        default: break;
+    }
+    
+    return false;
+}

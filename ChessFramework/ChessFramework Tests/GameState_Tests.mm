@@ -89,12 +89,20 @@ using sfc::cfw::GameState;
 	CPPAssertThrows(new GameState("1nbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/1NBQKBNR", sfc::cfw::ColorWhite, "KAkq"), @"Inapplicable castling option for white queenside");
 }
 
-- (void)testInitializationWithWhiteInCheckAndBlackToPlayThrows {
+- (void)testInitializationWithWhiteInCheckAndBlackToPlayThrows1 {
 	CPPAssertThrows(new GameState("r1bqk2r/pppp1ppp/2n2n2/8/1bBPP3/5N2/PP3PPP/RNBQK2R", sfc::cfw::ColorBlack), @"Initialization with black to play and white king in check should throw");
 }
 
-- (void)testInitializationWithBlackInCheckAndWhiteToPlayThrows {
+- (void)testInitializationWithWhiteInCheckAndBlackToPlayThrows2 {
+	CPPAssertThrows(new GameState("8/8/4k3/4p3/3K4/8/P7/8", sfc::cfw::ColorBlack), @"Initialization with black to play and white king in check should throw");
+}
+
+- (void)testInitializationWithBlackInCheckAndWhiteToPlayThrows1 {
 	CPPAssertThrows(new GameState("r1bqk2r/pppp1Bpp/2n5/8/3P4/1Q3N2/P4PPP/b1B2RK1", sfc::cfw::ColorWhite), @"Initialization with white to play and black king in check should throw");
+}
+
+- (void)testInitializationWithBlackInCheckAndWhiteToPlayThrows2 {
+	CPPAssertThrows(new GameState("8/8/4k3/5P2/5K2/8/8/8", sfc::cfw::ColorWhite), @"Initialization with white to play and black king in check should throw");
 }
 
 - (void)testInitializationWithWhiteInCheckMateAndBlackToPlayThrows {

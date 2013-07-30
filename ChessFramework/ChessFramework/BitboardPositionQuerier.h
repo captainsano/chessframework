@@ -29,6 +29,11 @@ namespace sfc {
             
             std::set<sfc::cfw::Square> attacksTo(const sfc::cfw::Square & aSquare, sfc::cfw::Color attackingSide = sfc::cfw::ColorWhite) const override;
             std::set<sfc::cfw::Square> attacksFrom(const sfc::cfw::Square & aSquare) const override;
+            
+            /*---------------- Experimental ---------------*/
+            
+            // Method checks if attacks from first argument intersects with the positions of second argument.
+            bool attackIntersectsPiece(const sfc::cfw::Piece aPiece1, const sfc::cfw::Piece aPiece2);
         };
     }
 }

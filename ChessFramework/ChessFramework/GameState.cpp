@@ -10,17 +10,20 @@
 #include <utility>
 #include <regex>
 #include <cctype>
+#include <set>
 #include <iostream>	// For debug
 
 #include "GameState.h"
 #include "BitboardPosition.h"
+#include "BitboardPositionQuerier.h"
 
 sfc::cfw::GameState::GameState(std::string && FENString,
 							   const sfc::cfw::Color & aSideToMove,
 							   const std::string & aCastlingOptions,
 							   const sfc::cfw::Square & aEnpassantTarget
 							   ) {
-	std::shared_ptr<sfc::cfw::Position> tempPosition = std::make_shared<sfc::cfw::BitboardPosition>(std::forward<std::string>(FENString));
+	std::shared_ptr<BitboardPosition> tempPosition = std::make_shared<BitboardPosition>(std::forward<std::string>(FENString));
+    std::shared_ptr<BitboardPositionQuerier> querier = std::make_shared<BitboardPositionQuerier>(tempPosition);
 	
 	/*--------- Check for errors in enPassant ---------*/
 	if (aEnpassantTarget != 0) {
@@ -37,7 +40,7 @@ sfc::cfw::GameState::GameState(std::string && FENString,
 			throw std::invalid_argument("Color mismatch in enpassant target");
 		}
 	}
-	
+ 	
 	/*--------- Check for errors in Castling ---------*/
 	// insufficient castling options information
 	if (aCastlingOptions.size() < 4) {
@@ -79,14 +82,34 @@ sfc::cfw::GameState::GameState(std::string && FENString,
 		}
 	}
 	
-	// Check for errors in king piece count - only 1 king should be there
+	/*----- Check for errors in king piece count - only 1 king should be existent for each side -----*/
 	if (tempPosition->pieceCount(sfc::cfw::PieceWKing) != 1 || tempPosition->pieceCount(sfc::cfw::PieceBKing) != 1) {
 		throw std::invalid_argument("Position should contain only one white and black king");
 	}
+    
+    /*--------- Check for opposite kings in adjacent squares ---------*/
+    // Find the location of white king and check if its attack set holds the black king's location
+    for (unsigned short i = 0; i < 64; i++) {
+        if ((*tempPosition)[i] == sfc::cfw::PieceWKing) {
+            std::set<Square> attacks = querier->attacksFrom(i);
+         
+            // Iterate the set and check if any of the attacked squares hold a black king
+            for (auto s : attacks) {
+                if ((*tempPosition)[s] == sfc::cfw::PieceBKing) {
+                    throw std::invalid_argument("Kings are located in adjacent squares");
+                }
+            }
+            
+            break;
+        }
+    }
 	
-	
-	// Check for errors in king status
-		
+    /// @todo Do error check on king status after auto-inferring their status
+	/*------------ Check for errors in king status -------------*/
+    if (querier->attackIntersectsPiece(PieceWKing, PieceBKing)) {
+        throw std::invalid_argument("Kings should not be placed adjacent to each other");
+    }
+    
 	// Assign values if everything is right
 	this->position = tempPosition;
 	this->sideToMove = aSideToMove;
