@@ -11,7 +11,8 @@
 #define __ChessFramework__BitboardPosition__
 
 #include <bitset>
-#include "Position.h"
+#include "Square.h"
+#include "Piece.h"
 
 namespace sfc {
 	namespace cfw {
@@ -23,7 +24,7 @@ namespace sfc {
 		 @brief Represents a position with a bitboard data structure internally.
 		 @note C++ bitset index convention: LSB=0, MSB=63. Don't follow Hyatt bitboard convention!
 		 */
-		class BitboardPosition : public sfc::cfw::Position {
+		class BitboardPosition {
             friend class BitboardPositionQuerier;
             
 			std::bitset<64> wPawn	= 0x0000000000000000;
@@ -40,23 +41,24 @@ namespace sfc {
 			std::bitset<64> bBishop	= 0x0000000000000000;
 			std::bitset<64> bKnight	= 0x0000000000000000;
 						
-            std::bitset<64> & pieceBitmap(const sfc::cfw::Piece aPieceType);
-            const std::bitset<64> & pieceBitmap(const sfc::cfw::Piece aPieceType) const;
+            bool validateFEN(const std::string & FENString);
+            std::bitset<64> & pieceBitmap(const Piece aPieceType);
+            const std::bitset<64> & pieceBitmap(const Piece aPieceType) const;
             
 		public:			
 			BitboardPosition() = default;
 			BitboardPosition(const std::string & FENString);			
 			
-			sfc::cfw::Piece operator[] (const sfc::cfw::Square & aSquare) const override;
+			Piece operator[] (const Square & aSquare) const;
 			
-			sfc::cfw::Piece vacate(const sfc::cfw::Square & aSquare) override;
-			sfc::cfw::Piece	occupy(const sfc::cfw::Square & aSquare, const Piece aPieceType) override;
+			Piece vacate(const Square & aSquare);
+			Piece occupy(const Square & aSquare, const Piece aPieceType);
 			
-			operator std::string () const override { return this->getFEN(); }
-			std::string getFEN() const override;
+			operator std::string () const { return this->getFEN(); }
+			std::string getFEN() const;
                     
 			// For debugging purposes only
-			std::string prettyString() const override;
+			std::string prettyString() const;
 		};
 	}
 }

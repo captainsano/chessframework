@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		63199A0217A0D9C500A9F1E9 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63199A0017A0D9C500A9F1E9 /* Piece.cpp */; };
 		63199A0317A0D9C500A9F1E9 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63199A0017A0D9C500A9F1E9 /* Piece.cpp */; };
-		6363A74B179F9102003E2B51 /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6363A74A179F9102003E2B51 /* Position.cpp */; };
-		6363A74C179F9102003E2B51 /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6363A74A179F9102003E2B51 /* Position.cpp */; };
 		63791948179A6784000C98E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63791947179A6784000C98E2 /* main.cpp */; };
 		6379194A179A6784000C98E2 /* ChessFramework.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63791949179A6784000C98E2 /* ChessFramework.1 */; };
 		63AAD0E917A15AB40096168C /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63AAD0E717A15AB40096168C /* GameState.cpp */; };
@@ -63,14 +61,12 @@
 /* Begin PBXFileReference section */
 		63199A0017A0D9C500A9F1E9 /* Piece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Piece.cpp; sourceTree = "<group>"; };
 		63199A0117A0D9C500A9F1E9 /* Piece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Piece.h; sourceTree = "<group>"; };
-		6363A74A179F9102003E2B51 /* Position.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Position.cpp; sourceTree = "<group>"; };
 		63791944179A6784000C98E2 /* ChessFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChessFramework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63791947179A6784000C98E2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		63791949179A6784000C98E2 /* ChessFramework.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ChessFramework.1; sourceTree = "<group>"; };
 		63AAD0E717A15AB40096168C /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
 		63AAD0E817A15AB40096168C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		63DACE19179ED7C900593AED /* Position_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Position_Tests.mm; sourceTree = "<group>"; };
-		63DACE1C179F089800593AED /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		63DACE1F179F0BBA00593AED /* BitboardPosition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitboardPosition.cpp; sourceTree = "<group>"; };
 		63DACE20179F0BBA00593AED /* BitboardPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitboardPosition.h; sourceTree = "<group>"; };
 		63F388F717A1131D00B44555 /* GameState_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameState_Tests.mm; sourceTree = "<group>"; };
@@ -143,8 +139,6 @@
 				63791949179A6784000C98E2 /* ChessFramework.1 */,
 				EDE51CBE179E847100FD6CA8 /* Square.cpp */,
 				EDE51CBF179E847100FD6CA8 /* Square.h */,
-				6363A74A179F9102003E2B51 /* Position.cpp */,
-				63DACE1C179F089800593AED /* Position.h */,
 				63DACE1F179F0BBA00593AED /* BitboardPosition.cpp */,
 				63DACE20179F0BBA00593AED /* BitboardPosition.h */,
 				63199A0017A0D9C500A9F1E9 /* Piece.cpp */,
@@ -290,7 +284,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6363A74B179F9102003E2B51 /* Position.cpp in Sources */,
 				63AAD0E917A15AB40096168C /* GameState.cpp in Sources */,
 				EDBC239717A6627700B5BC2E /* KGBitboardUtil.cpp in Sources */,
 				EDE51CC0179E847100FD6CA8 /* Square.cpp in Sources */,
@@ -318,7 +311,6 @@
 				ED594D1917A6D6E40003E3B9 /* PositionQuerierPawnAttack_Tests.mm in Sources */,
 				EDE51CBD179E7CA900FD6CA8 /* Square_Tests.mm in Sources */,
 				ED2D53D317A744E00098D5C4 /* PositionQuerierKingAttack_Tests.mm in Sources */,
-				6363A74C179F9102003E2B51 /* Position.cpp in Sources */,
 				ED5552D417A55331005AA510 /* PositionQuerier_Tests.mm in Sources */,
 				63F388F817A1131D00B44555 /* GameState_Tests.mm in Sources */,
 				ED68429B17A618C200AED4A8 /* PositionQuerierKnightAttack_Tests.mm in Sources */,
