@@ -8,6 +8,7 @@
 
 #include "PositionQuerier.h"
 #include "KGBitboardUtil.h"
+#include <set>
 
 unsigned short sfc::cfw::PositionQuerier::pieceCount(const Piece aPieceType) const {
     if (aPieceType == PieceNone) {
@@ -180,7 +181,7 @@ bool sfc::cfw::PositionQuerier::attackIntersectsPiece(const Piece aPiece1, const
     return false;
 }
 
-bool sfc::cfw::PositionQuerier::isKingInCheck(Color kingColor) {
+bool sfc::cfw::PositionQuerier::isKingInCheck(Color kingColor) const {
     for (Piece i = ((kingColor == ColorWhite)?PieceBPawn:PieceWPawn);
          i <= ((kingColor == ColorWhite)?PieceBKnight:PieceWKnight);
          i++) {
@@ -192,13 +193,123 @@ bool sfc::cfw::PositionQuerier::isKingInCheck(Color kingColor) {
     return false;
 }
 
-sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor) {
-    // Obtain a list of legal moves in the current position
+sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor) const {
+    // TODO: Consider enPassant
     
-    // Legal moves exists, check if king is attacked -> check else normal
+    Piece kingPiece = (kingColor == ColorWhite)?PieceWKing:PieceBKing;
+    KingStatus status = KingStatusNormal;
     
-    // If none of the moves are legal and the king is not in check -> stalemate
+    // TODO: Also consider enPassant target
     
-    // If king is in check then checkmate
+    /*--------------- Check if king can escape ---------------*/
+    std::set<Square> kingAttacks;
+    Square currentKingPosition;
+    
+    for (unsigned short i = 0; i < 64; i++) {
+        if ((*position)[i] == kingPiece) {
+            kingAttacks = attacksFrom(i);
+            currentKingPosition = i;
+            break;
+        }
+    }
+    
+    bool kingCanEscape = false;
+    for (auto sq : kingAttacks) {
+        // Copy the current position and adjust the King's location
+        std::shared_ptr<Position> temp = std::make_shared<Position>(*position);
+        temp->vacate(currentKingPosition);
+        temp->occupy(sq, kingPiece);
+        
+        PositionQuerier q(temp);
+        if (!q.isKingInCheck(kingColor)) {
+            kingCanEscape = true;
+            break;
+        }
+    }
+    
+    /*----------------- Determine the number of checks being issued ---------------*/
+    int numChecks = 0;
+    Square checkingPieceSquare;
+    for (unsigned short i = 0; i < 64; i++) {
+        // skip empty squares and same side pieces
+        if ((*position)[i] == PieceNone || getPieceColor((*position)[i]) == kingColor) continue;
+        
+        std::set<Square> pieceAttacks = attacksFrom(i);
+        
+        // Attack Intersects
+        if (pieceAttacks.find(currentKingPosition) != pieceAttacks.end()) {
+            numChecks++;
+            checkingPieceSquare = i;
+            
+            // Change king status to checked
+            status = KingStatusCheck;
+        }
+    }
+    
+    /*------- If number of checks is >= 2 and king cannot escape, then it is a checkmate -------*/
+    if (numChecks >= 2 && !kingCanEscape) {
+        return KingStatusCheckMate;
+    }
+    
+    /*------ If number of checks is 1 and king cannot escape, then check if atleast -------------
+     -------- one piece can block the check path or capture the checker -----------------------*/
+    if (numChecks == 1 && !kingCanEscape) {
+        // Find if any move by the current side pieces can parry the check
+        bool canParryCheckmate = false;
+        for (unsigned short i = 0; i < 64; i++) {
+            // skip empty squares and opposite side pieces
+            if ((*position)[i] == PieceNone || getPieceColor((*position)[i]) != kingColor || (*position)[i] == kingPiece) continue;
+            
+            std::set<Square> pieceAttacks = attacksFrom(i);
+            
+            for (Square sq : pieceAttacks) {
+                std::shared_ptr<Position> temp = std::make_shared<Position>(*position);
+                temp->vacate(i);
+                temp->occupy(sq, (*position)[i]);
+                
+                PositionQuerier q(temp);
+                if (!q.isKingInCheck(kingColor)) {
+                    canParryCheckmate = true;
+                    break;
+                }
+            }
+            
+            if (canParryCheckmate) break;
+        }
+        
+        if (!canParryCheckmate) {
+            return KingStatusCheckMate;
+        }
+    }
+    
+    // King does not have escape squares - look for other legal moves
+    if (!kingCanEscape) {
+        bool legalMovesExist = false;
+        for (unsigned short i = 0; i < 64; i++) {
+            // skip empty squares and opposite side pieces
+            if ((*position)[i] == PieceNone || getPieceColor((*position)[i]) != kingColor || (*position)[i] == kingPiece) continue;
+            
+            std::set<Square> pieceAttacks = attacksFrom(i);
+            
+            for (Square sq : pieceAttacks) {
+                std::shared_ptr<Position> temp = std::make_shared<Position>(*position);
+                temp->vacate(i);
+                temp->occupy(sq, (*position)[i]);
+                
+                PositionQuerier q(temp);
+                if (!q.isKingInCheck(kingColor)) {
+                    legalMovesExist = true;
+                    break;
+                }
+            }
+            
+            if (legalMovesExist) break;
+        }
+        
+        if (!legalMovesExist) {
+            return KingStatusStaleMate;
+        }
+    }
+    
     return KingStatusNormal;
 }
