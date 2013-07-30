@@ -27,7 +27,7 @@ namespace sfc {
                 }
             }
             
-            std::set<sfc::cfw::Square> attacksTo(const sfc::cfw::Square & aSquare) const override;
+            std::set<sfc::cfw::Square> attacksTo(const sfc::cfw::Square & aSquare, sfc::cfw::Color attackingSide = sfc::cfw::ColorWhite) const override;
             std::set<sfc::cfw::Square> attacksFrom(const sfc::cfw::Square & aSquare) const override;
         };
     }

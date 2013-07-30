@@ -13,6 +13,7 @@
 #include <memory>
 #include <set>
 #include <exception>
+#include "Piece.h"
 #include "Square.h"
 
 namespace sfc {
@@ -23,7 +24,7 @@ namespace sfc {
         class PositionQuerier {
             
         public:
-            virtual std::set<sfc::cfw::Square> attacksTo(const sfc::cfw::Square & aSquare) const = 0;
+            virtual std::set<sfc::cfw::Square> attacksTo(const sfc::cfw::Square & aSquare, sfc::cfw::Color attackingSide = sfc::cfw::ColorWhite) const = 0;
             virtual std::set<sfc::cfw::Square> attacksFrom(const sfc::cfw::Square & aSquare) const = 0;
         };
     }

@@ -9,8 +9,114 @@
 #include "BitboardPositionQuerier.h"
 #include "KGBitboardUtil.h"
 
-std::set<sfc::cfw::Square> sfc::cfw::BitboardPositionQuerier::attacksTo(const sfc::cfw::Square & aSquare) const {
+std::set<sfc::cfw::Square> sfc::cfw::BitboardPositionQuerier::attacksTo(const sfc::cfw::Square & aSquare, sfc::cfw::Color attackingSide) const {
     std::set<Square> attacksTo;
+    
+    // Iterate across the pieces and check if the square attacked is in the set.
+    if (attackingSide == sfc::cfw::ColorWhite) {
+        
+        /// @todo Pawn
+        if (position->wPawn.any()) {
+            
+        }
+        
+        /// @todo King
+        
+        if (position->wQueen.any()) {
+            for (unsigned short i = 0; i < 64; i++) {
+                if (position->wQueen[i]) {
+                    std::set<Square> attacks = attacksFrom(i);
+                    if (attacks.find(aSquare) != attacks.end()) {
+                        attacksTo.insert(i);
+                    }
+                }
+            }
+        }
+        
+        if (position->wRook.any()) {
+            for (unsigned short i = 0; i < 64; i++) {
+                if (position->wRook[i]) {
+                    std::set<Square> attacks = attacksFrom(i);
+                    if (attacks.find(aSquare) != attacks.end()) {
+                        attacksTo.insert(i);
+                    }
+                }
+            }
+        }
+        
+        if (position->wBishop.any()) {
+            for (unsigned short i = 0; i < 64; i++) {
+                if (position->wBishop[i]) {
+                    std::set<Square> attacks = attacksFrom(i);
+                    if (attacks.find(aSquare) != attacks.end()) {
+                        attacksTo.insert(i);
+                    }
+                }
+            }
+        }
+        
+        if (position->wKnight.any()) {
+            for (unsigned short i = 0; i < 64; i++) {
+                if (position->wKnight[i]) {
+                    std::set<Square> attacks = attacksFrom(i);
+                    if (attacks.find(aSquare) != attacks.end()) {
+                        attacksTo.insert(i);
+                    }
+                }
+            }
+        }
+    } else {
+        /// @todo Pawn
+        if (position->bPawn.any()) {
+            
+        }
+        
+        /// @todo King
+        
+        if (position->bQueen.any()) {
+            for (unsigned short i = 0; i < 64; i++) {
+                if (position->bQueen[i]) {
+                    std::set<Square> attacks = attacksFrom(i);
+                    if (attacks.find(aSquare) != attacks.end()) {
+                        attacksTo.insert(i);
+                    }
+                }
+            }
+        }
+        
+        if (position->bRook.any()) {
+            for (unsigned short i = 0; i < 64; i++) {
+                if (position->bRook[i]) {
+                    std::set<Square> attacks = attacksFrom(i);
+                    if (attacks.find(aSquare) != attacks.end()) {
+                        attacksTo.insert(i);
+                    }
+                }
+            }
+        }
+        
+        if (position->bBishop.any()) {
+            for (unsigned short i = 0; i < 64; i++) {
+                if (position->bBishop[i]) {
+                    std::set<Square> attacks = attacksFrom(i);
+                    if (attacks.find(aSquare) != attacks.end()) {
+                        attacksTo.insert(i);
+                    }
+                }
+            }
+        }
+        
+        if (position->bKnight.any()) {
+            for (unsigned short i = 0; i < 64; i++) {
+                if (position->bKnight[i]) {
+                    std::set<Square> attacks = attacksFrom(i);
+                    if (attacks.find(aSquare) != attacks.end()) {
+                        attacksTo.insert(i);
+                    }
+                }
+            }
+        }
+    }
     
     return attacksTo;
 }
