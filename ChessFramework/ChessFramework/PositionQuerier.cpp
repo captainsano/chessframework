@@ -191,3 +191,14 @@ bool sfc::cfw::PositionQuerier::isKingInCheck(Color kingColor) {
     
     return false;
 }
+
+sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor) {
+    // Obtain a list of legal moves in the current position
+    
+    // Legal moves exists, check if king is attacked -> check else normal
+    
+    // If none of the moves are legal and the king is not in check -> stalemate
+    
+    // If king is in check then checkmate
+    return KingStatusNormal;
+}

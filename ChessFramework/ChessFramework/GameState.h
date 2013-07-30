@@ -44,6 +44,9 @@ namespace sfc {
 					  const Square & aEnpassantTarget = Square(0)
 					  );
             
+            KingStatus  getWhiteKingStatus() { return this->whiteKingStatus; }
+            KingStatus  getBlackKingStatus() { return this->blackKingStatus; }
+            bool        hasSufficientMaterial();
         };
 	}
 }

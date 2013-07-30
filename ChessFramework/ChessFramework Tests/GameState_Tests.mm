@@ -132,5 +132,50 @@ using namespace sfc::cfw;
     CPPAssertThrows(new GameState("8/8/8/4K3/3k4/8/8/8", ColorWhite), @"Initialization with Kings on adjacent squares should throw");
 }
 
+- (void)testReturnsInsufficientMaterialWithTwoKings {
+    GameState g("4K3/8/8/8/8/8/8/4k3");
+    XCTAssertFalse(g.hasSufficientMaterial(), @"Two kings are insufficient");
+}
+
+- (void)testGameStateReturnsInsufficientMaterialWhiteKnight {
+    GameState g("8/8/8/8/8/8/8/K5kN");
+    XCTAssertFalse(g.hasSufficientMaterial(), @"Two kings and one white knight is insufficient");
+}
+
+- (void)testGameStateReturnsInsufficientMaterialBlackKnight {
+    GameState g("8/8/8/8/8/8/8/k5Kn");
+    XCTAssertFalse(g.hasSufficientMaterial(), @"Two kings and one black knight is insufficient");
+}
+
+- (void)testGameStateReturnsInsufficientMaterialWhiteBishop {
+    GameState g("8/8/8/8/8/8/8/K5Bk");
+    XCTAssertFalse(g.hasSufficientMaterial(), @"Two kings and one white bishop is insufficient");
+}
+
+- (void)testGameStateReturnsInsufficientMaterialBlackBishop {
+    GameState g("8/8/8/8/8/8/8/k5bK");
+    XCTAssertFalse(g.hasSufficientMaterial(), @"Two kings and one black bishop is insufficient");
+}
+
+- (void)testGameStateReturnsSufficientMaterialForOtherPieces {
+    GameState g = GameState("7R/8/8/8/8/8/8/K5k1");
+    XCTAssertTrue(g.hasSufficientMaterial(), @"Material should be sufficient");
+
+    g = GameState("7r/8/8/8/8/8/8/K5k1");
+    XCTAssertTrue(g.hasSufficientMaterial(), @"Material should be sufficient");
+    
+    g = GameState("7Q/8/8/8/8/8/8/K5k1");
+    XCTAssertTrue(g.hasSufficientMaterial(), @"Material should be sufficient");
+    
+    g = GameState("7q/8/8/8/8/8/8/K5k1");
+    XCTAssertTrue(g.hasSufficientMaterial(), @"Material should be sufficient");
+    
+    g = GameState("8/7P/8/8/8/8/8/K5k1");
+    XCTAssertTrue(g.hasSufficientMaterial(), @"Material should be sufficient");
+
+    g = GameState("8/7p/8/8/8/8/8/K5k1");
+    XCTAssertTrue(g.hasSufficientMaterial(), @"Material should be sufficient");
+
+}
 
 @end

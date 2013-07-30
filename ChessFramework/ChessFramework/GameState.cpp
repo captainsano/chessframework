@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 64cloud. All rights reserved.
 //
 
+#include "GameState.h"
+
 #include <exception>
 #include <utility>
 #include <regex>
@@ -13,8 +15,6 @@
 #include <set>
 #include <iostream>	// For debug
 
-#include "GameState.h"
-#include "Position.h"
 #include "PositionQuerier.h"
 
 sfc::cfw::GameState::GameState(std::string && FENString,
@@ -92,7 +92,7 @@ sfc::cfw::GameState::GameState(std::string && FENString,
         throw std::invalid_argument("Kings should not be placed adjacent to each other");
     }
     
-    // Checked side should be the one to move
+    // Side being issued check should be the one to move
     if ((querier->isKingInCheck(ColorWhite) && aSideToMove == ColorBlack) ||
         (querier->isKingInCheck(ColorBlack) && aSideToMove == ColorWhite)) {
         throw std::invalid_argument("The checked side should be the one to move");
@@ -106,4 +106,23 @@ sfc::cfw::GameState::GameState(std::string && FENString,
 	this->castlingOptions[2] = aCastlingOptions[2];
 	this->castlingOptions[3] = aCastlingOptions[4];
 	this->enpassantTarget = aEnpassantTarget;
+    
+    // Auto-Infer the KingStatus now.
+}
+
+bool sfc::cfw::GameState::hasSufficientMaterial() {
+    PositionQuerier q(position);
+    auto emptySquares = q.pieceCount(PieceNone);
+    
+    if (emptySquares < 62) { // Count the empty squares
+        // Check if the third square is being occupied by a minor piece
+        if (q.pieceCount(PieceWKnight) == 1 || q.pieceCount(PieceWBishop) == 1 ||
+            q.pieceCount(PieceBKnight) == 1 || q.pieceCount(PieceBBishop) == 1) {
+            return false;
+        }
+    } else if (emptySquares == 62) {
+        return false;   // Only 2 kings are existent
+    }
+    
+    return true;
 }
