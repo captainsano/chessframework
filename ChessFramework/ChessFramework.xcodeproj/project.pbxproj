@@ -19,6 +19,7 @@
 		63DACE21179F0BBA00593AED /* BitboardPosition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63DACE1F179F0BBA00593AED /* BitboardPosition.cpp */; };
 		63DACE22179F0BBA00593AED /* BitboardPosition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63DACE1F179F0BBA00593AED /* BitboardPosition.cpp */; };
 		63F388F817A1131D00B44555 /* GameState_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63F388F717A1131D00B44555 /* GameState_Tests.mm */; };
+		ED2D53D317A744E00098D5C4 /* PositionQuerierKingAttack_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = ED2D53D217A744E00098D5C4 /* PositionQuerierKingAttack_Tests.mm */; };
 		ED5552D417A55331005AA510 /* PositionQuerier_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = ED5552D317A55331005AA510 /* PositionQuerier_Tests.mm */; };
 		ED594D1317A6BEB20003E3B9 /* PositionQuerierBishopAttack_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = ED594D1217A6BEB20003E3B9 /* PositionQuerierBishopAttack_Tests.mm */; };
 		ED594D1517A6C5D40003E3B9 /* PositionQuerierRookAttack_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = ED594D1417A6C5D40003E3B9 /* PositionQuerierRookAttack_Tests.mm */; };
@@ -73,6 +74,7 @@
 		63DACE1F179F0BBA00593AED /* BitboardPosition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitboardPosition.cpp; sourceTree = "<group>"; };
 		63DACE20179F0BBA00593AED /* BitboardPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitboardPosition.h; sourceTree = "<group>"; };
 		63F388F717A1131D00B44555 /* GameState_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameState_Tests.mm; sourceTree = "<group>"; };
+		ED2D53D217A744E00098D5C4 /* PositionQuerierKingAttack_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PositionQuerierKingAttack_Tests.mm; sourceTree = "<group>"; };
 		ED5552D317A55331005AA510 /* PositionQuerier_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PositionQuerier_Tests.mm; sourceTree = "<group>"; };
 		ED594D1217A6BEB20003E3B9 /* PositionQuerierBishopAttack_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PositionQuerierBishopAttack_Tests.mm; sourceTree = "<group>"; };
 		ED594D1417A6C5D40003E3B9 /* PositionQuerierRookAttack_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PositionQuerierRookAttack_Tests.mm; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				ED594D1417A6C5D40003E3B9 /* PositionQuerierRookAttack_Tests.mm */,
 				ED594D1617A6CD180003E3B9 /* PositionQuerierQueenAttack_Tests.mm */,
 				ED594D1817A6D6E40003E3B9 /* PositionQuerierPawnAttack_Tests.mm */,
+				ED2D53D217A744E00098D5C4 /* PositionQuerierKingAttack_Tests.mm */,
 				EDD926E3179DB4BA00225C0A /* Supporting Files */,
 			);
 			path = "ChessFramework Tests";
@@ -314,6 +317,7 @@
 				EDBC239817A6627700B5BC2E /* KGBitboardUtil.cpp in Sources */,
 				ED594D1917A6D6E40003E3B9 /* PositionQuerierPawnAttack_Tests.mm in Sources */,
 				EDE51CBD179E7CA900FD6CA8 /* Square_Tests.mm in Sources */,
+				ED2D53D317A744E00098D5C4 /* PositionQuerierKingAttack_Tests.mm in Sources */,
 				6363A74C179F9102003E2B51 /* Position.cpp in Sources */,
 				ED5552D417A55331005AA510 /* PositionQuerier_Tests.mm in Sources */,
 				63F388F817A1131D00B44555 /* GameState_Tests.mm in Sources */,
