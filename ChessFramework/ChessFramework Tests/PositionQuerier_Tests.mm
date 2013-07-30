@@ -114,4 +114,52 @@ using namespace sfc::cfw;
     }
 }
 
+- (void)testReturnsBlackKingStatusCheckMate {
+    std::shared_ptr<Position> p = std::make_shared<Position>("R5k1/5ppp/8/8/8/8/8/7K");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
+    
+    XCTAssertTrue(q->getKingStatus(ColorBlack) == KingStatusCheckMate, @"Black King status should be checkmate");
+    XCTAssertTrue(q->getKingStatus(ColorWhite) == KingStatusNormal, @"White King status should be normal");
+}
+
+- (void)testReturnsWhiteKingStatusCheckMate {
+    std::shared_ptr<Position> p = std::make_shared<Position>("6k1/5ppp/8/8/8/8/3r4/r6K");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
+    
+    XCTAssertTrue(q->getKingStatus(ColorBlack) == KingStatusNormal, @"Black King status should be checkmate");
+    XCTAssertTrue(q->getKingStatus(ColorWhite) == KingStatusCheckMate, @"White King status should be normal");
+}
+
+- (void)testReturnsBlackKingStatusNotCheckMate {
+    std::shared_ptr<Position> p = std::make_shared<Position>("R5k1/5ppp/2r5/8/8/8/8/7K");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
+    
+    XCTAssertFalse(q->getKingStatus(ColorBlack) == KingStatusCheckMate, @"Black King status not should be checkmate");
+    XCTAssertTrue(q->getKingStatus(ColorWhite) == KingStatusNormal, @"White King status should be normal");
+}
+
+- (void)testReturnsWhiteKingStatusNotCheckMate {
+    std::shared_ptr<Position> p = std::make_shared<Position>("6k1/5ppp/8/8/6Q1/8/3r4/r6K");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
+    
+    XCTAssertTrue(q->getKingStatus(ColorBlack) == KingStatusNormal, @"Black King status should not be checkmate");
+    XCTAssertFalse(q->getKingStatus(ColorWhite) == KingStatusCheckMate, @"White King status should be normal");
+}
+
+- (void)testReturnsBlackKingStatusStalemate {
+    std::shared_ptr<Position> p = std::make_shared<Position>("R4nk1/Q7/8/8/8/8/8/B6K");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
+    
+    XCTAssertTrue(q->getKingStatus(ColorBlack) == KingStatusStaleMate, @"Black King status should be stalemate");
+    XCTAssertTrue(q->getKingStatus(ColorWhite) == KingStatusNormal, @"White King status should be normal");
+}
+
+- (void)testReturnsWhiteKingStatusStalemate {
+    std::shared_ptr<Position> p = std::make_shared<Position>("6k1/5ppp/8/8/8/8/3r4/r5bK");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
+    
+    XCTAssertTrue(q->getKingStatus(ColorBlack) == KingStatusNormal, @"Black King status should be stalemate");
+    XCTAssertTrue(q->getKingStatus(ColorWhite) == KingStatusStaleMate, @"White King status should be normal");
+}
+
 @end
