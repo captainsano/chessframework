@@ -284,15 +284,6 @@ std::string sfc::cfw::BitboardPosition::getFEN() const {
 	return FENString;
 }
 
-unsigned short sfc::cfw::BitboardPosition::pieceCount(const Piece aPieceType) const {
-    if (aPieceType == PieceNone) {
-        return 64 - (this->wPawn | this->wKing | this->wQueen | this->wRook | this->wBishop | this->wKnight |
-                     this->bPawn | this->bKing | this->bQueen | this->bRook | this->bBishop | this->bKnight).count();
-    }
-    
-    return this->pieceBitmap(aPieceType).count();
-}
-
 std::string sfc::cfw::BitboardPosition::prettyString() const {
 	std::string toReturn;
 	for (int rank = 7; rank >= 0; rank--) {

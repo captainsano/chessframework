@@ -18,6 +18,14 @@
 
 namespace sfc {
 	namespace cfw {
+        
+        typedef enum _KingStatus {
+            KingStatusNormal                = 0x0,
+            KingStatusCheck                 = 0x1,
+            KingStatusCheckMate             = 0x2,
+            KingStatusStaleMate             = 0x3,
+        } KingStatus;
+        
 		class GameState {
 			std::shared_ptr<Position>	position			= nullptr;
 			sfc::cfw::Color				sideToMove			= sfc::cfw::ColorWhite;

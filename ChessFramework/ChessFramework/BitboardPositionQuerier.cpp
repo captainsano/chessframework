@@ -9,6 +9,16 @@
 #include "BitboardPositionQuerier.h"
 #include "KGBitboardUtil.h"
 
+unsigned short sfc::cfw::BitboardPositionQuerier::pieceCount(const Piece aPieceType) const {
+    if (aPieceType == PieceNone) {
+        return 64 - (position->wPawn | position->wKing | position->wQueen | position->wRook |
+                     position->wBishop |position->wKnight | position->bPawn | position->bKing |
+                     position->bQueen | position->bRook | position->bBishop | position->bKnight).count();
+    }
+    
+    return position->pieceBitmap(aPieceType).count();
+}
+
 std::set<sfc::cfw::Square> sfc::cfw::BitboardPositionQuerier::attacksTo(const sfc::cfw::Square & aSquare, sfc::cfw::Color attackingSide) const {
     std::set<Square> attacksTo;
     
