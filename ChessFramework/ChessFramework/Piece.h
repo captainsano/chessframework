@@ -54,6 +54,8 @@ namespace sfc {
 			PromotablePieceBishop	= 0x5,	// -101
 			PromotablePieceKnight	= 0x6	// -110
 		} PromotablePiece;
+        
+        Color getPieceColor(const Piece & aPiece);
 	}
 }
 
