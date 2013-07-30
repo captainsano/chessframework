@@ -121,5 +121,9 @@ using sfc::cfw::GameState;
 	CPPAssertThrows(new GameState("rnbqkbnr/pppp1ppp/k7/4p3/4P3/8/PPPP1PPP/RNBQKBNR", sfc::cfw::ColorWhite, "KQkq"), @"Initialization with multiple black king should throw");
 }
 
+- (void)testInitializationWithAdjacentKingsThrows {
+    CPPAssertThrows(new GameState("8/8/8/4K3/3k4/8/8/8", sfc::cfw::ColorWhite), @"Initialization with Kings on adjacent squares should throw");
+}
+
 
 @end
