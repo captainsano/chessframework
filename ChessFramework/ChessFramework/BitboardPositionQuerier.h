@@ -10,14 +10,16 @@
 #ifndef __ChessFramework__BitboardPositionQuerier__
 #define __ChessFramework__BitboardPositionQuerier__
 
+#include <set>
+#include "Square.h"
+#include "Piece.h"
 #include "BitboardPosition.h"
-#include "PositionQuerier.h"
 
 namespace sfc {
     namespace cfw {
         
-        class BitboardPositionQuerier : public PositionQuerier {
-            std::shared_ptr<sfc::cfw::BitboardPosition> position = nullptr;
+        class BitboardPositionQuerier {
+            std::shared_ptr<BitboardPosition> position = nullptr;
             
         public:
             BitboardPositionQuerier() = default;
@@ -29,13 +31,13 @@ namespace sfc {
             
             unsigned short pieceCount(const Piece aPieceType) const;
             
-            std::set<sfc::cfw::Square> attacksTo(const sfc::cfw::Square & aSquare, sfc::cfw::Color attackingSide = sfc::cfw::ColorWhite) const override;
-            std::set<sfc::cfw::Square> attacksFrom(const sfc::cfw::Square & aSquare) const override;
+            std::set<Square> attacksTo(const Square & aSquare, Color attackingSide = ColorWhite) const;
+            std::set<Square> attacksFrom(const Square & aSquare) const;
             
             /*---------------- Experimental ---------------*/
             
             // Method checks if attacks from first argument intersects with the positions of second argument.
-            bool attackIntersectsPiece(const sfc::cfw::Piece aPiece1, const sfc::cfw::Piece aPiece2) const;
+            bool attackIntersectsPiece(const Piece aPiece1, const Piece aPiece2) const;
             
             
         };
