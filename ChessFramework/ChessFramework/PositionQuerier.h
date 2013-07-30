@@ -13,17 +13,17 @@
 #include <set>
 #include "Square.h"
 #include "Piece.h"
-#include "BitboardPosition.h"
+#include "Position.h"
 
 namespace sfc {
     namespace cfw {
         
-        class BitboardPositionQuerier {
-            std::shared_ptr<BitboardPosition> position = nullptr;
+        class PositionQuerier {
+            std::shared_ptr<Position> position = nullptr;
             
         public:
-            BitboardPositionQuerier() = default;
-            BitboardPositionQuerier(std::shared_ptr<BitboardPosition> aPosition) : position(aPosition) {
+            PositionQuerier() = default;
+            PositionQuerier(std::shared_ptr<Position> aPosition) : position(aPosition) {
                 if (aPosition == nullptr) {
                     throw std::invalid_argument("Position cannot be a null pointer");
                 }

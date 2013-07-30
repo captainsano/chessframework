@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 64cloud. All rights reserved.
 //
 
-#include "BitboardPositionQuerier.h"
+#include "PositionQuerier.h"
 #include "KGBitboardUtil.h"
 
-unsigned short sfc::cfw::BitboardPositionQuerier::pieceCount(const Piece aPieceType) const {
+unsigned short sfc::cfw::PositionQuerier::pieceCount(const Piece aPieceType) const {
     if (aPieceType == PieceNone) {
         return 64 - (position->wPawn | position->wKing | position->wQueen | position->wRook |
                      position->wBishop |position->wKnight | position->bPawn | position->bKing |
@@ -19,13 +19,13 @@ unsigned short sfc::cfw::BitboardPositionQuerier::pieceCount(const Piece aPieceT
     return position->pieceBitmap(aPieceType).count();
 }
 
-std::set<sfc::cfw::Square> sfc::cfw::BitboardPositionQuerier::attacksTo(const Square & aSquare, Color attackingSide) const {
+std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksTo(const Square & aSquare, Color attackingSide) const {
     std::set<Square> attacksTo;
     
     return attacksTo;
 }
 
-std::set<sfc::cfw::Square> sfc::cfw::BitboardPositionQuerier::attacksFrom(const Square & aSquare) const {
+std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square & aSquare) const {
     std::set<Square> attacksFrom;
     std::bitset<64> attackedSquares = 0;
     
@@ -102,7 +102,7 @@ std::set<sfc::cfw::Square> sfc::cfw::BitboardPositionQuerier::attacksFrom(const 
 
 #pragma mark - Experimental
 
-bool sfc::cfw::BitboardPositionQuerier::attackIntersectsPiece(const Piece aPiece1, const Piece aPiece2) const {
+bool sfc::cfw::PositionQuerier::attackIntersectsPiece(const Piece aPiece1, const Piece aPiece2) const {
     if (aPiece1 == PieceNone || aPiece2 == PieceNone) {
         return false;
     }

@@ -11,10 +11,10 @@
 #include <cstdlib>
 #include <exception>
 #include <iostream>	/* For debugging */
-#include "BitboardPosition.h"
-#include "Square.h"
 
-bool sfc::cfw::BitboardPosition::validateFEN(const std::string & FENString) {
+#include "Position.h"
+
+bool sfc::cfw::Position::validateFEN(const std::string & FENString) {
 	// Check for FEN format errors
 	if (std::regex_match(FENString, std::regex("^([KQRBNPkqrbnp1-8]{1,8}/){7}([KQRBNPkqrbnp1-8]{1,8})$"))) {
 		// Check for square count in each rank
@@ -37,7 +37,7 @@ bool sfc::cfw::BitboardPosition::validateFEN(const std::string & FENString) {
 	return false;
 }
 
-std::bitset<64> & sfc::cfw::BitboardPosition::pieceBitmap(const sfc::cfw::Piece aPieceType) {
+std::bitset<64> & sfc::cfw::Position::pieceBitmap(const Piece aPieceType) {
     switch (aPieceType) {
         case PieceWPawn:    return this->wPawn;
         case PieceWKing:    return this->wKing;
@@ -58,7 +58,7 @@ std::bitset<64> & sfc::cfw::BitboardPosition::pieceBitmap(const sfc::cfw::Piece 
     }
 }
 
-const std::bitset<64> & sfc::cfw::BitboardPosition::pieceBitmap(const sfc::cfw::Piece aPieceType) const {
+const std::bitset<64> & sfc::cfw::Position::pieceBitmap(const Piece aPieceType) const {
     switch (aPieceType) {
         case PieceWPawn:    return this->wPawn;
         case PieceWKing:    return this->wKing;
@@ -79,7 +79,7 @@ const std::bitset<64> & sfc::cfw::BitboardPosition::pieceBitmap(const sfc::cfw::
     }
 }
 
-sfc::cfw::BitboardPosition::BitboardPosition(const std::string & FENString) {
+sfc::cfw::Position::Position(const std::string & FENString) {
 	if (sfc::cfw::Position::validateFEN(FENString)) {
 		
 		/// Expand the FEN @todo Write an algorithm such that expansion is not required [REFACTOR]
@@ -144,38 +144,38 @@ sfc::cfw::BitboardPosition::BitboardPosition(const std::string & FENString) {
 	
 }
 
-sfc::cfw::Piece sfc::cfw::BitboardPosition::operator[] (const sfc::cfw::Square & aSquare) const {
+sfc::cfw::Piece sfc::cfw::Position::operator[] (const Square & aSquare) const {
 	
 	if (wPawn[aSquare]) {
-		return sfc::cfw::PieceWPawn;
+		return PieceWPawn;
 	} else if (wKing[aSquare]) {
-		return sfc::cfw::PieceWKing;
+		return PieceWKing;
 	} else if (wQueen[aSquare]) {
-		return sfc::cfw::PieceWQueen;
+		return PieceWQueen;
 	} else if (wRook[aSquare]) {
-		return sfc::cfw::PieceWRook;
+		return PieceWRook;
 	} else if (wBishop[aSquare]) {
-		return sfc::cfw::PieceWBishop;
+		return PieceWBishop;
 	} else if (wKnight[aSquare]) {
-		return sfc::cfw::PieceWKnight;
+		return PieceWKnight;
 	} else if (bPawn[aSquare]) {
-		return sfc::cfw::PieceBPawn;
+		return PieceBPawn;
 	} else if (bKing[aSquare]) {
-		return sfc::cfw::PieceBKing;
+		return PieceBKing;
 	} else if (bQueen[aSquare]) {
-		return sfc::cfw::PieceBQueen;
+		return PieceBQueen;
 	} else if (bRook[aSquare]) {
-		return sfc::cfw::PieceBRook;
+		return PieceBRook;
 	} else if (bBishop[aSquare]) {
-		return sfc::cfw::PieceBBishop;
+		return PieceBBishop;
 	} else if (bKnight[aSquare]) {
-		return sfc::cfw::PieceBKnight;
+		return PieceBKnight;
 	}
 	
-	return sfc::cfw::PieceNone;
+	return PieceNone;
 }
 
-sfc::cfw::Piece sfc::cfw::BitboardPosition::vacate(const sfc::cfw::Square & aSquare) {
+sfc::cfw::Piece sfc::cfw::Position::vacate(const Square & aSquare) {
 	// First, find out which piece has occupied the square.
     if ((*this)[aSquare] != PieceNone) {
         Piece previousOccupied = (*this)[aSquare];
@@ -183,73 +183,73 @@ sfc::cfw::Piece sfc::cfw::BitboardPosition::vacate(const sfc::cfw::Square & aSqu
         return previousOccupied;
     }
 	
-	return sfc::cfw::PieceNone;
+	return PieceNone;
 }
 
-sfc::cfw::Piece sfc::cfw::BitboardPosition::occupy(const sfc::cfw::Square & aSquare, const Piece aPieceType) {
+sfc::cfw::Piece sfc::cfw::Position::occupy(const Square & aSquare, const Piece aPieceType) {
 	// Make sure that the other pieces occupying the same square are vacated
 	Piece vacatedPiece = vacate(aSquare);
 	switch (aPieceType) {
-		case sfc::cfw::PieceWPawn: {
+		case PieceWPawn: {
 			wPawn.set(aSquare);
 			break;
 		}
 			
-		case sfc::cfw::PieceWKing: {
+		case PieceWKing: {
 			wKing.set(aSquare);
 			break;
 		}
 			
-		case sfc::cfw::PieceWQueen: {
+		case PieceWQueen: {
 			wQueen.set(aSquare);
 			break;
 		}
 			
-		case sfc::cfw::PieceWRook: {
+		case PieceWRook: {
 			wRook.set(aSquare);
 			break;
 		}
 			
-		case sfc::cfw::PieceWBishop: {
+		case PieceWBishop: {
 			wBishop.set(aSquare);
 			break;
 		}
 			
-		case sfc::cfw::PieceWKnight: {
+		case PieceWKnight: {
 			wKnight.set(aSquare);
 			break;
 		}
 			
-		case sfc::cfw::PieceBPawn: {
+		case PieceBPawn: {
 			bPawn.set(aSquare);
 			break;
 		}
 			
-		case sfc::cfw::PieceBKing: {
+		case PieceBKing: {
 			bKing.set(aSquare);
 			break;
 		}
 			
-		case sfc::cfw::PieceBQueen: {
+		case PieceBQueen: {
 			bQueen.set(aSquare);
 			break;
 		}
 			
-		case sfc::cfw::PieceBRook: {
+		case PieceBRook: {
 			bRook.set(aSquare);
 			break;
 		}
 			
-		case sfc::cfw::PieceBBishop: {
+		case PieceBBishop: {
 			bBishop.set(aSquare);
 			break;
 		}
 			
-		case sfc::cfw::PieceBKnight: {
+		case PieceBKnight: {
 			bKnight.set(aSquare);
 			break;
 		}
-		case sfc::cfw::PieceNone:
+		case PieceNone:
 			// no action
 			break;
 	}
@@ -258,7 +258,7 @@ sfc::cfw::Piece sfc::cfw::BitboardPosition::occupy(const sfc::cfw::Square & aSqu
 }
 
 
-std::string sfc::cfw::BitboardPosition::getFEN() const {
+std::string sfc::cfw::Position::getFEN() const {
 	std::string FENString;
 	for (int rank = 7; rank >= 0; rank--) {
 		std::string rankString;
@@ -307,7 +307,7 @@ std::string sfc::cfw::BitboardPosition::getFEN() const {
 	return FENString;
 }
 
-std::string sfc::cfw::BitboardPosition::prettyString() const {
+std::string sfc::cfw::Position::prettyString() const {
 	std::string toReturn;
 	for (int rank = 7; rank >= 0; rank--) {
 		std::string rankString;

@@ -8,11 +8,9 @@
 
 #import <XCTest/XCTest.h>
 #import <set>
-#import "Position.h"
 #import "Square.h"
-#import "BitboardPosition.h"
+#import "Position.h"
 #import "PositionQuerier.h"
-#import "BitboardPositionQuerier.h"
 
 using namespace sfc::cfw;
 
@@ -35,8 +33,8 @@ using namespace sfc::cfw;
 #pragma mark - White Pawn attacks without capture
 
 - (void)testAttacksFromA1WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/P7");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/P7");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a1"));
@@ -45,8 +43,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB1WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/1P6");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/1P6");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b1"));
@@ -55,8 +53,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC1WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/2P5");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/2P5");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c1"));
@@ -65,8 +63,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD1WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/3P4");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/3P4");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d1"));
@@ -75,8 +73,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE1WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/4P3");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/4P3");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e1"));
@@ -85,8 +83,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF1WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/5P2");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/5P2");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f1"));
@@ -95,8 +93,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG1WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/6P1");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/6P1");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g1"));
@@ -105,8 +103,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH1WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/7P");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/7P");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h1"));
@@ -115,8 +113,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA2WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/P7/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/P7/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a3"), Square("a4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a2"));
@@ -125,8 +123,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB2WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/1P6/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/1P6/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b3"), Square("b4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b2"));
@@ -135,8 +133,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC2WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/2P5/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/2P5/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c3"), Square("c4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c2"));
@@ -145,8 +143,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD2WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/3P4/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/3P4/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d3"), Square("d4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d2"));
@@ -155,8 +153,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE2WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/4P3/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/4P3/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e3"), Square("e4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e2"));
@@ -165,8 +163,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF2WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/5P2/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/5P2/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f3"), Square("f4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f2"));
@@ -175,8 +173,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG2WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/6P1/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/6P1/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g3"), Square("g4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g2"));
@@ -185,8 +183,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH2WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/7P/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/7P/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h3"), Square("h4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h2"));
@@ -195,8 +193,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA3WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/P7/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/P7/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a3"));
@@ -205,8 +203,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB3WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/1P6/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/1P6/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b3"));
@@ -215,8 +213,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC3WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/2P5/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/2P5/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c3"));
@@ -225,8 +223,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD3WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/3P4/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/3P4/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d3"));
@@ -235,8 +233,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE3WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/4P3/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/4P3/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e3"));
@@ -245,8 +243,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF3WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/5P2/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/5P2/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f3"));
@@ -255,8 +253,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG3WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/6P1/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/6P1/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g3"));
@@ -265,8 +263,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH3WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/7P/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/7P/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h3"));
@@ -275,8 +273,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA4WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/P7/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/P7/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a4"));
@@ -285,8 +283,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB4WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/1P6/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/1P6/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b4"));
@@ -295,8 +293,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC4WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/2P5/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/2P5/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c4"));
@@ -305,8 +303,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD4WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/3P4/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/3P4/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d4"));
@@ -315,8 +313,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE4WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/4P3/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/4P3/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e4"));
@@ -325,8 +323,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF4WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/5P2/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/5P2/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f4"));
@@ -335,8 +333,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG4WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/6P1/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/6P1/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g4"));
@@ -345,8 +343,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH4WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/7P/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/7P/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h4"));
@@ -355,8 +353,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA5WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/P7/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/P7/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a6")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a5"));
@@ -365,8 +363,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB5WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/1P6/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/1P6/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b6")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b5"));
@@ -375,8 +373,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC5WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/2P5/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/2P5/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c6")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c5"));
@@ -385,8 +383,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD5WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/3P4/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/3P4/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d6")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d5"));
@@ -395,8 +393,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE5WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/4P3/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/4P3/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e6")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e5"));
@@ -405,8 +403,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF5WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/5P2/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/5P2/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f6")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f5"));
@@ -415,8 +413,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG5WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/6P1/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/6P1/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g6")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g5"));
@@ -425,8 +423,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH5WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/7P/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/7P/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h6")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h5"));
@@ -435,8 +433,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA6WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/P7/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/P7/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a7")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a6"));
@@ -445,8 +443,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB6WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/1P6/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/1P6/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b7")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b6"));
@@ -455,8 +453,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC6WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/2P5/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/2P5/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c7")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c6"));
@@ -465,8 +463,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD6WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/3P4/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/3P4/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d7")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d6"));
@@ -475,8 +473,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE6WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/4P3/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/4P3/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e7")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e6"));
@@ -485,8 +483,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF6WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/5P2/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/5P2/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f7")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f6"));
@@ -495,8 +493,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG6WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/6P1/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/6P1/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g7")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g6"));
@@ -505,8 +503,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH6WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/7P/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/7P/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h7")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h6"));
@@ -515,8 +513,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA7WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/P7/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/P7/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a8")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a7"));
@@ -525,8 +523,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB7WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/1P6/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/1P6/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b8")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b7"));
@@ -535,8 +533,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC7WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/2P5/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/2P5/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c8")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c7"));
@@ -545,8 +543,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD7WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/3P4/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/3P4/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d8")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d7"));
@@ -555,8 +553,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE7WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/4P3/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/4P3/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e8")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e7"));
@@ -565,8 +563,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF7WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/5P2/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/5P2/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f8")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f7"));
@@ -575,8 +573,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG7WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/6P1/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/6P1/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g8")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g7"));
@@ -585,8 +583,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH7WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/7P/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/7P/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h8")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h7"));
@@ -595,8 +593,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA8WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("P7/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("P7/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a8"));
@@ -605,8 +603,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB8WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("1P6/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("1P6/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b8"));
@@ -615,8 +613,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC8WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("2P5/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("2P5/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c8"));
@@ -625,8 +623,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD8WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("3P4/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("3P4/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d8"));
@@ -635,8 +633,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE8WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("4P3/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("4P3/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e8"));
@@ -645,8 +643,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF8WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("5P2/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("5P2/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f8"));
@@ -655,8 +653,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG8WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("6P1/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("6P1/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g8"));
@@ -665,8 +663,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH8WhitePawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("7P/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("7P/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h8"));
@@ -677,8 +675,8 @@ using namespace sfc::cfw;
 #pragma mark - Black Pawn attacks without capture
 
 - (void)testAttacksFromA1BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/p7");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/p7");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a1"));
@@ -687,8 +685,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB1BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/1p6");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/1p6");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b1"));
@@ -697,8 +695,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC1BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/2p5");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/2p5");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c1"));
@@ -707,8 +705,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD1BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/3p4");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/3p4");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d1"));
@@ -717,8 +715,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE1BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/4p3");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/4p3");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e1"));
@@ -727,8 +725,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF1BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/5p2");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/5p2");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f1"));
@@ -737,8 +735,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG1BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/6p1");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/6p1");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g1"));
@@ -747,8 +745,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH1BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/8/7p");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/7p");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h1"));
@@ -757,8 +755,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA2BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/p7/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/p7/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a1")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a2"));
@@ -767,8 +765,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB2BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/1p6/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/1p6/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b1")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b2"));
@@ -777,8 +775,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC2BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/2p5/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/2p5/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c1")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c2"));
@@ -787,8 +785,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD2BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/3p4/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/3p4/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d1")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d2"));
@@ -797,8 +795,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE2BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/4p3/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/4p3/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e1")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e2"));
@@ -807,8 +805,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF2BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/5p2/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/5p2/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f1")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f2"));
@@ -817,8 +815,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG2BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/6p1/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/6p1/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g1")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g2"));
@@ -827,8 +825,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH2BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/8/7p/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/7p/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h1")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h2"));
@@ -837,8 +835,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA3BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/p7/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/p7/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a2")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a3"));
@@ -847,8 +845,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB3BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/1p6/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/1p6/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b2")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b3"));
@@ -857,8 +855,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC3BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/2p5/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/2p5/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c2")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c3"));
@@ -867,8 +865,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD3BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/3p4/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/3p4/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d2")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d3"));
@@ -877,8 +875,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE3BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/4p3/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/4p3/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e2")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e3"));
@@ -887,8 +885,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF3BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/5p2/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/5p2/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f2")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f3"));
@@ -897,8 +895,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG3BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/6p1/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/6p1/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g2")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g3"));
@@ -907,8 +905,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH3BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/8/7p/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/7p/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h2")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h3"));
@@ -917,8 +915,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA4BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/p7/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/p7/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a3")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a4"));
@@ -927,8 +925,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB4BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/1p6/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/1p6/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b3")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b4"));
@@ -937,8 +935,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC4BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/2p5/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/2p5/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c3")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c4"));
@@ -947,8 +945,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD4BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/3p4/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/3p4/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d3")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d4"));
@@ -957,8 +955,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE4BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/4p3/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/4p3/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e3")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e4"));
@@ -967,8 +965,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF4BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/5p2/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/5p2/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f3")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f4"));
@@ -977,8 +975,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG4BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/6p1/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/6p1/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g3")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g4"));
@@ -987,8 +985,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH4BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/8/7p/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/7p/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h3")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h4"));
@@ -997,8 +995,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA5BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/p7/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/p7/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a5"));
@@ -1007,8 +1005,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB5BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/1p6/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/1p6/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b5"));
@@ -1017,8 +1015,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC5BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/2p5/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/2p5/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c5"));
@@ -1027,8 +1025,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD5BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/3p4/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/3p4/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d5"));
@@ -1037,8 +1035,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE5BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/4p3/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/4p3/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e5"));
@@ -1047,8 +1045,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF5BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/5p2/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/5p2/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f5"));
@@ -1057,8 +1055,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG5BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/6p1/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/6p1/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g5"));
@@ -1067,8 +1065,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH5BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/8/7p/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/7p/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h4")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h5"));
@@ -1077,8 +1075,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA6BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/p7/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/p7/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a6"));
@@ -1087,8 +1085,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB6BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/1p6/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/1p6/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b6"));
@@ -1097,8 +1095,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC6BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/2p5/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/2p5/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c6"));
@@ -1107,8 +1105,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD6BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/3p4/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/3p4/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d6"));
@@ -1117,8 +1115,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE6BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/4p3/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/4p3/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e6"));
@@ -1127,8 +1125,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF6BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/5p2/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/5p2/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f6"));
@@ -1137,8 +1135,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG6BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/6p1/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/6p1/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g6"));
@@ -1147,8 +1145,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH6BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/8/7p/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/7p/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h6"));
@@ -1157,8 +1155,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA7BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/p7/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/p7/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("a6"), Square("a5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a7"));
@@ -1167,8 +1165,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB7BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/1p6/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/1p6/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("b6"), Square("b5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b7"));
@@ -1177,8 +1175,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC7BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/2p5/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/2p5/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("c6"), Square("c5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c7"));
@@ -1187,8 +1185,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD7BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/3p4/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/3p4/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("d6"), Square("d5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d7"));
@@ -1197,8 +1195,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE7BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/4p3/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/4p3/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("e6"), Square("e5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e7"));
@@ -1207,8 +1205,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF7BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/5p2/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/5p2/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("f6"), Square("f5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f7"));
@@ -1217,8 +1215,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG7BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/6p1/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/6p1/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("g6"), Square("g5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g7"));
@@ -1227,8 +1225,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH7BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("8/7p/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("8/7p/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {Square("h6"), Square("h5")};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h7"));
@@ -1237,8 +1235,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromA8BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("p7/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("p7/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("a8"));
@@ -1247,8 +1245,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromB8BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("1p6/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("1p6/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("b8"));
@@ -1257,8 +1255,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromC8BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("2p5/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("2p5/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c8"));
@@ -1267,8 +1265,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromD8BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("3p4/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("3p4/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("d8"));
@@ -1277,8 +1275,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromE8BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("4p3/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("4p3/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("e8"));
@@ -1287,8 +1285,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromF8BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("5p2/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("5p2/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("f8"));
@@ -1297,8 +1295,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromG8BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("6p1/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("6p1/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("g8"));
@@ -1307,8 +1305,8 @@ using namespace sfc::cfw;
 }
 
 - (void)testAttacksFromH8BlackPawnNoCapture {
-    std::shared_ptr<BitboardPosition> p = std::make_shared<BitboardPosition>("7p/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<BitboardPositionQuerier>(p);
+    std::shared_ptr<Position> p = std::make_shared<Position>("7p/8/8/8/8/8/8/8");
+    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     std::set<Square> expectedAttacksFrom {};
     std::set<Square> actualAttacksFrom = q->attacksFrom(Square("h8"));

@@ -14,26 +14,26 @@
 #include <iostream>	// For debug
 
 #include "GameState.h"
-#include "BitboardPosition.h"
-#include "BitboardPositionQuerier.h"
+#include "Position.h"
+#include "PositionQuerier.h"
 
 sfc::cfw::GameState::GameState(std::string && FENString,
-							   const sfc::cfw::Color & aSideToMove,
+							   const Color & aSideToMove,
 							   const std::string & aCastlingOptions,
-							   const sfc::cfw::Square & aEnpassantTarget
+							   const Square & aEnpassantTarget
 							   ) {
-	std::shared_ptr<BitboardPosition> tempPosition = std::make_shared<BitboardPosition>(std::forward<std::string>(FENString));
-    std::shared_ptr<BitboardPositionQuerier> querier = std::make_shared<BitboardPositionQuerier>(tempPosition);
+	std::shared_ptr<Position> tempPosition = std::make_shared<Position>(std::forward<std::string>(FENString));
+    std::shared_ptr<PositionQuerier> querier = std::make_shared<PositionQuerier>(tempPosition);
 	
 	/*--------- Check for errors in enPassant ---------*/
 	if (aEnpassantTarget != 0) {
 		// Check for Color Mismatch, if no mismatch, check if a pawn exists in the required (file, 5/4 rank)
-		if (aSideToMove == sfc::cfw::ColorWhite && aEnpassantTarget.getRank() == 5) {
-			if ((*tempPosition)[Square(aEnpassantTarget.getFile(), 4)] != sfc::cfw::PieceBPawn) {
+		if (aSideToMove == ColorWhite && aEnpassantTarget.getRank() == 5) {
+			if ((*tempPosition)[Square(aEnpassantTarget.getFile(), 4)] != PieceBPawn) {
 				throw std::invalid_argument("Square for enpassant target not occupied by black pawn");
 			}
-		} else if (aSideToMove == sfc::cfw::ColorBlack && aEnpassantTarget.getRank() == 2) {
-			if ((*tempPosition)[Square(aEnpassantTarget.getFile(), 3)] != sfc::cfw::PieceWPawn) {
+		} else if (aSideToMove == ColorBlack && aEnpassantTarget.getRank() == 2) {
+			if ((*tempPosition)[Square(aEnpassantTarget.getFile(), 3)] != PieceWPawn) {
 				throw std::invalid_argument("Square for enpassant target not occupied by white pawn");
 			}
 		} else {
@@ -56,46 +56,46 @@ sfc::cfw::GameState::GameState(std::string && FENString,
 	// Check for presence of rook where required
 	if (aCastlingOptions[0] != '-') {
 		Square requiredSquare(std::string{(aCastlingOptions[0] == 'K')?'h':std::tolower(aCastlingOptions[0]), '1'});
-		if ((*tempPosition)[requiredSquare] != sfc::cfw::PieceWRook) {
+		if ((*tempPosition)[requiredSquare] != PieceWRook) {
 			throw std::invalid_argument("Rook not present at location indicated by castling options");
 		}
 	}
 	
 	if (aCastlingOptions[1] != '-') {
 		Square requiredSquare(std::string{(aCastlingOptions[1] == 'Q')?'a':std::tolower(aCastlingOptions[1]), '1'});
-		if ((*tempPosition)[requiredSquare] != sfc::cfw::PieceWRook) {
+		if ((*tempPosition)[requiredSquare] != PieceWRook) {
 			throw std::invalid_argument("Rook not present at location indicated by castling options");
 		}
 	}
 	
 	if (aCastlingOptions[2] != '-') {
 		Square requiredSquare(std::string{(aCastlingOptions[2] == 'k')?'h':std::tolower(aCastlingOptions[2]), '8'});
-		if ((*tempPosition)[requiredSquare] != sfc::cfw::PieceBRook) {
+		if ((*tempPosition)[requiredSquare] != PieceBRook) {
 			throw std::invalid_argument("Rook not present at location indicated by castling options");
 		}
 	}
 	
 	if (aCastlingOptions[3] != '-') {
 		Square requiredSquare(std::string{(aCastlingOptions[3] == 'q')?'a':std::tolower(aCastlingOptions[3]), '8'});
-		if ((*tempPosition)[requiredSquare] != sfc::cfw::PieceBRook) {
+		if ((*tempPosition)[requiredSquare] != PieceBRook) {
 			throw std::invalid_argument("Rook not present at location indicated by castling options");
 		}
 	}
 	
 	/*----- Check for errors in king piece count - only 1 king should be existent for each side -----*/
-	if (tempPosition->pieceCount(sfc::cfw::PieceWKing) != 1 || tempPosition->pieceCount(sfc::cfw::PieceBKing) != 1) {
+	if (querier->pieceCount(PieceWKing) != 1 || querier->pieceCount(PieceBKing) != 1) {
 		throw std::invalid_argument("Position should contain only one white and black king");
 	}
     
     /*--------- Check for opposite kings in adjacent squares ---------*/
     // Find the location of white king and check if its attack set holds the black king's location
     for (unsigned short i = 0; i < 64; i++) {
-        if ((*tempPosition)[i] == sfc::cfw::PieceWKing) {
+        if ((*tempPosition)[i] == PieceWKing) {
             std::set<Square> attacks = querier->attacksFrom(i);
          
             // Iterate the set and check if any of the attacked squares hold a black king
             for (auto s : attacks) {
-                if ((*tempPosition)[s] == sfc::cfw::PieceBKing) {
+                if ((*tempPosition)[s] == PieceBKing) {
                     throw std::invalid_argument("Kings are located in adjacent squares");
                 }
             }

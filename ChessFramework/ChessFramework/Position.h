@@ -17,15 +17,15 @@
 namespace sfc {
 	namespace cfw {
 				
-        class BitboardPositionQuerier;
+        class PositionQuerier;
         
 		/*!
 		 @class BitboardPosition
 		 @brief Represents a position with a bitboard data structure internally.
 		 @note C++ bitset index convention: LSB=0, MSB=63. Don't follow Hyatt bitboard convention!
 		 */
-		class BitboardPosition {
-            friend class BitboardPositionQuerier;
+		class Position {
+            friend class PositionQuerier;
             
 			std::bitset<64> wPawn	= 0x0000000000000000;
 			std::bitset<64> wKing	= 0x0000000000000000;
@@ -46,8 +46,8 @@ namespace sfc {
             const std::bitset<64> & pieceBitmap(const Piece aPieceType) const;
             
 		public:			
-			BitboardPosition() = default;
-			BitboardPosition(const std::string & FENString);			
+			Position() = default;
+			Position(const std::string & FENString);
 			
 			Piece operator[] (const Square & aSquare) const;
 			
