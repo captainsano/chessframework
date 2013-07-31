@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 64cloud. All rights reserved.
 //
 
+#include <iostream>
+
 #include <bitset>
 #include <cstdlib>
 #include <set>
@@ -75,6 +77,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 							if (querier->isKingInCheck(ColorWhite)) {
 								return nullptr;
 							}
+							tempPosition->vacate(i);
 						}
 					}
 					
@@ -82,6 +85,8 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 					tempPosition->occupy(Square("g1"), PieceWKing);
 					tempPosition->vacate(toSquare);
 					tempPosition->occupy(Square("f1"), PieceWRook);
+					
+					std::cout << "\n Position: " << "\n" << tempPosition->prettyString() << std::endl;
 					
 					// Update white's castling options
 					nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
@@ -115,13 +120,14 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 							if (querier->isKingInCheck(ColorWhite)) {
 								return nullptr;
 							}
+							tempPosition->vacate(i);
 						}
 					}
 					
 					// Update the temp position
-					tempPosition->occupy(Square("g1"), PieceWKing);
+					tempPosition->occupy(Square("c1"), PieceWKing);
 					tempPosition->vacate(toSquare);
-					tempPosition->occupy(Square("f1"), PieceWRook);
+					tempPosition->occupy(Square("d1"), PieceWRook);
 					
 					// Update white's castling options
 					nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
@@ -160,13 +166,14 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 							if (querier->isKingInCheck(ColorBlack)) {
 								return nullptr;
 							}
+							tempPosition->vacate(i);
 						}
 					}
 					
 					// Update the temp position
-					tempPosition->occupy(Square("g1"), PieceBKing);
+					tempPosition->occupy(Square("c8"), PieceBKing);
 					tempPosition->vacate(toSquare);
-					tempPosition->occupy(Square("f1"), PieceBRook);
+					tempPosition->occupy(Square("d8"), PieceBRook);
 					
 					// Update black's castling options
 					nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
@@ -200,13 +207,14 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 							if (querier->isKingInCheck(ColorBlack)) {
 								return nullptr;
 							}
+							tempPosition->vacate(i);
 						}
 					}
 					
 					// Update the temp position
-					tempPosition->occupy(Square("g1"), PieceBKing);
+					tempPosition->occupy(Square("g8"), PieceBKing);
 					tempPosition->vacate(toSquare);
-					tempPosition->occupy(Square("f1"), PieceBRook);
+					tempPosition->occupy(Square("f8"), PieceBRook);
 					
 					// Update black's castling options
 					nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
