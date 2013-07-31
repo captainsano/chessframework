@@ -81,6 +81,30 @@ sfc::cfw::GameState::GameState(std::string && FENString,
 			throw std::invalid_argument("Rook not present at location indicated by castling options");
 		}
 	}
+    
+    // Check for white king in first rank if the white castling options are set
+    if (aCastlingOptions[0] != '-' || aCastlingOptions[1] != '-') {
+        bool kingFound = false;
+        for (unsigned int i = 0; i < 7; i++) {
+            if ((*tempPosition)[i] == PieceWKing) {
+                kingFound = true;
+                break;
+            }
+        }
+        if (!kingFound) throw std::invalid_argument("White castling options are set, but king is not in first rank");
+    }
+
+    // Check for black king in eigth rank if the black castling options are set
+    if (aCastlingOptions[2] != '-' || aCastlingOptions[3] != '-') {
+        bool kingFound = false;
+        for (unsigned int i = 56; i < 64; i++) {
+            if ((*tempPosition)[i] == PieceBKing) {
+                kingFound = true;
+                break;
+            }
+        }
+        if (!kingFound) throw std::invalid_argument("White castling options are set, but king is not in first rank");
+    }
 	
 	/*----- Check for errors in king piece count - only 1 king should be existent for each side -----*/
 	if (querier->pieceCount(PieceWKing) != 1 || querier->pieceCount(PieceBKing) != 1) {
