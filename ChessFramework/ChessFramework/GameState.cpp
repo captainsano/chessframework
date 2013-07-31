@@ -128,14 +128,14 @@ sfc::cfw::GameState::GameState(std::string && FENString,
 	this->castlingOptions[0] = (aCastlingOptions[0] == 'K')?'H':aCastlingOptions[0];
 	this->castlingOptions[1] = (aCastlingOptions[1] == 'Q')?'A':aCastlingOptions[1];
 	this->castlingOptions[2] = (aCastlingOptions[2] == 'k')?'h':aCastlingOptions[2];
-	this->castlingOptions[3] = (aCastlingOptions[4] == 'q')?'a':aCastlingOptions[3];
+	this->castlingOptions[3] = (aCastlingOptions[3] == 'q')?'a':aCastlingOptions[3];
 	this->enpassantTarget = aEnpassantTarget;
     
     this->whiteKingStatus = querier->getKingStatus(ColorWhite);
     this->blackKingStatus = querier->getKingStatus(ColorBlack);
 }
 
-bool sfc::cfw::GameState::hasSufficientMaterial() {
+bool sfc::cfw::GameState::hasSufficientMaterial() const {
     PositionQuerier q(position);
     auto emptySquares = q.pieceCount(PieceNone);
     
@@ -150,4 +150,61 @@ bool sfc::cfw::GameState::hasSufficientMaterial() {
     }
     
     return true;
+}
+
+std::string sfc::cfw::GameState::getFEN(bool chess960) const {
+    // Piece Placement
+    std::string fenString = position->getFEN();
+    
+    fenString += " ";
+    
+    // Side To Move
+    if (this->getSideToMove() == ColorWhite) {
+        fenString += 'w';
+    } else {
+        fenString += 'b';
+    }
+    
+    fenString += " ";
+    
+    // Castling Options
+    bool atLeastOneCastlingOptionExists = false;
+    if (this->getWhiteKingSideCastlingOption() != '-') {
+        if (!chess960) fenString += 'K';
+        else fenString += this->getWhiteKingSideCastlingOption();
+        atLeastOneCastlingOptionExists = true;
+    }
+    
+    if (this->getWhiteQueenSideCastlingOption() != '-') {
+        if (!chess960) fenString += 'Q';
+        else fenString += this->getWhiteQueenSideCastlingOption();
+        atLeastOneCastlingOptionExists = true;
+    }
+    
+    if (this->getBlackKingSideCastlingOption() != '-') {
+        if (!chess960) fenString += 'k';
+        else fenString += this->getBlackKingSideCastlingOption();
+        atLeastOneCastlingOptionExists = true;
+    }
+    
+    if (this->getBlackQueenSideCastlingOption() != '-') {
+        if (!chess960) fenString += 'q';
+        else fenString += this->getBlackQueenSideCastlingOption();
+        atLeastOneCastlingOptionExists = true;
+    }
+    
+    if (!atLeastOneCastlingOptionExists) {
+        fenString += '-';
+    }
+    
+    fenString += " ";
+    
+    // En Passant Target
+    if (this->getEnpassantTarget() != 0) {
+        fenString += this->getEnpassantTarget().getLabel();
+    } else {
+        fenString += '-';
+    }
+    
+    return fenString;
 }
