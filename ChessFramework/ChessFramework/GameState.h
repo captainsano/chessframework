@@ -44,6 +44,13 @@ namespace sfc {
 					  const Square & aEnpassantTarget = Square(0)
 					  );
             
+            Color   getSideToMove();
+            Square  getEnpassantTarget();
+            char    getWhiteKingSideCastlingOption()    { return this->castlingOptions[0]; }
+            char    getWhiteQueenSideCastlingOption()   { return this->castlingOptions[1]; }
+            char    getBlackKingSideCastlingOption()    { return this->castlingOptions[2]; }
+            char    getBlackQueenSideCastlingOption()   { return this->castlingOptions[3]; }
+            
             KingStatus  getWhiteKingStatus() { return this->whiteKingStatus; }
             KingStatus  getBlackKingStatus() { return this->blackKingStatus; }
             bool        hasSufficientMaterial();

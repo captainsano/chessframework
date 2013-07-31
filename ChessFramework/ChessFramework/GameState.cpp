@@ -125,10 +125,10 @@ sfc::cfw::GameState::GameState(std::string && FENString,
 	// Assign values if everything is right
 	this->position = tempPosition;
 	this->sideToMove = aSideToMove;
-	this->castlingOptions[0] = aCastlingOptions[0];
-	this->castlingOptions[1] = aCastlingOptions[1];
-	this->castlingOptions[2] = aCastlingOptions[2];
-	this->castlingOptions[3] = aCastlingOptions[4];
+	this->castlingOptions[0] = (aCastlingOptions[0] == 'K')?'H':aCastlingOptions[0];
+	this->castlingOptions[1] = (aCastlingOptions[1] == 'Q')?'A':aCastlingOptions[1];
+	this->castlingOptions[2] = (aCastlingOptions[2] == 'k')?'h':aCastlingOptions[2];
+	this->castlingOptions[3] = (aCastlingOptions[4] == 'q')?'a':aCastlingOptions[3];
 	this->enpassantTarget = aEnpassantTarget;
     
     this->whiteKingStatus = querier->getKingStatus(ColorWhite);
