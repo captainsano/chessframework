@@ -107,7 +107,8 @@ sfc::cfw::GameState::GameState(std::string && FENString,
 	this->castlingOptions[3] = aCastlingOptions[4];
 	this->enpassantTarget = aEnpassantTarget;
     
-    // Auto-Infer the KingStatus now.
+    this->whiteKingStatus = querier->getKingStatus(ColorWhite);
+    this->blackKingStatus = querier->getKingStatus(ColorBlack);
 }
 
 bool sfc::cfw::GameState::hasSufficientMaterial() {
