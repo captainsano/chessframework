@@ -23,3 +23,7 @@ sfc::cfw::Color sfc::cfw::getPieceColor(const Piece & aPiece) {
 sfc::cfw::Piece sfc::cfw::makePiece(const GenericPiece aPiece, const Color aColor) {
     return (Piece)((aColor << 3) | aPiece);
 }
+
+sfc::cfw::Piece sfc::cfw::makePiece(const PromotablePiece aPiece, const Color aColor) {
+    return (Piece)((aColor << 3) | aPiece);
+}
