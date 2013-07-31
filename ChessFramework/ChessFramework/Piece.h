@@ -56,6 +56,7 @@ namespace sfc {
 		} PromotablePiece;
         
         Color getPieceColor(const Piece & aPiece);
+        Piece makePiece(const GenericPiece aPiece, const Color aColor);
 	}
 }
 

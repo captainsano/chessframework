@@ -19,3 +19,7 @@ sfc::cfw::Color sfc::cfw::getPieceColor(const Piece & aPiece) {
     throw std::invalid_argument("Color cannot be determined for an empty piece");
     return ColorWhite;
 }
+
+sfc::cfw::Piece sfc::cfw::makePiece(const GenericPiece aPiece, const Color aColor) {
+    return (Piece)((aColor << 3) | aPiece);
+}
