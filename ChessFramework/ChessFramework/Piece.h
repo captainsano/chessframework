@@ -49,6 +49,7 @@ namespace sfc {
 		
 		// Generic piece codes that a pawn can promote to
 		typedef enum _PromotablePiece {
+            PromotablePieceNone     = 0x0,  // 0000
 			PromotablePieceQueen	= 0x3,	// -011
 			PromotablePieceRook		= 0x4,	// -100
 			PromotablePieceBishop	= 0x5,	// -101
@@ -57,6 +58,7 @@ namespace sfc {
         
         Color getPieceColor(const Piece & aPiece);
         Piece makePiece(const GenericPiece aPiece, const Color aColor);
+        Piece makePiece(const PromotablePiece aPiece, const Color aColor);
 	}
 }
 
