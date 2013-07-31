@@ -88,6 +88,14 @@ using namespace sfc::cfw;
 	CPPAssertThrows(new GameState("1nbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/1NBQKBNR", ColorWhite, "KAkq"), @"Inapplicable castling option for white queenside");
 }
 
+- (void)testInitializationWithWhiteKingNotInFirstRankAndValidCastlingOptionsThrows {
+    CPPAssertThrows(new GameState("3k4/8/8/8/8/3K4/8/R6R", ColorWhite, "KQ--"), @"White king not in first rank for valid castling options");
+}
+
+- (void)testInitializationWithBlackKingNotInEighthRankAndValidCastlingOptionsThrows {
+    CPPAssertThrows(new GameState("r6r/3k4/8/8/8/3K4/8/R6R", ColorBlack, "--kq"), @"Black king not in eighth rank for valid castling options");
+}
+
 - (void)testInitializationWithWhiteInCheckAndBlackToPlayThrows1 {
 	CPPAssertThrows(new GameState("r1bqk2r/pppp1ppp/2n2n2/8/1bBPP3/5N2/PP3PPP/RNBQK2R", ColorBlack), @"Initialization with black to play and white king in check should throw");
 }
