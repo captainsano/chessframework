@@ -33,14 +33,14 @@ namespace sfc {
             unsigned short pieceCount(const Piece aPieceType) const;
             
             std::set<Square> attacksTo(const Square & aSquare, Color attackingSide = ColorWhite) const;
-            std::set<Square> attacksFrom(const Square & aSquare) const;
+            std::set<Square> attacksFrom(const Square & aSquare, Square enPassantTarget = Square(0)) const;
             
             /*---------------- Experimental ---------------*/
             
             // Method checks if attacks from first argument intersects with the positions of second argument.
             bool attackIntersectsPiece(const Piece aPiece1, const Piece aPiece2) const;
             bool isKingInCheck(Color kingColor) const;
-            KingStatus getKingStatus(Color kingColor) const;
+            KingStatus getKingStatus(Color kingColor, Square enPassantTarget = Square(0)) const;
         };
     }
 }

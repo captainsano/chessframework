@@ -26,7 +26,7 @@ std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksTo(const Square & a
     return attacksTo;
 }
 
-std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square & aSquare) const {
+std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square & aSquare, Square enPassantTarget) const {
     std::set<Square> attacksFrom;
     std::bitset<64> attackedSquares = 0;
     
@@ -38,6 +38,21 @@ std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square &
     switch ((*position)[aSquare]) {
         case PieceWPawn: {
             attackedSquares = KGBitboardUtil::pawnAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), aSquare, true);
+            
+            // Add the en passant target, if applicable to the pawn attacked squares
+            if (enPassantTarget != 0) {
+                // Check if the en-passant target is valid.
+                if (enPassantTarget.getRank() == 5 &&
+                    (enPassantTarget.getFile() == aSquare.getFile() + 1 ||
+                     enPassantTarget.getFile() == aSquare.getFile() - 1)) {
+                    // check if a black pawn exists
+                    if ((*position)[Square(enPassantTarget.getFile(), enPassantTarget.getRank() - 1)] == PieceBPawn &&
+                        (*position)[enPassantTarget] == PieceNone) {
+                        attackedSquares.set(enPassantTarget);
+                    }
+                }
+            }
+            
             break;
         }
             
@@ -60,6 +75,21 @@ std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square &
             
         case PieceBPawn: {
             attackedSquares = KGBitboardUtil::pawnAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), aSquare, false);
+            
+            // Add the en passant target, if applicable to the pawn attacked squares
+            if (enPassantTarget != 0) {
+                // Check if the en-passant target is valid.
+                if (enPassantTarget.getRank() == 2 &&
+                    (enPassantTarget.getFile() == aSquare.getFile() + 1 ||
+                     enPassantTarget.getFile() == aSquare.getFile() - 1)) {
+                        // check if a black pawn exists and the enpassant target is vacant
+                        if ((*position)[Square(enPassantTarget.getFile(), enPassantTarget.getRank() + 1)] == PieceWPawn &&
+                            (*position)[enPassantTarget] == PieceNone) {
+                            attackedSquares.set(enPassantTarget);
+                        }
+                    }
+            }
+            
             break;
         }
         case PieceBKing: {
@@ -193,13 +223,9 @@ bool sfc::cfw::PositionQuerier::isKingInCheck(Color kingColor) const {
     return false;
 }
 
-sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor) const {
-    // TODO: Consider enPassant
-    
+sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, Square enPassantTarget) const {
     Piece kingPiece = (kingColor == ColorWhite)?PieceWKing:PieceBKing;
     KingStatus status = KingStatusNormal;
-    
-    // TODO: Also consider enPassant target
     
     /*--------------- Check if king can escape ---------------*/
     std::set<Square> kingAttacks;
@@ -260,12 +286,21 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor) c
             // skip empty squares and opposite side pieces
             if ((*position)[i] == PieceNone || getPieceColor((*position)[i]) != kingColor || (*position)[i] == kingPiece) continue;
             
-            std::set<Square> pieceAttacks = attacksFrom(i);
+            std::set<Square> pieceAttacks = attacksFrom(i, enPassantTarget);
             
             for (Square sq : pieceAttacks) {
                 std::shared_ptr<Position> temp = std::make_shared<Position>(*position);
                 temp->vacate(i);
                 temp->occupy(sq, (*position)[i]);
+                
+                // If piece is pawn and option is enpassant, remove the corresponding opponent's pawn
+                if (sq == enPassantTarget && (*position)[i] == makePiece(GenericPiecePawn, kingColor)) {
+                    if (kingColor == ColorWhite) {
+                        temp->vacate(Square(enPassantTarget.getFile(), enPassantTarget.getRank() - 1));
+                    } else {
+                        temp->vacate(Square(enPassantTarget.getFile(), enPassantTarget.getRank() + 1));
+                    }
+                }
                 
                 PositionQuerier q(temp);
                 if (!q.isKingInCheck(kingColor)) {
@@ -289,12 +324,21 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor) c
             // skip empty squares and opposite side pieces
             if ((*position)[i] == PieceNone || getPieceColor((*position)[i]) != kingColor || (*position)[i] == kingPiece) continue;
             
-            std::set<Square> pieceAttacks = attacksFrom(i);
+            std::set<Square> pieceAttacks = attacksFrom(i, enPassantTarget);
             
             for (Square sq : pieceAttacks) {
                 std::shared_ptr<Position> temp = std::make_shared<Position>(*position);
                 temp->vacate(i);
                 temp->occupy(sq, (*position)[i]);
+                
+                // If piece is pawn and option is enpassant, remove the corresponding opponent's pawn
+                if (sq == enPassantTarget && (*position)[i] == makePiece(GenericPiecePawn, kingColor)) {
+                    if (kingColor == ColorWhite) {
+                        temp->vacate(Square(enPassantTarget.getFile(), enPassantTarget.getRank() - 1));
+                    } else {
+                        temp->vacate(Square(enPassantTarget.getFile(), enPassantTarget.getRank() + 1));
+                    }
+                }
                 
                 PositionQuerier q(temp);
                 if (!q.isKingInCheck(kingColor)) {
