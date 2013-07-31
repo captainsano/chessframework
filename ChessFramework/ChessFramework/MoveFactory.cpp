@@ -15,12 +15,6 @@
 #include "PositionQuerier.h"
 #include "MoveFactory.h"
 
-typedef enum {
-	CastlingTypeNone,
-	CastlingTypeKSide,
-	CastlingTypeQSide
-} CastlingType;
-
 std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr<GameState> beforeGameState, Square fromSquare, Square toSquare, PromotablePiece promotedToPiece) {
 	std::shared_ptr<Position> tempPosition = std::make_shared<Position>(beforeGameState->getPosition()->getFEN());
 	std::shared_ptr<PositionQuerier> querier = std::make_shared<PositionQuerier>(tempPosition);

@@ -19,6 +19,12 @@
 namespace sfc {
     namespace cfw {
 		
+		typedef enum {
+			CastlingTypeNone,
+			CastlingTypeKSide,
+			CastlingTypeQSide
+		} CastlingType;
+		
 		class Move {
             Piece   pieceMoved = PieceNone; // PieceNone indicates NULL Move (Chess Language)
             Square  fromSquare = 0;
@@ -53,12 +59,16 @@ namespace sfc {
             Piece   getPieceMoved() const   { return this->pieceMoved; }
             Square  getFromSquare() const   { return this->fromSquare; }
             Square  getToSquare() const     { return this->toSquare; }
+			
+			CastlingType getCastlingType() const;
             
             Piece           getCapturedPiece() const    { return this->capturedPiece; }
             PromotablePiece getPromotedToPiece() const  { return this->promotedToPiece; }
             
             std::shared_ptr<GameState> getGameStateBeforeMove() const   { return this->gameStateBeforeMove; }
             std::shared_ptr<GameState> getGameStateAfterMove() const    { return this->gameStateAfterMove; }
+			
+			
 			
 			friend std::shared_ptr<Move> MoveFactory::legalMove(std::shared_ptr<GameState> beforeGameState, Square fromSquare, Square toSquare, PromotablePiece promotedToPiece);
 			friend std::vector<std::shared_ptr<Move>> MoveFactory::allLegalMoves(std::shared_ptr<GameState>);
