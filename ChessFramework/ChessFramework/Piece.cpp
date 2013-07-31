@@ -27,3 +27,11 @@ sfc::cfw::Piece sfc::cfw::makePiece(const GenericPiece aPiece, const Color aColo
 sfc::cfw::Piece sfc::cfw::makePiece(const PromotablePiece aPiece, const Color aColor) {
     return (Piece)((aColor << 3) | aPiece);
 }
+
+sfc::cfw::GenericPiece sfc::cfw::getGenericPiece(const Piece aPiece) {
+	return (GenericPiece)(aPiece & 7);
+}
+
+sfc::cfw::GenericPiece sfc::cfw::getGenericPiece(const PromotablePiece aPiece) {
+	return (GenericPiece)(aPiece & 7);
+}

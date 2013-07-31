@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "sfc::cfw::Position::validateFEN(const std::string &amp;FENString)"
+            landmarkName = "sfc::cfw::Position::validateFEN(const std::string &amp; FENString)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
             endingLineNumber = "32"
-            landmarkName = "sfc::cfw::Position::validateFEN(const std::string &amp;FENString)"
+            landmarkName = "sfc::cfw::Position::validateFEN(const std::string &amp; FENString)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -48,6 +48,22 @@
             startingLineNumber = "301"
             endingLineNumber = "301"
             landmarkName = "sfc::cfw::BitboardPosition::getFEN()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ChessFramework/GameState.cpp"
+            timestampString = "396991048.579224"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "sfc::cfw::GameState::GameState(std::string &amp;&amp; FENString, const Color &amp; aSideToMove, const std::string &amp; aCastlingOptions, const Square &amp; aEnpassantTarget )"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

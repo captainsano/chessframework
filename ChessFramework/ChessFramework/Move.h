@@ -10,18 +10,16 @@
 #ifndef __ChessFramework__Move__
 #define __ChessFramework__Move__
 
+#include <vector>
 #include "Piece.h"
 #include "Square.h"
 #include "GameState.h"
+#include "MoveFactory.h"
 
 namespace sfc {
     namespace cfw {
-        
-        class MoveFactory;
-        
-        class Move {
-            friend class MoveFactory;
-            
+		
+		class Move {
             Piece   pieceMoved = PieceNone; // PieceNone indicates NULL Move (Chess Language)
             Square  fromSquare = 0;
             Square  toSquare   = 0;
@@ -37,12 +35,14 @@ namespace sfc {
             Move() = default;
             Move(const Square & aFromSquare,
                  const Square & aToSquare,
+				 const Piece aPieceMoved,
                  std::shared_ptr<GameState> aGameStateBeforeMove,
                  std::shared_ptr<GameState> aGameStateAfterMove,
                  Piece aCapturedPiece = PieceNone,
                  PromotablePiece aPromotedToPiece = PromotablePieceNone) :
             fromSquare(aFromSquare),
             toSquare(aToSquare),
+			pieceMoved(aPieceMoved),
             gameStateBeforeMove(aGameStateBeforeMove),
             gameStateAfterMove(aGameStateAfterMove),
             capturedPiece(aCapturedPiece),
@@ -59,6 +59,9 @@ namespace sfc {
             
             std::shared_ptr<GameState> getGameStateBeforeMove() const   { return this->gameStateBeforeMove; }
             std::shared_ptr<GameState> getGameStateAfterMove() const    { return this->gameStateAfterMove; }
+			
+			friend std::shared_ptr<Move> MoveFactory::legalMove(std::shared_ptr<GameState> beforeGameState, Square fromSquare, Square toSquare, PromotablePiece promotedToPiece);
+			friend std::vector<std::shared_ptr<Move>> MoveFactory::allLegalMoves(std::shared_ptr<GameState>);
         };
         
     }

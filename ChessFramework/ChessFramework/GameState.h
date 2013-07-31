@@ -43,6 +43,10 @@ namespace sfc {
 					  const std::string & aCastlingOptions = "----",
 					  const Square & aEnpassantTarget = Square(0)
 					  );
+			
+			std::shared_ptr<const Position> getPosition() const {
+				return this->position;
+			}
             
             Color   getSideToMove() const                   { return this->sideToMove; }
             Square  getEnpassantTarget() const              { return this->enpassantTarget; }

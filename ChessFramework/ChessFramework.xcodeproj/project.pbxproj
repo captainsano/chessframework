@@ -15,6 +15,8 @@
 		63AAD0EA17A15AB40096168C /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63AAD0E717A15AB40096168C /* GameState.cpp */; };
 		63DACE1A179ED7C900593AED /* Position_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63DACE19179ED7C900593AED /* Position_Tests.mm */; };
 		63F388F817A1131D00B44555 /* GameState_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63F388F717A1131D00B44555 /* GameState_Tests.mm */; };
+		63FBC21F17A96C4000734BC4 /* MoveFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63FBC21D17A96C4000734BC4 /* MoveFactory.cpp */; };
+		63FBC22017A96C4000734BC4 /* MoveFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63FBC21D17A96C4000734BC4 /* MoveFactory.cpp */; };
 		ED038DF317A7969A00AD65E4 /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED038DEF17A7969A00AD65E4 /* Position.cpp */; };
 		ED038DF417A7969A00AD65E4 /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED038DEF17A7969A00AD65E4 /* Position.cpp */; };
 		ED038DF517A7969A00AD65E4 /* PositionQuerier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED038DF117A7969A00AD65E4 /* PositionQuerier.cpp */; };
@@ -71,6 +73,8 @@
 		63AAD0E817A15AB40096168C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		63DACE19179ED7C900593AED /* Position_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Position_Tests.mm; sourceTree = "<group>"; };
 		63F388F717A1131D00B44555 /* GameState_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameState_Tests.mm; sourceTree = "<group>"; };
+		63FBC21D17A96C4000734BC4 /* MoveFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveFactory.cpp; sourceTree = "<group>"; };
+		63FBC21E17A96C4000734BC4 /* MoveFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveFactory.h; sourceTree = "<group>"; };
 		ED038DEF17A7969A00AD65E4 /* Position.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Position.cpp; sourceTree = "<group>"; };
 		ED038DF017A7969A00AD65E4 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		ED038DF117A7969A00AD65E4 /* PositionQuerier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PositionQuerier.cpp; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				ED038DF217A7969A00AD65E4 /* PositionQuerier.h */,
 				ED7383BC17A9162E00839DC8 /* Move.cpp */,
 				ED7383BD17A9162E00839DC8 /* Move.h */,
+				63FBC21D17A96C4000734BC4 /* MoveFactory.cpp */,
+				63FBC21E17A96C4000734BC4 /* MoveFactory.h */,
 			);
 			path = ChessFramework;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 				ED7383BE17A9162E00839DC8 /* Move.cpp in Sources */,
 				ED038DF517A7969A00AD65E4 /* PositionQuerier.cpp in Sources */,
 				63AAD0E917A15AB40096168C /* GameState.cpp in Sources */,
+				63FBC21F17A96C4000734BC4 /* MoveFactory.cpp in Sources */,
 				EDBC239717A6627700B5BC2E /* KGBitboardUtil.cpp in Sources */,
 				ED038DF317A7969A00AD65E4 /* Position.cpp in Sources */,
 				EDE51CC0179E847100FD6CA8 /* Square.cpp in Sources */,
@@ -324,6 +331,7 @@
 				63F388F817A1131D00B44555 /* GameState_Tests.mm in Sources */,
 				ED68429B17A618C200AED4A8 /* PositionQuerierKnightAttack_Tests.mm in Sources */,
 				ED038DF417A7969A00AD65E4 /* Position.cpp in Sources */,
+				63FBC22017A96C4000734BC4 /* MoveFactory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
