@@ -28,6 +28,7 @@
 		ED68429B17A618C200AED4A8 /* PositionQuerierKnightAttack_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = ED68429A17A618C200AED4A8 /* PositionQuerierKnightAttack_Tests.mm */; };
 		ED7383BE17A9162E00839DC8 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7383BC17A9162E00839DC8 /* Move.cpp */; };
 		ED7383BF17A9162E00839DC8 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7383BC17A9162E00839DC8 /* Move.cpp */; };
+		ED7383C117A91CC900839DC8 /* MoveFactory_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = ED7383C017A91CC900839DC8 /* MoveFactory_Tests.mm */; };
 		EDBC239717A6627700B5BC2E /* KGBitboardUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDBC239517A6627700B5BC2E /* KGBitboardUtil.cpp */; };
 		EDBC239817A6627700B5BC2E /* KGBitboardUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDBC239517A6627700B5BC2E /* KGBitboardUtil.cpp */; };
 		EDD926E1179DB4BA00225C0A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD926E0179DB4BA00225C0A /* XCTest.framework */; };
@@ -83,6 +84,7 @@
 		ED68429A17A618C200AED4A8 /* PositionQuerierKnightAttack_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PositionQuerierKnightAttack_Tests.mm; sourceTree = "<group>"; };
 		ED7383BC17A9162E00839DC8 /* Move.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Move.cpp; sourceTree = "<group>"; };
 		ED7383BD17A9162E00839DC8 /* Move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Move.h; sourceTree = "<group>"; };
+		ED7383C017A91CC900839DC8 /* MoveFactory_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveFactory_Tests.mm; sourceTree = "<group>"; };
 		EDBC239517A6627700B5BC2E /* KGBitboardUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KGBitboardUtil.cpp; path = ../../../KindergartenBitboard/KindergartenBitboard/KGBitboardUtil.cpp; sourceTree = "<group>"; };
 		EDBC239617A6627700B5BC2E /* KGBitboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGBitboardUtil.h; path = ../../../KindergartenBitboard/KindergartenBitboard/KGBitboardUtil.h; sourceTree = "<group>"; };
 		EDD926DE179DB4BA00225C0A /* ChessFramework Tests.xctest */ = {isa = PBXFileReference; explicitFileType = folder; includeInIndex = 0; path = "ChessFramework Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +189,7 @@
 				ED594D1617A6CD180003E3B9 /* PositionQuerierQueenAttack_Tests.mm */,
 				ED594D1817A6D6E40003E3B9 /* PositionQuerierPawnAttack_Tests.mm */,
 				ED2D53D217A744E00098D5C4 /* PositionQuerierKingAttack_Tests.mm */,
+				ED7383C017A91CC900839DC8 /* MoveFactory_Tests.mm */,
 				EDD926E3179DB4BA00225C0A /* Supporting Files */,
 			);
 			path = "ChessFramework Tests";
@@ -308,6 +311,7 @@
 				63AAD0EA17A15AB40096168C /* GameState.cpp in Sources */,
 				EDE51CC1179E847100FD6CA8 /* Square.cpp in Sources */,
 				63DACE1A179ED7C900593AED /* Position_Tests.mm in Sources */,
+				ED7383C117A91CC900839DC8 /* MoveFactory_Tests.mm in Sources */,
 				ED594D1317A6BEB20003E3B9 /* PositionQuerierBishopAttack_Tests.mm in Sources */,
 				ED038DF617A7969A00AD65E4 /* PositionQuerier.cpp in Sources */,
 				ED7383BF17A9162E00839DC8 /* Move.cpp in Sources */,
