@@ -187,34 +187,43 @@ using namespace sfc::cfw;
 }
 
 - (void)testReturnsCorrectFEN1 {
-    GameState g = GameState("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorWhite, "KQkq");
+    GameState g("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorWhite, "KQkq");
     XCTAssertTrue(g.getFEN() == "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -", @"GameState should return correct FEN");
 }
 
 - (void)testReturnsCorrectFEN2 {
-    GameState g = GameState("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorWhite, "----");
+    GameState g("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorWhite, "----");
     XCTAssertTrue(g.getFEN() == "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - -", @"GameState should return correct FEN");
 }
 
 - (void)testReturnsCorrectFEN3 {
-    GameState g = GameState("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorBlack, "----");
+    GameState g("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorBlack, "----");
     XCTAssertTrue(g.getFEN() == "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b - -", @"GameState should return correct FEN");
 }
 
 - (void)testReturnsCorrectFEN4 {
-    GameState g = GameState("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorBlack, "HAha");
-    XCTAssertTrue(g.getFEN() == "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b -", @"GameState should return correct FEN");
+    GameState g("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorBlack, "HAha");
+    XCTAssertTrue(g.getFEN() == "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq -", @"GameState should return correct FEN");
 }
 
 - (void)testReturnsCorrectFEN5Chess960 {
-    GameState g = GameState("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorBlack, "HAha");
-    XCTAssertTrue(g.getFEN(true) == "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b HAha", @"GameState should return correct FEN");
+    GameState g("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorBlack, "HAha");
+    XCTAssertTrue(g.getFEN(true) == "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b HAha -", @"GameState should return correct FEN");
 }
 
 
 - (void)testReturnsCorrectFEN6 {
-    GameState g = GameState("rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR", ColorWhite, "KQkq", Square("c6"));
+    GameState g("rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR", ColorWhite, "KQkq", Square("c6"));
     XCTAssertTrue(g.getFEN() == "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6", @"GameState should return correct FEN");
+}
+
+- (void)testConvertsCastlingOptionsToChess960Internally {
+    GameState g("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorWhite, "KQkq");
+    
+    XCTAssertEquals(g.getWhiteKingSideCastlingOption(), 'H', @"GameState constructor should internally convert standard castling options to chess960");
+    XCTAssertEquals(g.getWhiteQueenSideCastlingOption(), 'A', @"GameState constructor should internally convert standard castling options to chess960");
+    XCTAssertEquals(g.getBlackKingSideCastlingOption(), 'h', @"GameState constructor should internally convert standard castling options to chess960");
+    XCTAssertEquals(g.getBlackQueenSideCastlingOption(), 'a', @"GameState constructor should internally convert standard castling options to chess960");
 }
 
 @end
