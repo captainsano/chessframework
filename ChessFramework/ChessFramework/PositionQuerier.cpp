@@ -48,7 +48,19 @@ std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square &
                     // check if a black pawn exists
                     if ((*position)[Square(enPassantTarget.getFile(), enPassantTarget.getRank() - 1)] == PieceBPawn &&
                         (*position)[enPassantTarget] == PieceNone) {
-                        attackedSquares.set(enPassantTarget);
+						// check if a white pawn exists on left flank
+						if (enPassantTarget.getFile() - 1 >= 0) {
+							if (Square(enPassantTarget.getFile() - 1, 4) == aSquare) {
+								attackedSquares.set(enPassantTarget);
+							}
+						}
+						
+						// check if a white pawn exists on right flank
+						if (enPassantTarget.getFile() + 1 < 8) {
+							if (Square(enPassantTarget.getFile() + 1, 4) == aSquare) {
+								attackedSquares.set(enPassantTarget);
+							}
+						}
                     }
                 }
             }
@@ -85,7 +97,19 @@ std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square &
                         // check if a black pawn exists and the enpassant target is vacant
                         if ((*position)[Square(enPassantTarget.getFile(), enPassantTarget.getRank() + 1)] == PieceWPawn &&
                             (*position)[enPassantTarget] == PieceNone) {
-                            attackedSquares.set(enPassantTarget);
+                            // check if a black pawn exists on left flank
+							if (enPassantTarget.getFile() - 1 >= 0) {
+								if (Square(enPassantTarget.getFile() - 1, 3) == aSquare) {
+									attackedSquares.set(enPassantTarget);
+								}
+							}
+							
+							// check if a black pawn exists on right flank
+							if (enPassantTarget.getFile() + 1 < 8) {
+								if (Square(enPassantTarget.getFile() + 1, 3) == aSquare) {
+									attackedSquares.set(enPassantTarget);
+								}
+							}
                         }
                     }
             }
