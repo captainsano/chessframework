@@ -17,12 +17,12 @@
 
 #include "PositionQuerier.h"
 
-sfc::cfw::GameState::GameState(std::string && FENString,
+sfc::cfw::GameState::GameState(const std::string & FENString,
 							   const Color & aSideToMove,
 							   const std::string & aCastlingOptions,
 							   const Square & aEnpassantTarget
 							   ) {
-	std::shared_ptr<Position> tempPosition = std::make_shared<Position>(std::forward<std::string>(FENString));
+	std::shared_ptr<Position> tempPosition = std::make_shared<Position>(std::forward<const std::string>(FENString));
     std::shared_ptr<PositionQuerier> querier = std::make_shared<PositionQuerier>(tempPosition);
 	
 	/*--------- Check for errors in enPassant ---------*/

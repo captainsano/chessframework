@@ -38,7 +38,7 @@ namespace sfc {
 		public:
 			// Default instantiation is prevented by ambiguity introduced
 			// due to the ambiguity introduced by the other constructor
-			GameState(std::string && FENString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+			GameState(const std::string & FENString = std::string("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"),
 					  const Color & aSideToMove = ColorWhite,
 					  const std::string & aCastlingOptions = "----",
 					  const Square & aEnpassantTarget = Square(0)
