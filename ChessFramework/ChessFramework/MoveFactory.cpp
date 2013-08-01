@@ -267,9 +267,9 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 			}
 			case PieceBRook: {
 				// If the rook from castling options has moved, then remove that option
-				if (nextCastlingOptions[2] != '-' && (fromSquare == Square(std::tolower(nextCastlingOptions[2]) - 'a', 0))) {
+				if (nextCastlingOptions[2] != '-' && (fromSquare == Square(std::tolower(nextCastlingOptions[2]) - 'a', 7))) {
 					nextCastlingOptions[2] = '-';
-				} else if (nextCastlingOptions[3] != '-' && (fromSquare == Square(std::tolower(nextCastlingOptions[3]) - 'a', 0))) {
+				} else if (nextCastlingOptions[3] != '-' && (fromSquare == Square(std::tolower(nextCastlingOptions[3]) - 'a', 7))) {
 					nextCastlingOptions[3] = '-';
 				}
 				break;
@@ -306,11 +306,19 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 		}
 	}
 	
+	
 	// Update the common information in the new move and next game state
-	std::shared_ptr<GameState> updatedGameState = std::make_shared<GameState>(tempPosition->getFEN(),
-																			  (beforeGameState->getSideToMove() == ColorWhite)?ColorBlack:ColorWhite,
-																			  nextCastlingOptions,
-																			  nextEnpassantTarget);
+	std::shared_ptr<GameState> updatedGameState = nullptr;
+	try {
+		updatedGameState = std::make_shared<GameState>(tempPosition->getFEN(),
+													   (beforeGameState->getSideToMove() == ColorWhite)?ColorBlack:ColorWhite,
+														 nextCastlingOptions,
+														 nextEnpassantTarget);
+		
+	} catch (const std::exception & e) {
+		std::cout << "\n Exception on initializing next game state: " << tempPosition->getFEN() << std::endl;
+		abort();
+	}
 	
 	// make_shared<Move> cannot be used because the Move() constructors are private
 	std::shared_ptr<Move> move(new Move(fromSquare, toSquare, movedPiece, beforeGameState, updatedGameState, capturedPiece, promotedToPiece));

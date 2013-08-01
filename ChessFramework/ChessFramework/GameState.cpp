@@ -55,28 +55,28 @@ sfc::cfw::GameState::GameState(const std::string & FENString,
 	
 	// Check for presence of rook where required
 	if (aCastlingOptions[0] != '-') {
-		Square requiredSquare(std::string{(aCastlingOptions[0] == 'K')?'h':std::tolower(aCastlingOptions[0]), '1'});
+		Square requiredSquare(Square((aCastlingOptions[0] == 'K')?7:(std::tolower(aCastlingOptions[0]) - 'a'), 0));
 		if ((*tempPosition)[requiredSquare] != PieceWRook) {
 			throw std::invalid_argument("Rook not present at location indicated by castling options");
 		}
 	}
 	
 	if (aCastlingOptions[1] != '-') {
-		Square requiredSquare(std::string{(aCastlingOptions[1] == 'Q')?'a':std::tolower(aCastlingOptions[1]), '1'});
+		Square requiredSquare(Square((aCastlingOptions[1] == 'Q')?0:(std::tolower(aCastlingOptions[1]) - 'a'), 0));
 		if ((*tempPosition)[requiredSquare] != PieceWRook) {
 			throw std::invalid_argument("Rook not present at location indicated by castling options");
 		}
 	}
 	
 	if (aCastlingOptions[2] != '-') {
-		Square requiredSquare(std::string{(aCastlingOptions[2] == 'k')?'h':std::tolower(aCastlingOptions[2]), '8'});
+		Square requiredSquare(Square((aCastlingOptions[2] == 'k')?7:(std::tolower(aCastlingOptions[2]) - 'a'), 7));
 		if ((*tempPosition)[requiredSquare] != PieceBRook) {
 			throw std::invalid_argument("Rook not present at location indicated by castling options");
 		}
 	}
 	
 	if (aCastlingOptions[3] != '-') {
-		Square requiredSquare(std::string{(aCastlingOptions[3] == 'q')?'a':std::tolower(aCastlingOptions[3]), '8'});
+		Square requiredSquare(Square((aCastlingOptions[3] == 'q')?0:(std::tolower(aCastlingOptions[3]) - 'a'), 7));
 		if ((*tempPosition)[requiredSquare] != PieceBRook) {
 			throw std::invalid_argument("Rook not present at location indicated by castling options");
 		}
