@@ -79,9 +79,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 					tempPosition->occupy(Square("g1"), PieceWKing);
 					tempPosition->vacate(toSquare);
 					tempPosition->occupy(Square("f1"), PieceWRook);
-					
-					std::cout << "\n Position: " << "\n" << tempPosition->prettyString() << std::endl;
-					
+									
 					// Update white's castling options
 					nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
 				}
@@ -165,9 +163,9 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 					}
 					
 					// Update the temp position
-					tempPosition->occupy(Square("c8"), PieceBKing);
+					tempPosition->occupy(Square("g8"), PieceBKing);
 					tempPosition->vacate(toSquare);
-					tempPosition->occupy(Square("d8"), PieceBRook);
+					tempPosition->occupy(Square("f8"), PieceBRook);
 					
 					// Update black's castling options
 					nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
@@ -187,12 +185,12 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 					// Iterate and check if there are any blockers till c1.
 					// It is also required for b1 and d1 to be vacant
 					tempPosition->vacate(fromSquare);
-					if (fromSquare == Square("c1") &&
-						((*tempPosition)[Square("b1")] != PieceNone || (*tempPosition)[Square("d1")] != PieceNone)
+					if (fromSquare == Square("c8") &&
+						((*tempPosition)[Square("b8")] != PieceNone || (*tempPosition)[Square("d8")] != PieceNone)
 						) {
 						return nullptr;
 					}
-					for (unsigned short i = fromSquare; i >= Square("c1"); i--) {
+					for (unsigned short i = fromSquare; i >= Square("c8"); i--) {
 						if ((*tempPosition)[i] != PieceNone) {
 							return nullptr;	// blocker exists
 						} else {
@@ -206,9 +204,9 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 					}
 					
 					// Update the temp position
-					tempPosition->occupy(Square("g8"), PieceBKing);
+					tempPosition->occupy(Square("c8"), PieceBKing);
 					tempPosition->vacate(toSquare);
-					tempPosition->occupy(Square("f8"), PieceBRook);
+					tempPosition->occupy(Square("d8"), PieceBRook);
 					
 					// Update black's castling options
 					nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
