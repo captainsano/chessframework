@@ -23,12 +23,12 @@ sfc::cfw::CastlingType sfc::cfw::Move::getCastlingType() const {
 	
 	if (this->pieceMoved == PieceBKing) {
 		if (gameStateBeforeMove->getBlackKingSideCastlingOption() != '-' &&
-			(toSquare == Square(std::tolower(gameStateBeforeMove->getBlackKingSideCastlingOption()) - 'a', 0))) {
+			(toSquare == Square(std::tolower(gameStateBeforeMove->getBlackKingSideCastlingOption()) - 'a', 7))) {
 			return CastlingTypeKSide;
 		}
 		
 		if (gameStateBeforeMove->getBlackQueenSideCastlingOption() != '-' &&
-			(toSquare == Square(std::tolower(gameStateBeforeMove->getBlackQueenSideCastlingOption()) - 'a', 0))) {
+			(toSquare == Square(std::tolower(gameStateBeforeMove->getBlackQueenSideCastlingOption()) - 'a', 7))) {
 			return CastlingTypeQSide;
 		}
 	}

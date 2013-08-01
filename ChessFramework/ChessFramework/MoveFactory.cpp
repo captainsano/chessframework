@@ -346,14 +346,14 @@ std::vector<std::shared_ptr<sfc::cfw::Move>> sfc::cfw::MoveFactory::allLegalMove
 					attacks.insert(Square(std::tolower(beforeGameState->getWhiteQueenSideCastlingOption()) - 'a', 0));
 				}
 			}
-			
+						
 			if ((*pos)[i] == PieceBKing) {
 				if (beforeGameState->getBlackKingSideCastlingOption() != '-') {
-					attacks.insert(Square(std::tolower(beforeGameState->getWhiteKingSideCastlingOption()) - 'a', 7));
+					attacks.insert(Square(std::tolower(beforeGameState->getBlackKingSideCastlingOption()) - 'a', 7));
 				}
 				
 				if (beforeGameState->getBlackQueenSideCastlingOption() != '-') {
-					attacks.insert(Square(std::tolower(beforeGameState->getWhiteQueenSideCastlingOption()) - 'a', 7));
+					attacks.insert(Square(std::tolower(beforeGameState->getBlackQueenSideCastlingOption()) - 'a', 7));
 				}
 			}
 			
