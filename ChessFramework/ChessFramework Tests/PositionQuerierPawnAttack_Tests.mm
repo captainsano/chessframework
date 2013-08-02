@@ -1318,4 +1318,15 @@ using namespace sfc::cfw;
 
 #pragma mark - Black Pawn attacks with capture
 
+#pragma mark - Positions from games with blockers
+- (void)testBlackDoublePawnAdvanceWithBlockersNotAllowed {
+	std::shared_ptr<Position> p = std::make_shared<Position>("r5k1/2p1ppb1/2p1qn1p/p2rN1p1/P2P4/BP2P1P1/5P1P/2RR1QK1");
+	std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
+	
+	std::set<Square> expectedAttacksFrom {};
+	std::set<Square> actualAttacksFrom = q->attacksFrom(Square("c7"));
+	
+	XCTAssertTrue(expectedAttacksFrom == actualAttacksFrom, @"Black pawn double push should consider blockers.");
+}
+
 @end
