@@ -33,15 +33,15 @@ sfc::cfw::Square::operator unsigned short() const {
     return this->getIndex();
 }
 
-constexpr unsigned short sfc::cfw::Square::getFile() const {
+unsigned short sfc::cfw::Square::getFile() const {
     return (this->index & 7);           // return the last 3 bits
 }
 
-constexpr unsigned short sfc::cfw::Square::getRank() const {
+unsigned short sfc::cfw::Square::getRank() const {
     return ((this->index >> 3) & 7);    // return the first 3 bits
 }
 
-constexpr unsigned short sfc::cfw::Square::getIndex() const {
+unsigned short sfc::cfw::Square::getIndex() const {
     return this->index;
 }
 

@@ -37,9 +37,9 @@ namespace sfc {
 			
 			operator unsigned short() const;
             
-			constexpr unsigned short  getFile() const;
-            constexpr unsigned short  getRank() const;
-            constexpr unsigned short  getIndex() const;
+			unsigned short  getFile() const;
+            unsigned short  getRank() const;
+            unsigned short  getIndex() const;
             std::string		getLabel() const;
         };
         
