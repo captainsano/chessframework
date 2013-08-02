@@ -149,7 +149,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 					if (!(fromSquare == Square("g8") && (*tempPosition)[Square("f8")] != PieceNone)) {
 						for (unsigned short i = fromSquare; i <= Square("g8"); i++) {
 							if ((*tempPosition)[i] != PieceNone) {
-								castlingType = CastlingTypeKSide;
+								castlingType = CastlingTypeNone;
 								break;	// blocker exists
 							} else {
 								tempPosition->occupy(i, PieceBKing);

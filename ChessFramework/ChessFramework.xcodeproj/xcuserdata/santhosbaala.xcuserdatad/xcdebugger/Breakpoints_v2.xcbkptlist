@@ -2,4 +2,80 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ChessFramework Tests/MoveFactory_Tests.mm"
+            timestampString = "397167872.235046"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-testBlackKingSideCastlingIsIllegal1"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MoveFactory_Tests testBlackKingSideCastlingIsIllegal1]"
+                  moduleName = "ChessFramework Tests"
+                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/ChessFramework/ChessFramework/ChessFramework%20Tests/MoveFactory_Tests.mm"
+                  timestampString = "397167926.830526"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "436">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MoveFactory_Tests testBlackKingSideCastlingIsIllegal1]"
+                  moduleName = "ChessFramework Tests"
+                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/ChessFramework/ChessFramework/ChessFramework%20Tests/MoveFactory_Tests.mm"
+                  timestampString = "397167926.830955"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "592">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MoveFactory_Tests testBlackKingSideCastlingIsIllegal1]"
+                  moduleName = "ChessFramework Tests"
+                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/ChessFramework/ChessFramework/ChessFramework%20Tests/MoveFactory_Tests.mm"
+                  timestampString = "397167926.831245"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "690">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MoveFactory_Tests testBlackKingSideCastlingIsIllegal1]"
+                  moduleName = "ChessFramework Tests"
+                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/ChessFramework/ChessFramework/ChessFramework%20Tests/MoveFactory_Tests.mm"
+                  timestampString = "397167926.831603"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "1319">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
