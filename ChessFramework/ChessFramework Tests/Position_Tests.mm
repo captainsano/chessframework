@@ -86,7 +86,7 @@ using namespace sfc::cfw;
 	
 	for (unsigned short file = 0; file < 8; file++) {
 		for (unsigned short rank = 0; rank < 8; rank++) {
-			XCTAssertEquals((*p)[Square(file, rank)], sfc::cfw::PieceNone, @"Empty board should return no piece");
+			XCTAssertEqual((*p)[Square(file, rank)], sfc::cfw::PieceNone, @"Empty board should return no piece");
 		}
 	}
 }
@@ -95,37 +95,37 @@ using namespace sfc::cfw;
 	std::shared_ptr<Position> p = std::make_shared<Position>("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
 	
 	XCTAssertTrue((*p)[0] == sfc::cfw::PieceWRook, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[1], sfc::cfw::PieceWKnight, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[2], sfc::cfw::PieceWBishop, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[3], sfc::cfw::PieceWQueen, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[4], sfc::cfw::PieceWKing, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[5], sfc::cfw::PieceWBishop, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[6], sfc::cfw::PieceWKnight, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[7], sfc::cfw::PieceWRook, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[1], sfc::cfw::PieceWKnight, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[2], sfc::cfw::PieceWBishop, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[3], sfc::cfw::PieceWQueen, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[4], sfc::cfw::PieceWKing, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[5], sfc::cfw::PieceWBishop, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[6], sfc::cfw::PieceWKnight, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[7], sfc::cfw::PieceWRook, @"Subscript access should return the corresponding piece type");
 	
 	// Squares 8-15 should return white pawns.
 	for (unsigned short sq = 8; sq < 16; sq++) {
-		XCTAssertEquals((*p)[sq], sfc::cfw::PieceWPawn, @"Subscript access should return the corresponding piece type");
+		XCTAssertEqual((*p)[sq], sfc::cfw::PieceWPawn, @"Subscript access should return the corresponding piece type");
 	}
 	
 	// Squares 16-47 should be vacant
 	for (unsigned short sq = 16; sq < 48; sq++) {
-		XCTAssertEquals((*p)[sq], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+		XCTAssertEqual((*p)[sq], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
 	}
 	
 	// Squares 48-55 should return black pawns.
 	for (unsigned short sq = 49; sq < 56; sq++) {
-		XCTAssertEquals((*p)[sq], sfc::cfw::PieceBPawn, @"Subscript access should return the corresponding piece type");
+		XCTAssertEqual((*p)[sq], sfc::cfw::PieceBPawn, @"Subscript access should return the corresponding piece type");
 	}
 	
-	XCTAssertEquals((*p)[56], sfc::cfw::PieceBRook, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[57], sfc::cfw::PieceBKnight, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[58], sfc::cfw::PieceBBishop, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[59], sfc::cfw::PieceBQueen, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[60], sfc::cfw::PieceBKing, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[61], sfc::cfw::PieceBBishop, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[62], sfc::cfw::PieceBKnight, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[63], sfc::cfw::PieceBRook, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[56], sfc::cfw::PieceBRook, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[57], sfc::cfw::PieceBKnight, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[58], sfc::cfw::PieceBBishop, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[59], sfc::cfw::PieceBQueen, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[60], sfc::cfw::PieceBKing, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[61], sfc::cfw::PieceBBishop, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[62], sfc::cfw::PieceBKnight, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[63], sfc::cfw::PieceBRook, @"Subscript access should return the corresponding piece type");
 
 }
 
@@ -135,36 +135,36 @@ using namespace sfc::cfw;
 	// First 4 ranks should be vacant
 	for (unsigned short rank = 0; rank < 4; rank++) {
 		for (unsigned short file = 0; file < 8; file++) {
-			XCTAssertEquals((*p)[Square(file, rank)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding type");
+			XCTAssertEqual((*p)[Square(file, rank)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding type");
 		}
 	}
 	
 	// Last 2 ranks should be vacant
 	for (unsigned short rank = 6; rank < 8; rank++) {
 		for (unsigned short file = 0; file < 8; file++) {
-			XCTAssertEquals((*p)[Square(file, rank)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding type");
+			XCTAssertEqual((*p)[Square(file, rank)], sfc::cfw::PieceNone, @"Subscript access should return the corresponding type");
 		}
 	}
 	
 	// In rank 5, first four squares and last 3 squares should be vacant and 5th square contains black king.
-	XCTAssertEquals((*p)[Square("a5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("b5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("c5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("d5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("e5")], sfc::cfw::PieceBKing, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("f5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("g5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("h5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("a5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("b5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("c5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("d5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("e5")], sfc::cfw::PieceBKing, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("f5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("g5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("h5")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
 
 	// In rank 6, first 3 squares and last 4 squares should be vacant and 4the square contains white king.
-	XCTAssertEquals((*p)[Square("a6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("b6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("c6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("d6")], sfc::cfw::PieceWKing, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("e6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("f6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("g6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
-	XCTAssertEquals((*p)[Square("h6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("a6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("b6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("c6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("d6")], sfc::cfw::PieceWKing, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("e6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("f6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("g6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
+	XCTAssertEqual((*p)[Square("h6")], sfc::cfw::PieceNone, @"Subscript access should return the corresponding piece type");
 }
 
 - (void)testClearBoardVacateReturnsCorrectValueOccupyWithWPawn {

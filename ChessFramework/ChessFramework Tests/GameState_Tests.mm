@@ -220,10 +220,10 @@ using namespace sfc::cfw;
 - (void)testConvertsCastlingOptionsToChess960Internally {
     GameState g("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorWhite, "KQkq");
     
-    XCTAssertEquals(g.getWhiteKingSideCastlingOption(), 'H', @"GameState constructor should internally convert standard castling options to chess960");
-    XCTAssertEquals(g.getWhiteQueenSideCastlingOption(), 'A', @"GameState constructor should internally convert standard castling options to chess960");
-    XCTAssertEquals(g.getBlackKingSideCastlingOption(), 'h', @"GameState constructor should internally convert standard castling options to chess960");
-    XCTAssertEquals(g.getBlackQueenSideCastlingOption(), 'a', @"GameState constructor should internally convert standard castling options to chess960");
+    XCTAssertEqual(g.getWhiteKingSideCastlingOption(), 'H', @"GameState constructor should internally convert standard castling options to chess960");
+    XCTAssertEqual(g.getWhiteQueenSideCastlingOption(), 'A', @"GameState constructor should internally convert standard castling options to chess960");
+    XCTAssertEqual(g.getBlackKingSideCastlingOption(), 'h', @"GameState constructor should internally convert standard castling options to chess960");
+    XCTAssertEqual(g.getBlackQueenSideCastlingOption(), 'a', @"GameState constructor should internally convert standard castling options to chess960");
 }
 
 @end

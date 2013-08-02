@@ -340,9 +340,9 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, S
             return KingStatusCheckMate;
         }
     }
-    
+	   
     // King does not have escape squares - look for other legal moves
-    if (!kingCanEscape) {
+    if (numChecks == 0 && !kingCanEscape) {
         bool legalMovesExist = false;
         for (unsigned short i = 0; i < 64; i++) {
             // skip empty squares and opposite side pieces
@@ -379,5 +379,10 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, S
         }
     }
     
+	// At this point, if there is no checkmate
+	if (numChecks >= 1) {
+		return KingStatusCheck;
+	}
+	
     return KingStatusNormal;
 }

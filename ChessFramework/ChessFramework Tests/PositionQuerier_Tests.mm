@@ -114,6 +114,14 @@ using namespace sfc::cfw;
     }
 }
 
+- (void)testReturnsBlackKingStatusCheck {
+	std::shared_ptr<Position> p = std::make_shared<Position>("8/1p1QknN1/1P6/2rPp1p1/pR2Pp1b/P1p2P2/2K5/7R");
+	std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
+	
+	XCTAssertTrue(q->getKingStatus(ColorBlack) == KingStatusCheck, @"Black king should be under check");
+	XCTAssertTrue(q->getKingStatus(ColorWhite) == KingStatusNormal, @"White king should be normal");
+}
+
 - (void)testReturnsBlackKingStatusCheckMate {
     std::shared_ptr<Position> p = std::make_shared<Position>("R5k1/5ppp/8/8/8/8/8/7K");
     std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);

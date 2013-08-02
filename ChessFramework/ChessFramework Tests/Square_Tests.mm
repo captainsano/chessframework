@@ -72,7 +72,7 @@ using sfc::cfw::Square;
 	}
 	
 	for (unsigned short i = 0; i < 64; i++) {
-		XCTAssertEquals(squares[i].getIndex(), i, @"Squares should store corresponding index from label");
+		XCTAssertEqual(squares[i].getIndex(), i, @"Squares should store corresponding index from label");
 	}
 }
 
@@ -80,8 +80,8 @@ using sfc::cfw::Square;
     for (unsigned short file = 0; file < 8; file++) {
         for (unsigned short rank = 0; rank < 8; rank++) {
             Square s(file, rank);
-            XCTAssertEquals(s.getFile(), file, @"File should return the set value");
-            XCTAssertEquals(s.getRank(), rank, @"Rank should return the set value");
+            XCTAssertEqual(s.getFile(), file, @"File should return the set value");
+            XCTAssertEqual(s.getRank(), rank, @"Rank should return the set value");
         }
     }
 }

@@ -333,7 +333,7 @@ std::vector<std::shared_ptr<sfc::cfw::Move>> sfc::cfw::MoveFactory::allLegalMove
 	for (unsigned short i = 0; i < 64; i++) {
 		if ((*pos)[i] != PieceNone && getPieceColor((*pos)[i]) == beforeGameState->getSideToMove()) {
 			std::set<Square> attacks = querier.attacksFrom(i, beforeGameState->getEnpassantTarget());
-			
+						
 			/*------- Add castling to the attacks if exists -------*/
 			if ((*pos)[i] == PieceWKing) {
 				if (beforeGameState->getWhiteKingSideCastlingOption() != '-') {

@@ -11,6 +11,7 @@
 		63199A0317A0D9C500A9F1E9 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63199A0017A0D9C500A9F1E9 /* Piece.cpp */; };
 		63791948179A6784000C98E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63791947179A6784000C98E2 /* main.cpp */; };
 		6379194A179A6784000C98E2 /* ChessFramework.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63791949179A6784000C98E2 /* ChessFramework.1 */; };
+		63A2F95C17AA6C87007169AD /* GameReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63A2F95A17AA6C87007169AD /* GameReader.cpp */; };
 		63AAD0E917A15AB40096168C /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63AAD0E717A15AB40096168C /* GameState.cpp */; };
 		63AAD0EA17A15AB40096168C /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63AAD0E717A15AB40096168C /* GameState.cpp */; };
 		63DACE1A179ED7C900593AED /* Position_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63DACE19179ED7C900593AED /* Position_Tests.mm */; };
@@ -69,6 +70,8 @@
 		63791944179A6784000C98E2 /* ChessFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChessFramework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63791947179A6784000C98E2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		63791949179A6784000C98E2 /* ChessFramework.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ChessFramework.1; sourceTree = "<group>"; };
+		63A2F95A17AA6C87007169AD /* GameReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameReader.cpp; path = "../../../../StockFish Engine/StockFish Engine/GameReader.cpp"; sourceTree = "<group>"; };
+		63A2F95B17AA6C87007169AD /* GameReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameReader.h; path = "../../../../StockFish Engine/StockFish Engine/GameReader.h"; sourceTree = "<group>"; };
 		63AAD0E717A15AB40096168C /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
 		63AAD0E817A15AB40096168C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		63DACE19179ED7C900593AED /* Position_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Position_Tests.mm; sourceTree = "<group>"; };
@@ -91,7 +94,7 @@
 		ED7383C017A91CC900839DC8 /* MoveFactory_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveFactory_Tests.mm; sourceTree = "<group>"; };
 		EDBC239517A6627700B5BC2E /* KGBitboardUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KGBitboardUtil.cpp; path = ../../../KindergartenBitboard/KindergartenBitboard/KGBitboardUtil.cpp; sourceTree = "<group>"; };
 		EDBC239617A6627700B5BC2E /* KGBitboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGBitboardUtil.h; path = ../../../KindergartenBitboard/KindergartenBitboard/KGBitboardUtil.h; sourceTree = "<group>"; };
-		EDD926DE179DB4BA00225C0A /* ChessFramework Tests.xctest */ = {isa = PBXFileReference; explicitFileType = folder; includeInIndex = 0; path = "ChessFramework Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDD926DE179DB4BA00225C0A /* ChessFramework Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ChessFramework Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD926E0179DB4BA00225C0A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		EDD926E4179DB4BA00225C0A /* ChessFramework Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ChessFramework Tests-Info.plist"; sourceTree = "<group>"; };
 		EDD926E6179DB4BA00225C0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 		63791946179A6784000C98E2 /* ChessFramework */ = {
 			isa = PBXGroup;
 			children = (
+				63A2F95D17AA6C97007169AD /* PGN Extractor */,
 				EDBC239417A6622C00B5BC2E /* KGBitboardUtil */,
 				63791947179A6784000C98E2 /* main.cpp */,
 				63791949179A6784000C98E2 /* ChessFramework.1 */,
@@ -162,6 +166,15 @@
 				63FBC21E17A96C4000734BC4 /* MoveFactory.h */,
 			);
 			path = ChessFramework;
+			sourceTree = "<group>";
+		};
+		63A2F95D17AA6C97007169AD /* PGN Extractor */ = {
+			isa = PBXGroup;
+			children = (
+				63A2F95A17AA6C87007169AD /* GameReader.cpp */,
+				63A2F95B17AA6C87007169AD /* GameReader.h */,
+			);
+			name = "PGN Extractor";
 			sourceTree = "<group>";
 		};
 		EDBC239417A6622C00B5BC2E /* KGBitboardUtil */ = {
@@ -297,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63A2F95C17AA6C87007169AD /* GameReader.cpp in Sources */,
 				ED7383BE17A9162E00839DC8 /* Move.cpp in Sources */,
 				ED038DF517A7969A00AD65E4 /* PositionQuerier.cpp in Sources */,
 				63AAD0E917A15AB40096168C /* GameState.cpp in Sources */,

@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 
+#import "Move.h"
+#import "GameState.h"
 #import "MoveFactory.h"
 
 using namespace sfc::cfw;

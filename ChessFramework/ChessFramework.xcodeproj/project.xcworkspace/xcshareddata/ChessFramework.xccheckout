@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>65EE26A7-F3D8-4341-8491-A00F64F1518C</string>
 	<key>IDESourceControlProjectName</key>
@@ -15,6 +17,8 @@
 	<string>ChessFramework/ChessFramework.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>21FE1EFC-D2E1-478B-A8EC-0F286A8C5485</key>
+		<string>../../../../../StockFish Engine</string>
 		<key>4365A341-8B52-4756-9AB7-356417706D29</key>
 		<string>../../..</string>
 	</dict>
@@ -33,6 +37,14 @@
 			<string>4365A341-8B52-4756-9AB7-356417706D29</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ChessFramework</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>21FE1EFC-D2E1-478B-A8EC-0F286A8C5485</string>
+			<key>IDESourceControlWCCName</key>
+			<string>StockFish Engine</string>
 		</dict>
 	</array>
 </dict>
