@@ -249,7 +249,6 @@ bool sfc::cfw::PositionQuerier::isKingInCheck(Color kingColor) const {
 
 sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, Square enPassantTarget) const {
     Piece kingPiece = (kingColor == ColorWhite)?PieceWKing:PieceBKing;
-    KingStatus status = KingStatusNormal;
     
     /*--------------- Check if king can escape ---------------*/
     std::set<Square> kingAttacks;
@@ -290,9 +289,6 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, S
         if (pieceAttacks.find(currentKingPosition) != pieceAttacks.end()) {
             numChecks++;
             checkingPieceSquare = i;
-            
-            // Change king status to checked
-            status = KingStatusCheck;
         }
     }
     
