@@ -25,8 +25,8 @@ bool compareSANMovePair(const std::pair<std::string, std::shared_ptr<Move>> & lh
 #ifdef DEBUG_CFW
 int main() {
 	try {
-		std::string currentPosition = "8/1p1qknN1/1P6/2rPpQp1/pR2Pp1b/P1p2P2/2K5/7R";
-		std::shared_ptr<GameState> g = std::make_shared<GameState>(currentPosition, ColorWhite);
+		std::string currentPosition = "r4k1r/p1nqp1b1/1pp1b2p/2p2pp1/2P5/1P1P1NN1/P3QPPP/R1B1R1K1";
+		std::shared_ptr<GameState> g = std::make_shared<GameState>(currentPosition, ColorBlack);
 		
 		std::cout << g->getPosition()->prettyString() << std::endl;
 		
@@ -34,12 +34,7 @@ int main() {
 		std::cout << "\nLegal Moves: \n";
 		for (auto m : legalMoves) {
 			std::cout << m->getFromSquare().getLabel() << " -> " << m->getToSquare().getLabel() << " ";
-			// std::cout << SANString(*m, legalMoves) << std::endl;
-			
-			if (m->getFromSquare() == Square("f5") && m->getToSquare() == Square("d7")) {
-				KingStatus blackKingStatus = m->getGameStateAfterMove()->getBlackKingStatus();
-				std::cout << blackKingStatus << std::endl;
-			}
+			std::cout << SANString(*m, legalMoves) << std::endl;
 		}
 		
 	} catch(const std::exception & e) {
@@ -50,7 +45,7 @@ int main() {
 #else
 
 int main() {
-	std::ifstream inputFile("/Users/santhosbaala/Desktop/test.pgn");
+	std::ifstream inputFile("/Users/santhosbaala/Desktop/twic977_unannotated.pgn");
 	
 	std::string inputString;
 	while (inputFile.good()) {
@@ -111,7 +106,7 @@ int main() {
 			}
 					
 			if (playedMove == nullptr) {
-				std::cout << "\nPlayed move does not exists in list: " << m << " in game " << (i + 1) << std::endl;
+				std::cout << "\nPlayed move does not exist in list: " << m << " in game " << (i + 1) << std::endl;
 				abort();
 			}
 			
@@ -136,7 +131,7 @@ int main() {
 		}
 		
 		// End of processing:
-		std::cout << g->getPosition()->prettyString() << std::endl;
+		// std::cout << g->getPosition()->prettyString() << std::endl;
 		std::cout << g->getFEN() << " " << pawnHalfMoves << " " << moveNumber << std::endl;
 		
 		std::cout << std::endl;
@@ -176,38 +171,41 @@ std::string SANString(const Move & m, const std::vector<std::shared_ptr<Move>> &
 	}
 	
 	// Disambiguation string
-	std::string disambiguitionString;
-	bool commonRank = false, commonFile = false;
+	std::string disambiguationString;
+	bool commonRank = false, commonFile = false, onlyToSquareIsCommon = false;
 	
 	for (auto otherMove : allLegalMoves) {
-		if (otherMove->getFromSquare() == m.getFromSquare() &&
+		if (otherMove->getFromSquare() != m.getFromSquare() &&
+			otherMove->getPieceMoved() == m.getPieceMoved() &&
 			otherMove->getToSquare() == m.getToSquare()) {
-			continue;
-		}
 		
-		if (otherMove->getPieceMoved() == m.getPieceMoved() &&
-			otherMove->getToSquare() == m.getToSquare()) {
-			
+			// Check if the pieces are in the same file, then use rank for disambiguation
 			if (otherMove->getFromSquare().getFile() == m.getFromSquare().getFile()) {
 				commonFile = true;
 			}
 			
+			// Check if the pieces are in the same rank, then use file for disambiguation
 			if (otherMove->getFromSquare().getRank() == m.getFromSquare().getRank()) {
 				commonRank = true;
 			}
+			
+			// If both file and rank are not common, then file/rank can be used. SAN advices file
+			onlyToSquareIsCommon = true;
 		}
 	}
 	
 	if (commonRank && commonFile) {
-		disambiguitionString += m.getFromSquare().getLabel();
+		disambiguationString += m.getFromSquare().getLabel();
 	} else if (commonRank) {
-		disambiguitionString += m.getFromSquare().getLabel()[0];	// Mark the file
+		disambiguationString += m.getFromSquare().getLabel()[0];	// Mark the file
 	} else if (commonFile) {
-		disambiguitionString += m.getFromSquare().getLabel()[1];	// Mark the rank
+		disambiguationString += m.getFromSquare().getLabel()[1];	// Mark the rank
+	} else if (onlyToSquareIsCommon) {
+		disambiguationString += m.getFromSquare().getLabel()[0];	// Use file
 	}
 	
-	if (disambiguitionString.length() > 0 && getGenericPiece(m.getPieceMoved()) != GenericPiecePawn) {
-		toReturn += disambiguitionString;
+	if (disambiguationString.length() > 0 && getGenericPiece(m.getPieceMoved()) != GenericPiecePawn) {
+		toReturn += disambiguationString;
 	}
 	
 	// Capture character
