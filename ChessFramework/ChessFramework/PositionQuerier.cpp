@@ -309,7 +309,8 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, S
             std::set<Square> pieceAttacks = attacksFrom(i, enPassantTarget);
             
             for (Square sq : pieceAttacks) {
-                std::shared_ptr<Position> temp = std::make_shared<Position>(*position);
+				if (sq == currentKingPosition) continue;
+                std::shared_ptr<Position> temp = std::make_shared<Position>(position->getFEN());
                 temp->vacate(i);
                 temp->occupy(sq, (*position)[i]);
                 

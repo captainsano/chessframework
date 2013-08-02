@@ -202,4 +202,13 @@ using namespace sfc::cfw;
     XCTAssertTrue(q->getKingStatus(ColorWhite, Square("g3")) == KingStatusNormal, @"White King status should be normal");
 }
 
+- (void)testWhiteKingStatusCheckmate {
+	std::shared_ptr<Position> p = std::make_shared<Position>("5rk1/1pp4p/6pP/p2pR3/8/8/P4q2/1R3K2");
+	std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
+	
+	//XCTAssertTrue(q->getKingStatus(ColorBlack) == KingStatusNormal, @"Black's king status should be normal");
+	
+	XCTAssertTrue(q->getKingStatus(ColorWhite) == KingStatusCheckMate, @"White's king status should be checkmate");
+}
+
 @end
