@@ -44,6 +44,12 @@ using namespace sfc::cfw;
 	XCTAssertFalse(MoveFactory::legalMove(g, Square("f2"), Square("f3")), @"Move is illegal if toSquare has same color piece");
 }
 
+- (void)testKingHasEscapeSquareF8 {
+	std::shared_ptr<GameState> g = std::make_shared<GameState>("r1bqk2r/p1n1ppbp/1pp2Np1/2p1P3/8/5N2/PPPP1PPP/R1BQR1K1", ColorBlack, "--kq");
+	
+	XCTAssertTrue(MoveFactory::legalMove(g, Square("e8"), Square("f8")), @"King move should be legal");
+}
+
 // Rest of the stuff is checked by the legal move generator, compared with legal moves from stockfish engine.
 
 @end

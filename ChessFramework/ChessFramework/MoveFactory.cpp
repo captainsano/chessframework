@@ -46,12 +46,8 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 		// If the movedPiece is King and move is castling, see if the corresponding castling option is available + no blockers
 		if ((*tempPosition)[fromSquare] == PieceWKing) {
 			// Check if kingside castling is available and if the move is castling, then check for blockers
-			if (beforeGameState->getWhiteKingSideCastlingOption() != '-') {
-				// Castling is not allowed when in check
-				if (beforeGameState->getWhiteKingStatus() != KingStatusNormal) {
-					return nullptr;
-				}
-				
+			// Castling is not allowed when in check
+			if (beforeGameState->getWhiteKingSideCastlingOption() != '-' && beforeGameState->getWhiteKingStatus() == KingStatusNormal) {
 				unsigned short toFile = std::tolower(beforeGameState->getWhiteKingSideCastlingOption()) - 'a';
 				if (toSquare.getFile() == toFile) {
 					castlingType = CastlingTypeKSide;
@@ -79,18 +75,14 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 					tempPosition->occupy(Square("g1"), PieceWKing);
 					tempPosition->vacate(toSquare);
 					tempPosition->occupy(Square("f1"), PieceWRook);
-									
+					
 					// Update white's castling options
 					nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
 				}
 			} else
 			// Check if queenside castling is available and if the move is castling, then check for blockers
-			if (beforeGameState->getWhiteQueenSideCastlingOption() != '-') {
-				// Castling is not allowed when in check
-				if (beforeGameState->getWhiteKingStatus() != KingStatusNormal) {
-					return nullptr;
-				}
-				
+			// Castling is not allowed when in check
+			if (beforeGameState->getWhiteQueenSideCastlingOption() != '-' && beforeGameState->getWhiteKingStatus() == KingStatusNormal) {
 				unsigned short toFile = std::tolower(beforeGameState->getWhiteQueenSideCastlingOption()) - 'a';
 				if (toSquare.getFile() == toFile) {
 					castlingType = CastlingTypeQSide;
@@ -133,12 +125,8 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 		// If the movedPiece is King and move is castling, see if the corresponding castling option is available + no blockers
 		if ((*tempPosition)[fromSquare] == PieceBKing) {
 			// Check if kingside castling is available and if the move is castling, then check for blockers
-			if (beforeGameState->getBlackKingSideCastlingOption() != '-') {
-				// Castling is not allowed when in check
-				if (beforeGameState->getBlackKingStatus() != KingStatusNormal) {
-					return nullptr;
-				}
-				
+			// Castling is not allowed when in check therefore, do not evaluate castling
+			if (beforeGameState->getBlackKingSideCastlingOption() != '-' && beforeGameState->getBlackKingStatus() == KingStatusNormal) {
 				unsigned short toFile = std::tolower(beforeGameState->getBlackKingSideCastlingOption()) - 'a';
 				if (toSquare.getFile() == toFile) {
 					castlingType = CastlingTypeKSide;
@@ -172,12 +160,8 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 				}
 			} else
 			// Check if queenside castling is available and if the move is castling, then check for blockers
-			if (beforeGameState->getBlackQueenSideCastlingOption() != '-') {
-				// Castling is not allowed when in check
-				if (beforeGameState->getBlackKingStatus() != KingStatusNormal) {
-					return nullptr;
-				}
-				
+			// Castling is not allowed when in check
+			if (beforeGameState->getBlackQueenSideCastlingOption() != '-' && beforeGameState->getBlackKingStatus() == KingStatusNormal) {
 				unsigned short toFile = std::tolower(beforeGameState->getBlackQueenSideCastlingOption()) - 'a';
 				if (toSquare.getFile() == toFile) {
 					castlingType = CastlingTypeQSide;
