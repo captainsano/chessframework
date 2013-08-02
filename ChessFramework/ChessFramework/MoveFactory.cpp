@@ -221,7 +221,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 		
 		// Vacate the enpassant target pawn
 		if (getGenericPiece(movedPiece) == GenericPiecePawn && toSquare == beforeGameState->getEnpassantTarget()) {
-			capturedPiece = tempPosition->vacate(Square(beforeGameState->getEnpassantTarget().getFile(), (getPieceColor(movedPiece) == ColorWhite)?5:2));
+			capturedPiece = tempPosition->vacate(Square(beforeGameState->getEnpassantTarget().getFile(), (getPieceColor(movedPiece) == ColorWhite)?4:3));
 		}
 		
 		if (querier->isKingInCheck(getPieceColor(movedPiece))) {
