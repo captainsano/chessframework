@@ -71,7 +71,7 @@ namespace sfc {
 			
 			
 			friend std::shared_ptr<Move> MoveFactory::legalMove(std::shared_ptr<GameState> beforeGameState, Square fromSquare, Square toSquare, PromotablePiece promotedToPiece);
-			friend std::vector<std::shared_ptr<Move>> MoveFactory::allLegalMoves(std::shared_ptr<GameState>);
+			friend std::vector<std::shared_ptr<Move>> MoveFactory::allLegalMoves(std::shared_ptr<GameState>, Piece);
         };
         
     }

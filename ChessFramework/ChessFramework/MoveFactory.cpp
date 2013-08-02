@@ -324,7 +324,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 	return move;
 }
 
-std::vector<std::shared_ptr<sfc::cfw::Move>> sfc::cfw::MoveFactory::allLegalMoves(std::shared_ptr<GameState> beforeGameState) {
+std::vector<std::shared_ptr<sfc::cfw::Move>> sfc::cfw::MoveFactory::allLegalMoves(std::shared_ptr<GameState> beforeGameState, const Piece pieceType) {
 	std::vector<std::shared_ptr<Move>> legalMovesList;
 	
 	std::shared_ptr<Position> pos = std::make_shared<Position>(beforeGameState->getPosition()->getFEN());
@@ -332,6 +332,9 @@ std::vector<std::shared_ptr<sfc::cfw::Move>> sfc::cfw::MoveFactory::allLegalMove
 	
 	for (unsigned short i = 0; i < 64; i++) {
 		if ((*pos)[i] != PieceNone && getPieceColor((*pos)[i]) == beforeGameState->getSideToMove()) {
+			
+			if (pieceType != PieceNone && (*pos)[i] != pieceType) continue;	// Consider only moves made by the requested piece type
+			
 			std::set<Square> attacks = querier.attacksFrom(i, beforeGameState->getEnpassantTarget());
 						
 			/*------- Add castling to the attacks if exists -------*/
