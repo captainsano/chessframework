@@ -191,14 +191,14 @@ using namespace sfc::cfw;
     std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     XCTAssertTrue(q->getKingStatus(ColorBlack, Square("e6")) == KingStatusNormal, @"Black King status should be normal");
-    XCTAssertTrue(q->getKingStatus(ColorWhite, Square("e6")) == KingStatusNormal, @"White King status should be normal, not checkmate");
+    XCTAssertTrue(q->getKingStatus(ColorWhite, Square("e6")) == KingStatusCheck, @"White King status should be normal, not checkmate");
 }
 
 - (void)testConsidersEnpassantToAvoidBlackCheckmate {
     std::shared_ptr<Position> p = std::make_shared<Position>("8/8/R7/7k/5pPP/7K/8/8");
     std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
-    XCTAssertTrue(q->getKingStatus(ColorBlack, Square("g3")) == KingStatusNormal, @"Black King status should be normal, not checkmate");
+    XCTAssertTrue(q->getKingStatus(ColorBlack, Square("g3")) == KingStatusCheck, @"Black King status should be normal, not checkmate");
     XCTAssertTrue(q->getKingStatus(ColorWhite, Square("g3")) == KingStatusNormal, @"White King status should be normal");
 }
 
