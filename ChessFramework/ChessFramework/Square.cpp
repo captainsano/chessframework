@@ -33,20 +33,18 @@ sfc::cfw::Square::operator unsigned short() const {
     return this->getIndex();
 }
 
-unsigned short sfc::cfw::Square::getFile() const {
+constexpr unsigned short sfc::cfw::Square::getFile() const {
     return (this->index & 7);           // return the last 3 bits
 }
 
-unsigned short sfc::cfw::Square::getRank() const {
+constexpr unsigned short sfc::cfw::Square::getRank() const {
     return ((this->index >> 3) & 7);    // return the first 3 bits
 }
 
-unsigned short sfc::cfw::Square::getIndex() const {
+constexpr unsigned short sfc::cfw::Square::getIndex() const {
     return this->index;
 }
 
 std::string sfc::cfw::Square::getLabel() const {
-    char fileChar = this->getFile() + 'a';
-    char rankChar = this->getRank() + '1';
-    return std::string{fileChar, rankChar};
+    return std::string{this->getFile() + 'a', this->getRank() + '1'};
 }

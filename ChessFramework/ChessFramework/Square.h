@@ -34,12 +34,13 @@ namespace sfc {
             Square(const unsigned short & aFile, const unsigned short & aRank);
 			Square(const std::string & label) : Square(label[0] - 'a', label[1] - '1') { }
 			
+			
 			operator unsigned short() const;
             
-			unsigned short  getFile() const;
-            unsigned short  getRank() const;
-            unsigned short  getIndex() const;
-            std::string     getLabel() const;
+			constexpr unsigned short  getFile() const;
+            constexpr unsigned short  getRank() const;
+            constexpr unsigned short  getIndex() const;
+            std::string		getLabel() const;
         };
         
     }
