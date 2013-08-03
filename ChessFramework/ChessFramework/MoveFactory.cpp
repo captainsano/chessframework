@@ -35,7 +35,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 	
 	
 	// From Square is vacant or contains wrong color
-	if ((*tempPosition)[fromSquare] == PieceNone || getPieceColor((*tempPosition)[fromSquare]) != beforeGameState->getSideToMove()) {
+	if (movedPiece == PieceNone || getPieceColor(movedPiece) != beforeGameState->getSideToMove()) {
 		return nullptr;
 	}
 	
@@ -44,7 +44,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 	/*-------------------------- White King and Castling --------------------------*/
 	{
 		// If the movedPiece is King and move is castling, see if the corresponding castling option is available + no blockers
-		if ((*tempPosition)[fromSquare] == PieceWKing && beforeGameState->getWhiteKingStatus() == KingStatusNormal) {
+		if (movedPiece == PieceWKing && beforeGameState->getWhiteKingStatus() == KingStatusNormal) {
 			// Check if kingside castling is available and if the move is castling, then check for blockers
 			// Castling is not allowed when in check
 			if (beforeGameState->getWhiteKingSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
@@ -136,7 +136,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 	/*-------------------------- Black King and Castling --------------------------*/
 	{
 		// If the movedPiece is King and move is castling, see if the corresponding castling option is available + no blockers
-		if ((*tempPosition)[fromSquare] == PieceBKing && beforeGameState->getBlackKingStatus() == KingStatusNormal) {
+		if (movedPiece == PieceBKing && beforeGameState->getBlackKingStatus() == KingStatusNormal) {
 			// Check if kingside castling is available and if the move is castling, then check for blockers
 			// Castling is not allowed when in check therefore, do not evaluate castling
 			if (beforeGameState->getBlackKingSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
@@ -245,7 +245,9 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 		capturedPiece = tempPosition->occupy(toSquare, movedPiece);
 		
 		// Vacate the enpassant target pawn
-		if (getGenericPiece(movedPiece) == GenericPiecePawn && toSquare == beforeGameState->getEnpassantTarget()) {
+		if (getGenericPiece(movedPiece) == GenericPiecePawn &&
+			(toSquare.getRank() == 2 || toSquare.getRank() == 5) &&
+			toSquare == beforeGameState->getEnpassantTarget()) {
 			capturedPiece = tempPosition->vacate(Square(beforeGameState->getEnpassantTarget().getFile(), (getPieceColor(movedPiece) == ColorWhite)?4:3));
 		}
 		

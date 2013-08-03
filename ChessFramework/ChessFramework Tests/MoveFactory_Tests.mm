@@ -85,6 +85,12 @@ using namespace sfc::cfw;
 	XCTAssertFalse(MoveFactory::legalMove(g, Square("e8"), Square("h8")), @"Black kingside castling should not be allowed");
 }
 
+- (void)testPawnPromotionToPseudoEnpassantTargetDoesNotTreatAsEnpassant {
+	std::shared_ptr<GameState> g = std::make_shared<GameState>("7R/8/8/8/k1K3P1/8/p7/1r6", ColorBlack);
+	
+	XCTAssertTrue(MoveFactory::legalMove(g, Square("a4"), Square("a5")), @"Move should be legal");
+}
+
 // Rest of the stuff is checked by the legal move generator, compared with legal moves from stockfish engine.
 
 @end
