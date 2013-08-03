@@ -50,12 +50,14 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 			if (beforeGameState->getWhiteKingSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
 				unsigned short toFile = std::tolower(beforeGameState->getWhiteKingSideCastlingOption()) - 'a';
 				if (toSquare.getFile() == toFile) {
-					// Iterate and check if there are any blockers till g1.
-					// It is also required for f1 to be vacant in case the king is on g1
 					tempPosition->vacate(fromSquare);
-					castlingType = CastlingTypeKSide;
-					if (!(fromSquare == Square("g1") && (*tempPosition)[Square("f1")] != PieceNone)) {
-						for (unsigned short i = fromSquare; i <= Square("g1"); i++) {
+					tempPosition->vacate(toSquare);
+					// Check that the squares between king and rook are free
+					// and as king occupies those squares it is not under check
+					// We explicitly check f1 and g1 because they may be missed in iteration
+					if ((*tempPosition)[Square("f1")] == PieceNone && (*tempPosition)[Square("g1")] == PieceNone) {
+						castlingType = CastlingTypeKSide;
+						for (unsigned short i = fromSquare + 1; i < toSquare; i++) {
 							if ((*tempPosition)[i] != PieceNone) {
 								castlingType = CastlingTypeNone;
 								break;	// blocker exists
@@ -70,19 +72,20 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 								tempPosition->vacate(i);
 							}
 						}
+					}
+					
+					if (castlingType == CastlingTypeKSide) {
+						// Update the temp position
+						tempPosition->occupy(Square("g1"), PieceWKing);
+						tempPosition->vacate(toSquare);
+						tempPosition->occupy(Square("f1"), PieceWRook);
 						
-						if (castlingType == CastlingTypeKSide) {
-							// Update the temp position
-							tempPosition->occupy(Square("g1"), PieceWKing);
-							tempPosition->vacate(toSquare);
-							tempPosition->occupy(Square("f1"), PieceWRook);
-							
-							// Update white's castling options
-							nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
-						} else {
-							// Put back everything
-							tempPosition->occupy(fromSquare, PieceWKing);
-						}
+						// Update white's castling options
+						nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
+					} else {
+						// Put back everything
+						tempPosition->occupy(fromSquare, PieceWKing);
+						tempPosition->occupy(toSquare, PieceWRook);
 					}
 				}
 			}
@@ -92,14 +95,14 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 			if (beforeGameState->getWhiteQueenSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
 				unsigned short toFile = std::tolower(beforeGameState->getWhiteQueenSideCastlingOption()) - 'a';
 				if (toSquare.getFile() == toFile) {
-					// Iterate and check if there are any blockers till c1.
-					// It is also required for b1 and d1 to be vacant
 					tempPosition->vacate(fromSquare);
-					castlingType = CastlingTypeQSide;
-					if (!(fromSquare == Square("c1") &&
-						((*tempPosition)[Square("b1")] != PieceNone || (*tempPosition)[Square("d1")] != PieceNone)
-						)) {
-						for (unsigned short i = fromSquare; i >= Square("c1"); i--) {
+					tempPosition->vacate(toSquare);
+					// Check that the squares between king and rook are free
+					// and as king occupies those squares it is not under check
+					// We explicitly check c1 and d1 because they may be missed in iteration
+					if ((*tempPosition)[Square("c1")] == PieceNone && (*tempPosition)[Square("d1")] == PieceNone) {
+						castlingType = CastlingTypeQSide;
+						for (unsigned short i = fromSquare - 1; i > toSquare; i--) {
 							if ((*tempPosition)[i] != PieceNone) {
 								castlingType = CastlingTypeNone;
 								break;	// blocker exists
@@ -114,19 +117,20 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 								tempPosition->vacate(i);
 							}
 						}
+					}
+					
+					if (castlingType == CastlingTypeQSide) {
+						// Update the temp position
+						tempPosition->occupy(Square("c1"), PieceWKing);
+						tempPosition->vacate(toSquare);
+						tempPosition->occupy(Square("d1"), PieceWRook);
 						
-						if (castlingType == CastlingTypeQSide) {
-							// Update the temp position
-							tempPosition->occupy(Square("c1"), PieceWKing);
-							tempPosition->vacate(toSquare);
-							tempPosition->occupy(Square("d1"), PieceWRook);
-							
-							// Update white's castling options
-							nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
-						} else {
-							// Put back everything
-							tempPosition->occupy(fromSquare, PieceWKing);
-						}
+						// Update white's castling options
+						nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
+					} else {
+						// Put back everything
+						tempPosition->occupy(fromSquare, PieceWKing);
+						tempPosition->occupy(toSquare, PieceWRook);
 					}
 				}
 			}
@@ -142,12 +146,14 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 			if (beforeGameState->getBlackKingSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
 				unsigned short toFile = std::tolower(beforeGameState->getBlackKingSideCastlingOption()) - 'a';
 				if (toSquare.getFile() == toFile) {
-					// Iterate and check if there are any blockers till g1.
-					// It is also required for f1 to be vacant in case the king is on g1
 					tempPosition->vacate(fromSquare);
-					castlingType = CastlingTypeKSide;
-					if (!(fromSquare == Square("g8") && (*tempPosition)[Square("f8")] != PieceNone)) {
-						for (unsigned short i = fromSquare; i <= Square("g8"); i++) {
+					tempPosition->vacate(toSquare);
+					// Check that the squares between king and rook are free
+					// and as king occupies those squares it is not under check
+					// We explicitly check f8 and g8 because they may be missed in iteration
+					if ((*tempPosition)[Square("f8")] == PieceNone && (*tempPosition)[Square("g8")] == PieceNone) {
+						castlingType = CastlingTypeKSide;
+						for (unsigned short i = fromSquare + 1; i < toSquare; i++) {
 							if ((*tempPosition)[i] != PieceNone) {
 								castlingType = CastlingTypeNone;
 								break;	// blocker exists
@@ -162,19 +168,19 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 								tempPosition->vacate(i);
 							}
 						}
+					}
+					
+					if (castlingType == CastlingTypeKSide) {
+						// Update the temp position
+						tempPosition->occupy(Square("g8"), PieceBKing);
+						tempPosition->vacate(toSquare);
+						tempPosition->occupy(Square("f8"), PieceBRook);
 						
-						if (castlingType == CastlingTypeKSide) {
-							// Update the temp position
-							tempPosition->occupy(Square("g8"), PieceBKing);
-							tempPosition->vacate(toSquare);
-							tempPosition->occupy(Square("f8"), PieceBRook);
-							
-							// Update black's castling options
-							nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
-						} else {
-							// Put back everything
-							tempPosition->occupy(fromSquare, PieceBKing);
-						}
+						// Update black's castling options
+						nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
+					} else {
+						// Put back everything
+						tempPosition->occupy(fromSquare, PieceBKing);
 					}
 				}
 			}
@@ -183,14 +189,14 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 			if (beforeGameState->getBlackQueenSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
 				unsigned short toFile = std::tolower(beforeGameState->getBlackQueenSideCastlingOption()) - 'a';
 				if (toSquare.getFile() == toFile) {
-					// Iterate and check if there are any blockers till c1.
-					// It is also required for b1 and d1 to be vacant
 					tempPosition->vacate(fromSquare);
-					castlingType = CastlingTypeQSide;
-					if (!(fromSquare == Square("c8") &&
-						((*tempPosition)[Square("b8")] != PieceNone || (*tempPosition)[Square("d8")] != PieceNone)
-						)) {
-						for (unsigned short i = fromSquare; i >= Square("c8"); i--) {
+					tempPosition->vacate(toSquare);
+					// Check that the squares between king and rook are free
+					// and as king occupies those squares it is not under check
+					// We explicitly check d8 and c8 because they may be missed in iteration
+					if ((*tempPosition)[Square("d8")] == PieceNone && (*tempPosition)[Square("c8")] == PieceNone) {
+						castlingType = CastlingTypeQSide;
+						for (unsigned short i = fromSquare - 1; i > toSquare; i--) {
 							if ((*tempPosition)[i] != PieceNone) {
 								castlingType = CastlingTypeNone;
 								break;	// blocker exists
@@ -205,19 +211,19 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 								tempPosition->vacate(i);
 							}
 						}
+					}
 						
-						if (castlingType == CastlingTypeQSide) {
-							// Update the temp position
-							tempPosition->occupy(Square("c8"), PieceBKing);
-							tempPosition->vacate(toSquare);
-							tempPosition->occupy(Square("d8"), PieceBRook);
-							
-							// Update black's castling options
-							nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
-						} else {
-							// Put back everything
-							tempPosition->occupy(fromSquare, PieceBKing);
-						}
+					if (castlingType == CastlingTypeQSide) {
+						// Update the temp position
+						tempPosition->occupy(Square("c8"), PieceBKing);
+						tempPosition->vacate(toSquare);
+						tempPosition->occupy(Square("d8"), PieceBRook);
+						
+						// Update black's castling options
+						nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
+					} else {
+						// Put back everything
+						tempPosition->occupy(fromSquare, PieceBKing);
 					}
 				}
 			}

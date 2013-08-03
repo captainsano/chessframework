@@ -85,6 +85,12 @@ using namespace sfc::cfw;
 	XCTAssertFalse(MoveFactory::legalMove(g, Square("e8"), Square("h8")), @"Black kingside castling should not be allowed");
 }
 
+- (void)testBlackCastlingQueensideIsIllegal1 {
+	std::shared_ptr<GameState> g = std::make_shared<GameState>("rn2kbnr/pp1qpppp/3p4/2p5/4P3/5N2/PPPP1PPP/RNBQ1RK1", ColorBlack, "--kq");
+	
+	XCTAssertFalse(MoveFactory::legalMove(g, Square("e8"), Square("a8")), @"Black queenside castlign should not be allowed");
+}
+
 - (void)testPawnPromotionToPseudoEnpassantTargetDoesNotTreatAsEnpassant {
 	std::shared_ptr<GameState> g = std::make_shared<GameState>("7R/8/8/8/k1K3P1/8/p7/1r6", ColorBlack);
 	
