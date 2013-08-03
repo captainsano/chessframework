@@ -102,7 +102,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 					// We explicitly check c1 and d1 because they may be missed in iteration
 					if ((*tempPosition)[Square("c1")] == PieceNone && (*tempPosition)[Square("d1")] == PieceNone) {
 						castlingType = CastlingTypeQSide;
-						for (unsigned short i = fromSquare - 1; i > toSquare; i--) {
+						for (unsigned short i = fromSquare - 1; i >= Square("c1"); i--) {
 							if ((*tempPosition)[i] != PieceNone) {
 								castlingType = CastlingTypeNone;
 								break;	// blocker exists
@@ -115,6 +115,13 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 									break;
 								}
 								tempPosition->vacate(i);
+							}
+						}
+						
+						// Explicitly check if b8 should be free in case the rook is on a8 or b8
+						if (toSquare < Square("c1")) {
+							if ((*tempPosition)[Square("b1")] != PieceNone) {
+								castlingType = CastlingTypeNone;
 							}
 						}
 					}
@@ -153,7 +160,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 					// We explicitly check f8 and g8 because they may be missed in iteration
 					if ((*tempPosition)[Square("f8")] == PieceNone && (*tempPosition)[Square("g8")] == PieceNone) {
 						castlingType = CastlingTypeKSide;
-						for (unsigned short i = fromSquare + 1; i < toSquare; i++) {
+						for (unsigned short i = fromSquare + 1; i <= Square("g8"); i++) {
 							if ((*tempPosition)[i] != PieceNone) {
 								castlingType = CastlingTypeNone;
 								break;	// blocker exists
@@ -196,7 +203,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 					// We explicitly check d8 and c8 because they may be missed in iteration
 					if ((*tempPosition)[Square("d8")] == PieceNone && (*tempPosition)[Square("c8")] == PieceNone) {
 						castlingType = CastlingTypeQSide;
-						for (unsigned short i = fromSquare - 1; i > toSquare; i--) {
+						for (unsigned short i = fromSquare - 1; i >= Square("c8"); i--) {
 							if ((*tempPosition)[i] != PieceNone) {
 								castlingType = CastlingTypeNone;
 								break;	// blocker exists
@@ -209,6 +216,13 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 									break;
 								}
 								tempPosition->vacate(i);
+							}
+						}
+						
+						// Explicitly check if b8 should be free in case the rook is on a8 or b8
+						if (toSquare < Square("c8")) {
+							if ((*tempPosition)[Square("b8")] != PieceNone) {
+								castlingType = CastlingTypeNone;
 							}
 						}
 					}

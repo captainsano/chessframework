@@ -79,6 +79,12 @@ using namespace sfc::cfw;
 	XCTAssertTrue(MoveFactory::legalMove(g, Square("e1"), Square("a1")), @"White queenside castling should be allowed");
 }
 
+- (void)testBlackQueenSideCastlingIsLegal1 {
+	std::shared_ptr<GameState> g = std::make_shared<GameState>("r3kb1r/ppqn1ppp/2p1pnb1/3p4/2PP3N/1QN1PP2/PP1B2PP/R3KB1R", ColorBlack, "KQkq");
+	
+	XCTAssertTrue(MoveFactory::legalMove(g, Square("e8"), Square("a8")), @"Black queenside castling should be allowed");
+}
+
 - (void)testBlackKingSideCastlingIsIllegal1 {
 	std::shared_ptr<GameState> g = std::make_shared<GameState>("r3kb1r/1bppqp2/1p2n3/pP1pP3/P2P2Q1/2PB2B1/5PP1/R3NRK1", ColorBlack, "--kq");
 	
