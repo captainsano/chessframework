@@ -144,37 +144,6 @@ sfc::cfw::Position::Position(const std::string & FENString) {
 	
 }
 
-sfc::cfw::Piece sfc::cfw::Position::operator[] (const Square & aSquare) const {
-	
-	if (wPawn[aSquare]) {
-		return PieceWPawn;
-	} else if (wKing[aSquare]) {
-		return PieceWKing;
-	} else if (wQueen[aSquare]) {
-		return PieceWQueen;
-	} else if (wRook[aSquare]) {
-		return PieceWRook;
-	} else if (wBishop[aSquare]) {
-		return PieceWBishop;
-	} else if (wKnight[aSquare]) {
-		return PieceWKnight;
-	} else if (bPawn[aSquare]) {
-		return PieceBPawn;
-	} else if (bKing[aSquare]) {
-		return PieceBKing;
-	} else if (bQueen[aSquare]) {
-		return PieceBQueen;
-	} else if (bRook[aSquare]) {
-		return PieceBRook;
-	} else if (bBishop[aSquare]) {
-		return PieceBBishop;
-	} else if (bKnight[aSquare]) {
-		return PieceBKnight;
-	}
-	
-	return PieceNone;
-}
-
 sfc::cfw::Piece sfc::cfw::Position::vacate(const Square & aSquare) {
 	// First, find out which piece has occupied the square.
     if ((*this)[aSquare] != PieceNone) {

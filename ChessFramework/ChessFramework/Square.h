@@ -30,19 +30,38 @@ namespace sfc {
             
         public:
 			Square() = default;
-            Square(const unsigned short & aIndex);
-            Square(const unsigned short & aFile, const unsigned short & aRank);
+			Square(const unsigned short & aIndex) {
+				if (aIndex > 63) {
+					throw std::out_of_range("Square index must be 0-63");
+				}
+				
+				this->index = aIndex;
+			}
+            Square(const unsigned short & aFile, const unsigned short & aRank) : Square(((aRank & 7) << 3) | (aFile & 7)) {
+				if (aFile > 7 || aRank > 7) {
+					throw std::out_of_range("file/rank index must be 0-7");
+				}
+			}
 			Square(const std::string & label) : Square(label[0] - 'a', label[1] - '1') { }
 			
-			
-			operator unsigned short() const;
+			operator unsigned short() const { return this->index; }
             
-			unsigned short  getFile() const;
-            unsigned short  getRank() const;
-            unsigned short  getIndex() const;
-            std::string		getLabel() const;
-        };
-        
+			unsigned short getFile() const {
+				return (this->index & 7);           // return the last 3 bits
+			}
+			
+			unsigned short getRank() const {
+				return ((this->index >> 3) & 7);    // return the first 3 bits
+			}
+			
+			unsigned short getIndex() const {
+				return this->index;
+			}
+			
+			std::string getLabel() const {
+				return std::string{this->getFile() + 'a', this->getRank() + '1'};
+			}
+		};
     }
 }
 

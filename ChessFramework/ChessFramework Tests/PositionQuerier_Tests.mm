@@ -104,16 +104,6 @@ using namespace sfc::cfw;
     }
 }
 
-- (void)testReturns0AttacksToOnClearBoard {
-    std::shared_ptr<Position> p = std::make_shared<Position>("8/8/8/8/8/8/8/8");
-    std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
-    
-    for (unsigned short i = 0; i < 64; i++) {
-        std::set<Square> attacksTo = q->attacksTo(i);
-        XCTAssertTrue(attacksTo.empty(), @"There should not be any attacks from on an empty board");
-    }
-}
-
 - (void)testReturnsBlackKingStatusCheck {
 	std::shared_ptr<Position> p = std::make_shared<Position>("8/1p1QknN1/1P6/2rPp1p1/pR2Pp1b/P1p2P2/2K5/7R");
 	std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);

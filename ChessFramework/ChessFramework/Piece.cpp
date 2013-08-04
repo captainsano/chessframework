@@ -8,30 +8,3 @@
 
 #include "Piece.h"
 #include <stdexcept>
-
-sfc::cfw::Color sfc::cfw::getPieceColor(const Piece & aPiece) {
-    if (aPiece >= PieceWPawn && aPiece <= PieceWKnight) {
-        return ColorWhite;
-    } else if (aPiece >= PieceBPawn && aPiece <= PieceBKnight) {
-        return ColorBlack;
-    }
-    
-    throw std::invalid_argument("Color cannot be determined for an empty piece");
-    return ColorWhite;
-}
-
-sfc::cfw::Piece sfc::cfw::makePiece(const GenericPiece aPiece, const Color aColor) {
-    return (Piece)((aColor << 3) | aPiece);
-}
-
-sfc::cfw::Piece sfc::cfw::makePiece(const PromotablePiece aPiece, const Color aColor) {
-    return (Piece)((aColor << 3) | aPiece);
-}
-
-sfc::cfw::GenericPiece sfc::cfw::getGenericPiece(const Piece aPiece) {
-	return (GenericPiece)(aPiece & 7);
-}
-
-sfc::cfw::GenericPiece sfc::cfw::getGenericPiece(const PromotablePiece aPiece) {
-	return (GenericPiece)(aPiece & 7);
-}

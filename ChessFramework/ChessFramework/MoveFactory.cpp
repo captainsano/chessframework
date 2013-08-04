@@ -16,7 +16,7 @@
 #include "MoveFactory.h"
 
 std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr<GameState> beforeGameState, Square fromSquare, Square toSquare, PromotablePiece promotedToPiece) {
-	std::shared_ptr<Position> tempPosition = std::make_shared<Position>(beforeGameState->getPosition()->getFEN());
+	std::shared_ptr<Position> tempPosition = std::make_shared<Position>(*(beforeGameState->getPosition()));
 	std::shared_ptr<PositionQuerier> querier = std::make_shared<PositionQuerier>(tempPosition);
 	
 	/*----------------- Fields for updating GameState and move ---------------*/
@@ -363,7 +363,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 	// Update the common information in the new move and next game state
 	std::shared_ptr<GameState> updatedGameState = nullptr;
 	try {
-		updatedGameState = std::make_shared<GameState>(tempPosition->getFEN(),
+		updatedGameState = std::make_shared<GameState>(*tempPosition,
 													   (beforeGameState->getSideToMove() == ColorWhite)?ColorBlack:ColorWhite,
 														 nextCastlingOptions,
 														 nextEnpassantTarget);
@@ -383,18 +383,20 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 std::vector<std::shared_ptr<sfc::cfw::Move>> sfc::cfw::MoveFactory::allLegalMoves(std::shared_ptr<GameState> beforeGameState, const Piece pieceType) {
 	std::vector<std::shared_ptr<Move>> legalMovesList;
 	
-	std::shared_ptr<Position> pos = std::make_shared<Position>(beforeGameState->getPosition()->getFEN());
+	std::shared_ptr<Position> pos = std::make_shared<Position>(*(beforeGameState->getPosition()));
 	PositionQuerier querier(pos);
 	
 	for (unsigned short i = 0; i < 64; i++) {
-		if ((*pos)[i] != PieceNone && getPieceColor((*pos)[i]) == beforeGameState->getSideToMove()) {
+		Piece movingPiece = (*pos)[i];
+		
+		if (movingPiece != PieceNone && getPieceColor(movingPiece) == beforeGameState->getSideToMove()) {
 			
-			if (pieceType != PieceNone && (*pos)[i] != pieceType) continue;	// Consider only moves made by the requested piece type
+			if (pieceType != PieceNone && movingPiece != pieceType) continue;	// Consider only moves made by the requested piece type
 			
 			std::set<Square> attacks = querier.attacksFrom(i, beforeGameState->getEnpassantTarget());
 						
 			/*------- Add castling to the attacks if exists -------*/
-			if ((*pos)[i] == PieceWKing) {
+			if (movingPiece == PieceWKing) {
 				if (beforeGameState->getWhiteKingSideCastlingOption() != '-') {
 					attacks.insert(Square(std::tolower(beforeGameState->getWhiteKingSideCastlingOption()) - 'a', 0));
 				}
@@ -404,7 +406,7 @@ std::vector<std::shared_ptr<sfc::cfw::Move>> sfc::cfw::MoveFactory::allLegalMove
 				}
 			}
 						
-			if ((*pos)[i] == PieceBKing) {
+			if (movingPiece == PieceBKing) {
 				if (beforeGameState->getBlackKingSideCastlingOption() != '-') {
 					attacks.insert(Square(std::tolower(beforeGameState->getBlackKingSideCastlingOption()) - 'a', 7));
 				}
@@ -417,7 +419,7 @@ std::vector<std::shared_ptr<sfc::cfw::Move>> sfc::cfw::MoveFactory::allLegalMove
 			/*------- Iterate attacks and check -------*/
 			for (auto to : attacks) {
 				// On pawn promotion, check all types of promotions
-				if (getGenericPiece((*pos)[i]) == GenericPiecePawn && (to.getRank() == 0 || to.getRank() == 7)) {
+				if (getGenericPiece(movingPiece) == GenericPiecePawn && (to.getRank() == 0 || to.getRank() == 7)) {
 					for (PromotablePiece p = PromotablePieceQueen; p <= PromotablePieceKnight; p++) {
 						std::shared_ptr<Move> m = legalMove(beforeGameState, i, to, p);
 						if (m) {

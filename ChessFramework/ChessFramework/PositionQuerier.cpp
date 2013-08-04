@@ -20,22 +20,17 @@ unsigned short sfc::cfw::PositionQuerier::pieceCount(const Piece aPieceType) con
     return position->pieceBitmap(aPieceType).count();
 }
 
-std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksTo(const Square & aSquare, Color attackingSide) const {
-    std::set<Square> attacksTo;
-    
-    return attacksTo;
-}
-
 std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square & aSquare, Square enPassantTarget) const {
     std::set<Square> attacksFrom;
     std::bitset<64> attackedSquares = 0;
+	Piece fromSquarePiece = (*position)[aSquare];
     
-    if ((*position)[aSquare] == PieceNone) return attacksFrom;
+    if (fromSquarePiece == PieceNone) return attacksFrom;
     
     std::bitset<64> whiteOccupied = position->wPawn | position->wKing | position->wQueen | position->wRook | position->wBishop | position->wKnight;
     std::bitset<64> blackOccupied = position->bPawn | position->bKing | position->bQueen | position->bRook | position->bBishop | position->bKnight;
     
-    switch ((*position)[aSquare]) {
+    switch (fromSquarePiece) {
         case PieceWPawn: {
             attackedSquares = KGBitboardUtil::pawnAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), aSquare, true);
             
@@ -310,7 +305,7 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, S
             
             for (Square sq : pieceAttacks) {
 				if (sq == currentKingPosition) continue;
-                std::shared_ptr<Position> temp = std::make_shared<Position>(position->getFEN());
+                std::shared_ptr<Position> temp = std::make_shared<Position>(*position);
                 temp->vacate(i);
                 temp->occupy(sq, (*position)[i]);
                 

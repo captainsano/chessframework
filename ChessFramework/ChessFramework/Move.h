@@ -60,7 +60,33 @@ namespace sfc {
             Square  getFromSquare() const   { return this->fromSquare; }
             Square  getToSquare() const     { return this->toSquare; }
 			
-			CastlingType getCastlingType() const;
+			CastlingType getCastlingType() const {
+				if (this->pieceMoved == PieceWKing) {
+					if (gameStateBeforeMove->getWhiteKingSideCastlingOption() != '-' &&
+						(toSquare == Square(std::tolower(gameStateBeforeMove->getWhiteKingSideCastlingOption()) - 'a', 0))) {
+						return CastlingTypeKSide;
+					}
+					
+					if (gameStateBeforeMove->getWhiteQueenSideCastlingOption() != '-' &&
+						(toSquare == Square(std::tolower(gameStateBeforeMove->getWhiteQueenSideCastlingOption()) - 'a', 0))) {
+						return CastlingTypeQSide;
+					}
+				}
+				
+				if (this->pieceMoved == PieceBKing) {
+					if (gameStateBeforeMove->getBlackKingSideCastlingOption() != '-' &&
+						(toSquare == Square(std::tolower(gameStateBeforeMove->getBlackKingSideCastlingOption()) - 'a', 7))) {
+						return CastlingTypeKSide;
+					}
+					
+					if (gameStateBeforeMove->getBlackQueenSideCastlingOption() != '-' &&
+						(toSquare == Square(std::tolower(gameStateBeforeMove->getBlackQueenSideCastlingOption()) - 'a', 7))) {
+						return CastlingTypeQSide;
+					}
+				}
+				
+				return CastlingTypeNone;
+			}
             
             Piece           getCapturedPiece() const    { return this->capturedPiece; }
             PromotablePiece getPromotedToPiece() const  { return this->promotedToPiece; }
@@ -68,12 +94,9 @@ namespace sfc {
             std::shared_ptr<GameState> getGameStateBeforeMove() const   { return this->gameStateBeforeMove; }
             std::shared_ptr<GameState> getGameStateAfterMove() const    { return this->gameStateAfterMove; }
 			
-			
-			
 			friend std::shared_ptr<Move> MoveFactory::legalMove(std::shared_ptr<GameState> beforeGameState, Square fromSquare, Square toSquare, PromotablePiece promotedToPiece);
 			friend std::vector<std::shared_ptr<Move>> MoveFactory::allLegalMoves(std::shared_ptr<GameState>, Piece);
-        };
-        
+        };        
     }
 }
 

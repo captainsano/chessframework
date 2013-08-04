@@ -11,6 +11,7 @@
 #define __ChessFramework__GameState__
 
 #include <string>
+#include <regex>
 #include <memory>
 #include "Piece.h"
 #include "Square.h"
@@ -35,14 +36,43 @@ namespace sfc {
 			KingStatus	whiteKingStatus		= KingStatusNormal;	/// @todo Change type to king status enum
 			KingStatus	blackKingStatus		= KingStatusNormal;	/// @todo Change type to king status enum
 			
+			void validate();
+			
 		public:
-			// Default instantiation is prevented by ambiguity introduced
-			// due to the ambiguity introduced by the other constructor
+						
+			GameState(const Position & aPosition,
+					  const Color & aSideToMove = ColorWhite,
+					  const std::string & aCastlingOptions = "----",
+					  const Square & aEnpassantTarget = Square(0)
+					  ) :
+			position(std::make_shared<Position>(aPosition)),
+			sideToMove(aSideToMove),
+			// Castling Options have to be initialized separately
+			enpassantTarget(aEnpassantTarget) {
+				/* Sanity Checks on castling */
+				if (aCastlingOptions.size() < 4) {
+					throw std::invalid_argument("Insufficient castling options information");
+				}
+				// check for valid characters in castling options string
+				/// @note In chess 960 the kingside rook can only be placed between c-h and queenside a-f
+				if (!std::regex_match(aCastlingOptions, std::regex("[KC-H\\-][QA-F\\-][kc-h\\-][qa-f\\-]"))) {
+					throw std::invalid_argument("Malformed castling options string");
+				}
+				
+				this->castlingOptions[0] = (aCastlingOptions[0] == 'K')?'H':aCastlingOptions[0];
+				this->castlingOptions[1] = (aCastlingOptions[1] == 'Q')?'A':aCastlingOptions[1];
+				this->castlingOptions[2] = (aCastlingOptions[2] == 'k')?'h':aCastlingOptions[2];
+				this->castlingOptions[3] = (aCastlingOptions[3] == 'q')?'a':aCastlingOptions[3];
+				
+				validate();
+			}
+			
 			GameState(const std::string & FENString = std::string("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"),
 					  const Color & aSideToMove = ColorWhite,
 					  const std::string & aCastlingOptions = "----",
 					  const Square & aEnpassantTarget = Square(0)
-					  );
+					  ) :
+			GameState(Position(FENString), aSideToMove, aCastlingOptions, aEnpassantTarget) { }
 			
 			std::shared_ptr<const Position> getPosition() const {
 				return this->position;

@@ -10,6 +10,8 @@
 #ifndef __ChessFramework__Piece__
 #define __ChessFramework__Piece__
 
+#include <stdexcept>
+
 namespace sfc {
 	namespace cfw {
 		// 1-bit identifying the color of the piece or a square
@@ -56,11 +58,32 @@ namespace sfc {
 			PromotablePieceKnight	= 0x6	// -110
 		} PromotablePiece;
         
-        Color getPieceColor(const Piece & aPiece);
-        Piece makePiece(const GenericPiece aPiece, const Color aColor);
-        Piece makePiece(const PromotablePiece aPiece, const Color aColor);
-		GenericPiece getGenericPiece(const Piece aPiece);
-		GenericPiece getGenericPiece(const PromotablePiece aPiece);
+        inline Color getPieceColor(const Piece & aPiece) {
+			if (aPiece >= PieceWPawn && aPiece <= PieceWKnight) {
+				return ColorWhite;
+			} else if (aPiece >= PieceBPawn && aPiece <= PieceBKnight) {
+				return ColorBlack;
+			}
+			
+			throw std::invalid_argument("Color cannot be determined for an empty piece");
+			return ColorWhite;
+		}
+		
+		inline Piece makePiece(const GenericPiece & aPiece, const Color & aColor) {
+			return (Piece)((aColor << 3) | aPiece);
+		}
+		
+		inline Piece makePiece(const PromotablePiece & aPiece, const Color & aColor) {
+			return (Piece)((aColor << 3) | aPiece);
+		}
+		
+		inline GenericPiece getGenericPiece(const Piece & aPiece) {
+			return (GenericPiece)(aPiece & 7);
+		}
+		
+		inline GenericPiece getGenericPiece(const PromotablePiece & aPiece) {
+			return (GenericPiece)(aPiece & 7);
+		}
 	}
 }
 
