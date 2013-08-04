@@ -131,8 +131,8 @@ sfc::cfw::GameState::GameState(const std::string & FENString,
 	this->castlingOptions[3] = (aCastlingOptions[3] == 'q')?'a':aCastlingOptions[3];
 	this->enpassantTarget = aEnpassantTarget;
     
-    this->whiteKingStatus = querier->getKingStatus(ColorWhite);
-    this->blackKingStatus = querier->getKingStatus(ColorBlack);
+    this->whiteKingStatus = querier->getKingStatus(ColorWhite, enpassantTarget);
+    this->blackKingStatus = querier->getKingStatus(ColorBlack, enpassantTarget);
 }
 
 bool sfc::cfw::GameState::hasSufficientMaterial() const {

@@ -178,12 +178,20 @@ using namespace sfc::cfw;
     XCTAssertTrue(q->getKingStatus(ColorWhite, Square("d6")) == KingStatusNormal, @"White King status should be normal, not stalemate");
 }
 
-- (void)testConsidersEnpassantToAvoidBlackStalemate {
+- (void)testConsidersEnpassantToAvoidBlackStalemate1 {
     std::shared_ptr<Position> p = std::make_shared<Position>("1Q6/8/k7/8/PPp5/2P5/K7/8");
     std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
     
     XCTAssertTrue(q->getKingStatus(ColorBlack, Square("b3")) == KingStatusNormal, @"Black King status should be normal, not stalemate");
     XCTAssertTrue(q->getKingStatus(ColorWhite, Square("b3")) == KingStatusNormal, @"White King status should be normal");
+}
+
+- (void)testConsidersEnpassantToAvoidBlackCheckmate2 {
+	std::shared_ptr<Position> p = std::make_shared<Position>("8/2rb3p/R5p1/4kn2/3NpP2/1B2P2P/6K1/8");
+	std::shared_ptr<PositionQuerier> q = std::make_shared<PositionQuerier>(p);
+	
+	XCTAssertTrue(q->getKingStatus(ColorBlack, Square("f3")) == KingStatusCheck, @"Black's king status should be check");
+	XCTAssertTrue(q->getKingStatus(ColorWhite) == KingStatusNormal, @"White's king status shoudl be normal");
 }
 
 - (void)testConsidersEnpassantToAvoidWhiteCheckmate {

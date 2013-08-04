@@ -315,12 +315,13 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, S
                 temp->occupy(sq, (*position)[i]);
                 
                 // If piece is pawn and option is enpassant, remove the corresponding opponent's pawn
-                if (sq == enPassantTarget && (*position)[i] == makePiece(GenericPiecePawn, kingColor)) {
-                    if (kingColor == ColorWhite) {
-                        temp->vacate(Square(enPassantTarget.getFile(), enPassantTarget.getRank() - 1));
-                    } else {
-                        temp->vacate(Square(enPassantTarget.getFile(), enPassantTarget.getRank() + 1));
-                    }
+				if (sq == enPassantTarget && (*position)[i] == makePiece(GenericPiecePawn, kingColor)) {
+					// Test if the enpassant target is valid and then remove the opponent pawn
+					if (kingColor == ColorWhite && enPassantTarget.getRank() == 5) {
+						temp->vacate(Square(enPassantTarget.getFile(), enPassantTarget.getRank() - 1));
+					} else if (kingColor == ColorBlack && enPassantTarget.getRank() == 2) {
+						temp->vacate(Square(enPassantTarget.getFile(), enPassantTarget.getRank() + 1));
+					}
                 }
                 
                 PositionQuerier q(temp);

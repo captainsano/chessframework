@@ -103,6 +103,16 @@ using namespace sfc::cfw;
 	XCTAssertTrue(MoveFactory::legalMove(g, Square("a4"), Square("a5")), @"Move should be legal");
 }
 
+- (void)testBlackKingIsUnderCheckAfterWhiteDoublePawnPush {
+	std::shared_ptr<GameState> g = std::make_shared<GameState>("8/2rb3p/R5p1/4kn2/3Np3/1B2P2P/5PK1/8", ColorWhite);
+	
+	std::shared_ptr<Move> f2f4 = MoveFactory::legalMove(g, Square("f2"), Square("f4"));
+	
+	XCTAssertTrue(f2f4, @"Move should be considered legal");
+	XCTAssertTrue(f2f4->getGameStateAfterMove()->getBlackKingStatus() == KingStatusCheck, @"Black's king status after the move should be under check");
+	XCTAssertTrue(f2f4->getGameStateAfterMove()->getWhiteKingStatus() == KingStatusNormal, @"White's king status after the move should be normal");
+}
+
 // Rest of the stuff is checked by the legal move generator, compared with legal moves from stockfish engine.
 
 @end

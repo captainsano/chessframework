@@ -305,7 +305,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 			}
 			case PieceWPawn: {
 				// If the last move was a double pawn move, then update the enPassant target
-				if (fromSquare.getRank() == 1 && (abs(toSquare.getRank() - fromSquare.getRank()) == 2)) {
+				if (fromSquare.getRank() == 1 && (toSquare.getRank() - fromSquare.getRank() == 2)) {
 					nextEnpassantTarget = Square(toSquare.getFile(), 2);
 				}
 				
@@ -319,7 +319,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 			}
 			case PieceBPawn: {
 				// If the last move was a double pawn move, then update the enPassant target
-				if (fromSquare.getRank() == 6 && (abs(toSquare.getRank() - fromSquare.getRank()) == 2)) {
+				if (fromSquare.getRank() == 6 && (fromSquare.getRank() - toSquare.getRank()) == 2) {
 					nextEnpassantTarget = Square(toSquare.getFile(), 5);
 				}
 				
@@ -359,7 +359,6 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 		default:
 			break;
 	}
-	
 	
 	// Update the common information in the new move and next game state
 	std::shared_ptr<GameState> updatedGameState = nullptr;
