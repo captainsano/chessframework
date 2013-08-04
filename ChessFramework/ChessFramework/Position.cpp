@@ -37,7 +37,7 @@ bool sfc::cfw::Position::validateFEN(const std::string & FENString) {
 	return false;
 }
 
-std::bitset<64> & sfc::cfw::Position::pieceBitmap(const Piece aPieceType) {
+std::bitset<64> & sfc::cfw::Position::pieceBitmap(const Piece & aPieceType) {
     switch (aPieceType) {
         case PieceWPawn:    return this->wPawn;
         case PieceWKing:    return this->wKing;
@@ -58,7 +58,7 @@ std::bitset<64> & sfc::cfw::Position::pieceBitmap(const Piece aPieceType) {
     }
 }
 
-const std::bitset<64> & sfc::cfw::Position::pieceBitmap(const Piece aPieceType) const {
+const std::bitset<64> & sfc::cfw::Position::pieceBitmap(const Piece & aPieceType) const {
     switch (aPieceType) {
         case PieceWPawn:    return this->wPawn;
         case PieceWKing:    return this->wKing;
@@ -81,7 +81,6 @@ const std::bitset<64> & sfc::cfw::Position::pieceBitmap(const Piece aPieceType) 
 
 sfc::cfw::Position::Position(const std::string & FENString) {
 	if (sfc::cfw::Position::validateFEN(FENString)) {
-		
 		/// Expand the FEN @todo Write an algorithm such that expansion is not required [REFACTOR]
 		std::string expandedFEN(FENString);
 		
@@ -146,78 +145,31 @@ sfc::cfw::Position::Position(const std::string & FENString) {
 
 sfc::cfw::Piece sfc::cfw::Position::vacate(const Square & aSquare) {
 	// First, find out which piece has occupied the square.
-    if ((*this)[aSquare] != PieceNone) {
-        Piece previousOccupied = (*this)[aSquare];
-        this->pieceBitmap((*this)[aSquare])[aSquare] = 0;
-        return previousOccupied;
-    }
+	if ((*this)[aSquare] != PieceNone) {
+		Piece previousOccupied = (*this)[aSquare];
+		this->pieceBitmap((*this)[aSquare])[aSquare] = 0;
+		return previousOccupied;
+	}
 	
 	return PieceNone;
 }
 
-sfc::cfw::Piece sfc::cfw::Position::occupy(const Square & aSquare, const Piece aPieceType) {
+sfc::cfw::Piece sfc::cfw::Position::occupy(const Square & aSquare, const Piece & aPieceType) {
 	// Make sure that the other pieces occupying the same square are vacated
 	Piece vacatedPiece = vacate(aSquare);
 	switch (aPieceType) {
-		case PieceWPawn: {
-			wPawn.set(aSquare);
-			break;
-		}
-			
-		case PieceWKing: {
-			wKing.set(aSquare);
-			break;
-		}
-			
-		case PieceWQueen: {
-			wQueen.set(aSquare);
-			break;
-		}
-			
-		case PieceWRook: {
-			wRook.set(aSquare);
-			break;
-		}
-			
-		case PieceWBishop: {
-			wBishop.set(aSquare);
-			break;
-		}
-			
-		case PieceWKnight: {
-			wKnight.set(aSquare);
-			break;
-		}
-			
-		case PieceBPawn: {
-			bPawn.set(aSquare);
-			break;
-		}
-			
-		case PieceBKing: {
-			bKing.set(aSquare);
-			break;
-		}
-			
-		case PieceBQueen: {
-			bQueen.set(aSquare);
-			break;
-		}
-			
-		case PieceBRook: {
-			bRook.set(aSquare);
-			break;
-		}
-			
-		case PieceBBishop: {
-			bBishop.set(aSquare);
-			break;
-		}
-			
-		case PieceBKnight: {
-			bKnight.set(aSquare);
-			break;
-		}
+		case PieceWPawn: { wPawn.set(aSquare); break; }
+		case PieceWKing: { wKing.set(aSquare); break; }
+		case PieceWQueen: { wQueen.set(aSquare); break; }
+		case PieceWRook: { wRook.set(aSquare); break; }
+		case PieceWBishop: { wBishop.set(aSquare); break; }
+		case PieceWKnight: { wKnight.set(aSquare); break; }
+		case PieceBPawn: { bPawn.set(aSquare); break; }
+		case PieceBKing: { bKing.set(aSquare); break; }
+		case PieceBQueen: { bQueen.set(aSquare); break; }
+		case PieceBRook: { bRook.set(aSquare); break; }
+		case PieceBBishop: { bBishop.set(aSquare); break; }
+		case PieceBKnight: { bKnight.set(aSquare); break; }
 		case PieceNone:
 			// no action
 			break;
@@ -225,7 +177,6 @@ sfc::cfw::Piece sfc::cfw::Position::occupy(const Square & aSquare, const Piece a
 	
 	return vacatedPiece;
 }
-
 
 std::string sfc::cfw::Position::getFEN() const {
 	std::string FENString;

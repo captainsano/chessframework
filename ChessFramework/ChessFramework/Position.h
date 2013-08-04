@@ -42,16 +42,16 @@ namespace sfc {
 			std::bitset<64> bKnight	= 0x0000000000000000;
 						
             bool validateFEN(const std::string & FENString);
-            std::bitset<64> & pieceBitmap(const Piece aPieceType);
-            const std::bitset<64> & pieceBitmap(const Piece aPieceType) const;
+            std::bitset<64> & pieceBitmap(const Piece & aPieceType);
+            const std::bitset<64> & pieceBitmap(const Piece & aPieceType) const;
             
 		public:			
 			Position() = default;
 			Position(const std::string & FENString);
 			
 			Piece vacate(const Square & aSquare);
-			Piece occupy(const Square & aSquare, const Piece aPieceType);
-			
+			Piece occupy(const Square & aSquare, const Piece & aPieceType);
+						
 			operator std::string () const { return this->getFEN(); }
 			std::string getFEN() const;
                     
@@ -59,32 +59,18 @@ namespace sfc {
 			std::string prettyString() const;
 			
 			Piece operator[] (const Square & aSquare) const {
-				if (wPawn[aSquare]) {
-					return PieceWPawn;
-				} else if (wKing[aSquare]) {
-					return PieceWKing;
-				} else if (wQueen[aSquare]) {
-					return PieceWQueen;
-				} else if (wRook[aSquare]) {
-					return PieceWRook;
-				} else if (wBishop[aSquare]) {
-					return PieceWBishop;
-				} else if (wKnight[aSquare]) {
-					return PieceWKnight;
-				} else if (bPawn[aSquare]) {
-					return PieceBPawn;
-				} else if (bKing[aSquare]) {
-					return PieceBKing;
-				} else if (bQueen[aSquare]) {
-					return PieceBQueen;
-				} else if (bRook[aSquare]) {
-					return PieceBRook;
-				} else if (bBishop[aSquare]) {
-					return PieceBBishop;
-				} else if (bKnight[aSquare]) {
-					return PieceBKnight;
-				}
-				
+				if (wPawn[aSquare])			{ return PieceWPawn; }
+				else if (wKing[aSquare])	{ return PieceWKing; }
+				else if (wQueen[aSquare])	{ return PieceWQueen; }
+				else if (wRook[aSquare])	{ return PieceWRook; }
+				else if (wBishop[aSquare])	{ return PieceWBishop; }
+				else if (wKnight[aSquare])	{ return PieceWKnight; }
+				else if (bPawn[aSquare])	{ return PieceBPawn; }
+				else if (bKing[aSquare])	{ return PieceBKing; }
+				else if (bQueen[aSquare])	{ return PieceBQueen; }
+				else if (bRook[aSquare])	{ return PieceBRook; }
+				else if (bBishop[aSquare])	{ return PieceBBishop; }
+				else if (bKnight[aSquare])	{ return PieceBKnight; }
 				return PieceNone;
 			}
 		};

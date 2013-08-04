@@ -19,6 +19,26 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 	std::shared_ptr<Position> tempPosition = std::make_shared<Position>(*(beforeGameState->getPosition()));
 	std::shared_ptr<PositionQuerier> querier = std::make_shared<PositionQuerier>(tempPosition);
 	
+	/*----------------- Look for NULL moves --------------------*/
+	if (fromSquare == toSquare) {
+		return std::shared_ptr<Move>(
+									 new Move(fromSquare,
+											  toSquare,
+											  PieceNone,
+											  beforeGameState,
+											  std::make_shared<GameState>(*(beforeGameState->getPosition()),
+																		  (beforeGameState->getSideToMove() == ColorWhite)?ColorBlack:ColorWhite,
+																		  std::string{
+																			  beforeGameState->getWhiteKingSideCastlingOption(),
+																			  beforeGameState->getWhiteQueenSideCastlingOption(),
+																			  beforeGameState->getBlackKingSideCastlingOption(),
+																			  beforeGameState->getBlackQueenSideCastlingOption(),
+																		  },
+																		  beforeGameState->getEnpassantTarget())
+											  )
+		);
+	}
+	
 	/*----------------- Fields for updating GameState and move ---------------*/
 	Piece capturedPiece = PieceNone, movedPiece = (*tempPosition)[fromSquare];
 	
@@ -42,208 +62,204 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 	CastlingType castlingType = CastlingTypeNone;
 	
 	/*-------------------------- White King and Castling --------------------------*/
-	{
-		// If the movedPiece is King and move is castling, see if the corresponding castling option is available + no blockers
-		if (movedPiece == PieceWKing && beforeGameState->getWhiteKingStatus() == KingStatusNormal) {
-			// Check if kingside castling is available and if the move is castling, then check for blockers
-			// Castling is not allowed when in check
-			if (beforeGameState->getWhiteKingSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
-				unsigned short toFile = std::tolower(beforeGameState->getWhiteKingSideCastlingOption()) - 'a';
-				if (toSquare.getFile() == toFile) {
-					tempPosition->vacate(fromSquare);
-					tempPosition->vacate(toSquare);
-					// Check that the squares between king and rook are free
-					// and as king occupies those squares it is not under check
-					// We explicitly check f1 and g1 because they may be missed in iteration
-					if ((*tempPosition)[Square("f1")] == PieceNone && (*tempPosition)[Square("g1")] == PieceNone) {
-						castlingType = CastlingTypeKSide;
-						for (unsigned short i = fromSquare + 1; i < toSquare; i++) {
-							if ((*tempPosition)[i] != PieceNone) {
+	// If the movedPiece is King and move is castling, see if the corresponding castling option is available + no blockers
+	if (movedPiece == PieceWKing && beforeGameState->getWhiteKingStatus() == KingStatusNormal) {
+		// Check if kingside castling is available and if the move is castling, then check for blockers
+		// Castling is not allowed when in check
+		if (beforeGameState->getWhiteKingSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
+			unsigned short toFile = std::tolower(beforeGameState->getWhiteKingSideCastlingOption()) - 'a';
+			if (toSquare.getFile() == toFile) {
+				tempPosition->vacate(fromSquare);
+				tempPosition->vacate(toSquare);
+				// Check that the squares between king and rook are free
+				// and as king occupies those squares it is not under check
+				// We explicitly check f1 and g1 because they may be missed in iteration
+				if ((*tempPosition)[Square("f1")] == PieceNone && (*tempPosition)[Square("g1")] == PieceNone) {
+					castlingType = CastlingTypeKSide;
+					for (unsigned short i = fromSquare + 1; i < toSquare; i++) {
+						if ((*tempPosition)[i] != PieceNone) {
+							castlingType = CastlingTypeNone;
+							break;	// blocker exists
+						} else {
+							tempPosition->occupy(i, PieceWKing);
+							// A square in castle path is under attack
+							if (querier->isKingInCheck(ColorWhite)) {
+								tempPosition->vacate(i); // Vacate the king from the temp location i
 								castlingType = CastlingTypeNone;
-								break;	// blocker exists
-							} else {
-								tempPosition->occupy(i, PieceWKing);
-								// A square in castle path is under attack
-								if (querier->isKingInCheck(ColorWhite)) {
-									tempPosition->vacate(i); // Vacate the king from the temp location i
-									castlingType = CastlingTypeNone;
-									break;
-								}
-								tempPosition->vacate(i);
+								break;
 							}
+							tempPosition->vacate(i);
 						}
-					}
-					
-					if (castlingType == CastlingTypeKSide) {
-						// Update the temp position
-						tempPosition->occupy(Square("g1"), PieceWKing);
-						tempPosition->vacate(toSquare);
-						tempPosition->occupy(Square("f1"), PieceWRook);
-						
-						// Update white's castling options
-						nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
-					} else {
-						// Put back everything
-						tempPosition->occupy(fromSquare, PieceWKing);
-						tempPosition->occupy(toSquare, PieceWRook);
 					}
 				}
-			}
-			
-			// Check if queenside castling is available and if the move is castling, then check for blockers
-			// Castling is not allowed when in check
-			if (beforeGameState->getWhiteQueenSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
-				unsigned short toFile = std::tolower(beforeGameState->getWhiteQueenSideCastlingOption()) - 'a';
-				if (toSquare.getFile() == toFile) {
-					tempPosition->vacate(fromSquare);
+				
+				if (castlingType == CastlingTypeKSide) {
+					// Update the temp position
+					tempPosition->occupy(Square("g1"), PieceWKing);
 					tempPosition->vacate(toSquare);
-					// Check that the squares between king and rook are free
-					// and as king occupies those squares it is not under check
-					// We explicitly check c1 and d1 because they may be missed in iteration
-					if ((*tempPosition)[Square("c1")] == PieceNone && (*tempPosition)[Square("d1")] == PieceNone) {
-						castlingType = CastlingTypeQSide;
-						for (unsigned short i = fromSquare - 1; i >= Square("c1"); i--) {
-							if ((*tempPosition)[i] != PieceNone) {
+					tempPosition->occupy(Square("f1"), PieceWRook);
+					
+					// Update white's castling options
+					nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
+				} else {
+					// Put back everything
+					tempPosition->occupy(fromSquare, PieceWKing);
+					tempPosition->occupy(toSquare, PieceWRook);
+				}
+			}
+		}
+		
+		// Check if queenside castling is available and if the move is castling, then check for blockers
+		// Castling is not allowed when in check
+		if (beforeGameState->getWhiteQueenSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
+			unsigned short toFile = std::tolower(beforeGameState->getWhiteQueenSideCastlingOption()) - 'a';
+			if (toSquare.getFile() == toFile) {
+				tempPosition->vacate(fromSquare);
+				tempPosition->vacate(toSquare);
+				// Check that the squares between king and rook are free
+				// and as king occupies those squares it is not under check
+				// We explicitly check c1 and d1 because they may be missed in iteration
+				if ((*tempPosition)[Square("c1")] == PieceNone && (*tempPosition)[Square("d1")] == PieceNone) {
+					castlingType = CastlingTypeQSide;
+					for (unsigned short i = fromSquare - 1; i >= Square("c1"); i--) {
+						if ((*tempPosition)[i] != PieceNone) {
+							castlingType = CastlingTypeNone;
+							break;	// blocker exists
+						} else {
+							tempPosition->occupy(i, PieceWKing);
+							// A square in castle path is under attack
+							if (querier->isKingInCheck(ColorWhite)) {
+								tempPosition->vacate(i);	// Vacate the king from the temp location i
 								castlingType = CastlingTypeNone;
-								break;	// blocker exists
-							} else {
-								tempPosition->occupy(i, PieceWKing);
-								// A square in castle path is under attack
-								if (querier->isKingInCheck(ColorWhite)) {
-									tempPosition->vacate(i);	// Vacate the king from the temp location i
-									castlingType = CastlingTypeNone;
-									break;
-								}
-								tempPosition->vacate(i);
+								break;
 							}
-						}
-						
-						// Explicitly check if b8 should be free in case the rook is on a8 or b8
-						if (toSquare < Square("c1")) {
-							if ((*tempPosition)[Square("b1")] != PieceNone) {
-								castlingType = CastlingTypeNone;
-							}
+							tempPosition->vacate(i);
 						}
 					}
 					
-					if (castlingType == CastlingTypeQSide) {
-						// Update the temp position
-						tempPosition->occupy(Square("c1"), PieceWKing);
-						tempPosition->vacate(toSquare);
-						tempPosition->occupy(Square("d1"), PieceWRook);
-						
-						// Update white's castling options
-						nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
-					} else {
-						// Put back everything
-						tempPosition->occupy(fromSquare, PieceWKing);
-						tempPosition->occupy(toSquare, PieceWRook);
+					// Explicitly check if b8 should be free in case the rook is on a8 or b8
+					if (toSquare < Square("c1")) {
+						if ((*tempPosition)[Square("b1")] != PieceNone) {
+							castlingType = CastlingTypeNone;
+						}
 					}
+				}
+				
+				if (castlingType == CastlingTypeQSide) {
+					// Update the temp position
+					tempPosition->occupy(Square("c1"), PieceWKing);
+					tempPosition->vacate(toSquare);
+					tempPosition->occupy(Square("d1"), PieceWRook);
+					
+					// Update white's castling options
+					nextCastlingOptions[0] = nextCastlingOptions[1] = '-';
+				} else {
+					// Put back everything
+					tempPosition->occupy(fromSquare, PieceWKing);
+					tempPosition->occupy(toSquare, PieceWRook);
 				}
 			}
 		}
 	}
 	
 	/*-------------------------- Black King and Castling --------------------------*/
-	{
-		// If the movedPiece is King and move is castling, see if the corresponding castling option is available + no blockers
-		if (movedPiece == PieceBKing && beforeGameState->getBlackKingStatus() == KingStatusNormal) {
-			// Check if kingside castling is available and if the move is castling, then check for blockers
-			// Castling is not allowed when in check therefore, do not evaluate castling
-			if (beforeGameState->getBlackKingSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
-				unsigned short toFile = std::tolower(beforeGameState->getBlackKingSideCastlingOption()) - 'a';
-				if (toSquare.getFile() == toFile) {
-					tempPosition->vacate(fromSquare);
-					tempPosition->vacate(toSquare);
-					// Check that the squares between king and rook are free
-					// and as king occupies those squares it is not under check
-					// We explicitly check f8 and g8 because they may be missed in iteration
-					if ((*tempPosition)[Square("f8")] == PieceNone && (*tempPosition)[Square("g8")] == PieceNone) {
-						castlingType = CastlingTypeKSide;
-						for (unsigned short i = fromSquare + 1; i <= Square("g8"); i++) {
-							if ((*tempPosition)[i] != PieceNone) {
+	// If the movedPiece is King and move is castling, see if the corresponding castling option is available + no blockers
+	if (movedPiece == PieceBKing && beforeGameState->getBlackKingStatus() == KingStatusNormal) {
+		// Check if kingside castling is available and if the move is castling, then check for blockers
+		// Castling is not allowed when in check therefore, do not evaluate castling
+		if (beforeGameState->getBlackKingSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
+			unsigned short toFile = std::tolower(beforeGameState->getBlackKingSideCastlingOption()) - 'a';
+			if (toSquare.getFile() == toFile) {
+				tempPosition->vacate(fromSquare);
+				tempPosition->vacate(toSquare);
+				// Check that the squares between king and rook are free
+				// and as king occupies those squares it is not under check
+				// We explicitly check f8 and g8 because they may be missed in iteration
+				if ((*tempPosition)[Square("f8")] == PieceNone && (*tempPosition)[Square("g8")] == PieceNone) {
+					castlingType = CastlingTypeKSide;
+					for (unsigned short i = fromSquare + 1; i <= Square("g8"); i++) {
+						if ((*tempPosition)[i] != PieceNone) {
+							castlingType = CastlingTypeNone;
+							break;	// blocker exists
+						} else {
+							tempPosition->occupy(i, PieceBKing);
+							// A square in castle path is under attack
+							if (querier->isKingInCheck(ColorBlack)) {
 								castlingType = CastlingTypeNone;
-								break;	// blocker exists
-							} else {
-								tempPosition->occupy(i, PieceBKing);
-								// A square in castle path is under attack
-								if (querier->isKingInCheck(ColorBlack)) {
-									castlingType = CastlingTypeNone;
-									tempPosition->vacate(i);	// Vacate the king from the temp location i
-									break;
-								}
-								tempPosition->vacate(i);
+								tempPosition->vacate(i);	// Vacate the king from the temp location i
+								break;
 							}
+							tempPosition->vacate(i);
+						}
+					}
+				}
+				
+				if (castlingType == CastlingTypeKSide) {
+					// Update the temp position
+					tempPosition->occupy(Square("g8"), PieceBKing);
+					tempPosition->vacate(toSquare);
+					tempPosition->occupy(Square("f8"), PieceBRook);
+					
+					// Update black's castling options
+					nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
+				} else {
+					// Put back everything
+					tempPosition->occupy(fromSquare, PieceBKing);
+				}
+			}
+		}
+		
+		// Check if queenside castling is available and if the move is castling, then check for blockers
+		// Castling is not allowed when in check
+		if (beforeGameState->getBlackQueenSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
+			unsigned short toFile = std::tolower(beforeGameState->getBlackQueenSideCastlingOption()) - 'a';
+			if (toSquare.getFile() == toFile) {
+				tempPosition->vacate(fromSquare);
+				tempPosition->vacate(toSquare);
+				// Check that the squares between king and rook are free
+				// and as king occupies those squares it is not under check
+				// We explicitly check d8 and c8 because they may be missed in iteration
+				if ((*tempPosition)[Square("d8")] == PieceNone && (*tempPosition)[Square("c8")] == PieceNone) {
+					castlingType = CastlingTypeQSide;
+					for (unsigned short i = fromSquare - 1; i >= Square("c8"); i--) {
+						if ((*tempPosition)[i] != PieceNone) {
+							castlingType = CastlingTypeNone;
+							break;	// blocker exists
+						} else {
+							tempPosition->occupy(i, PieceBKing);
+							// A square in castle path is under attack
+							if (querier->isKingInCheck(ColorBlack)) {
+								tempPosition->vacate(i); // Vacate the king from temp location i
+								castlingType = CastlingTypeNone;
+								break;
+							}
+							tempPosition->vacate(i);
 						}
 					}
 					
-					if (castlingType == CastlingTypeKSide) {
-						// Update the temp position
-						tempPosition->occupy(Square("g8"), PieceBKing);
-						tempPosition->vacate(toSquare);
-						tempPosition->occupy(Square("f8"), PieceBRook);
-						
-						// Update black's castling options
-						nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
-					} else {
-						// Put back everything
-						tempPosition->occupy(fromSquare, PieceBKing);
+					// Explicitly check if b8 should be free in case the rook is on a8 or b8
+					if (toSquare < Square("c8")) {
+						if ((*tempPosition)[Square("b8")] != PieceNone) {
+							castlingType = CastlingTypeNone;
+						}
 					}
 				}
-			}
-			// Check if queenside castling is available and if the move is castling, then check for blockers
-			// Castling is not allowed when in check
-			if (beforeGameState->getBlackQueenSideCastlingOption() != '-' && castlingType == CastlingTypeNone) {
-				unsigned short toFile = std::tolower(beforeGameState->getBlackQueenSideCastlingOption()) - 'a';
-				if (toSquare.getFile() == toFile) {
-					tempPosition->vacate(fromSquare);
+					
+				if (castlingType == CastlingTypeQSide) {
+					// Update the temp position
+					tempPosition->occupy(Square("c8"), PieceBKing);
 					tempPosition->vacate(toSquare);
-					// Check that the squares between king and rook are free
-					// and as king occupies those squares it is not under check
-					// We explicitly check d8 and c8 because they may be missed in iteration
-					if ((*tempPosition)[Square("d8")] == PieceNone && (*tempPosition)[Square("c8")] == PieceNone) {
-						castlingType = CastlingTypeQSide;
-						for (unsigned short i = fromSquare - 1; i >= Square("c8"); i--) {
-							if ((*tempPosition)[i] != PieceNone) {
-								castlingType = CastlingTypeNone;
-								break;	// blocker exists
-							} else {
-								tempPosition->occupy(i, PieceBKing);
-								// A square in castle path is under attack
-								if (querier->isKingInCheck(ColorBlack)) {
-									tempPosition->vacate(i); // Vacate the king from temp location i
-									castlingType = CastlingTypeNone;
-									break;
-								}
-								tempPosition->vacate(i);
-							}
-						}
-						
-						// Explicitly check if b8 should be free in case the rook is on a8 or b8
-						if (toSquare < Square("c8")) {
-							if ((*tempPosition)[Square("b8")] != PieceNone) {
-								castlingType = CastlingTypeNone;
-							}
-						}
-					}
-						
-					if (castlingType == CastlingTypeQSide) {
-						// Update the temp position
-						tempPosition->occupy(Square("c8"), PieceBKing);
-						tempPosition->vacate(toSquare);
-						tempPosition->occupy(Square("d8"), PieceBRook);
-						
-						// Update black's castling options
-						nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
-					} else {
-						// Put back everything
-						tempPosition->occupy(fromSquare, PieceBKing);
-					}
+					tempPosition->occupy(Square("d8"), PieceBRook);
+					
+					// Update black's castling options
+					nextCastlingOptions[2] = nextCastlingOptions[3] = '-';
+				} else {
+					// Put back everything
+					tempPosition->occupy(fromSquare, PieceBKing);
 				}
 			}
 		}
 	}
-	
 	// If castling, the legal move evaluation ends here.
 	
 	/*-------------------------- Normal Piece Moves --------------------------*/
@@ -438,5 +454,3 @@ std::vector<std::shared_ptr<sfc::cfw::Move>> sfc::cfw::MoveFactory::allLegalMove
 	
 	return legalMovesList;
 }
-
-// Todo add facility for NULL Move

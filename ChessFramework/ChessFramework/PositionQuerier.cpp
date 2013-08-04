@@ -10,7 +10,7 @@
 #include "KGBitboardUtil.h"
 #include <set>
 
-unsigned short sfc::cfw::PositionQuerier::pieceCount(const Piece aPieceType) const {
+unsigned short sfc::cfw::PositionQuerier::pieceCount(const Piece & aPieceType) const {
     if (aPieceType == PieceNone) {
         return 64 - (position->wPawn | position->wKing | position->wQueen | position->wRook |
                      position->wBishop |position->wKnight | position->bPawn | position->bKing |
@@ -20,7 +20,7 @@ unsigned short sfc::cfw::PositionQuerier::pieceCount(const Piece aPieceType) con
     return position->pieceBitmap(aPieceType).count();
 }
 
-std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square & aSquare, Square enPassantTarget) const {
+std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square & aSquare, const Square & enPassantTarget) const {
     std::set<Square> attacksFrom;
     std::bitset<64> attackedSquares = 0;
 	Piece fromSquarePiece = (*position)[aSquare];
@@ -65,7 +65,6 @@ std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square &
             
         case PieceWKing: {
             attackedSquares = KGBitboardUtil::kingAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), aSquare, true);
-            /// @todo: Handle castling
             break;
         }
             
@@ -113,7 +112,6 @@ std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square &
         }
         case PieceBKing: {
             attackedSquares = KGBitboardUtil::kingAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), aSquare, false);
-            /// @todo: Handle castling
             break;
         }
             
@@ -150,9 +148,7 @@ std::set<sfc::cfw::Square> sfc::cfw::PositionQuerier::attacksFrom(const Square &
     return attacksFrom;
 }
 
-#pragma mark - Experimental
-
-bool sfc::cfw::PositionQuerier::attackIntersectsPiece(const Piece aPiece1, const Piece aPiece2) const {
+bool sfc::cfw::PositionQuerier::attackIntersectsPiece(const Piece & aPiece1, const Piece & aPiece2) const {
     if (aPiece1 == PieceNone || aPiece2 == PieceNone) {
         return false;
     }
@@ -172,7 +168,6 @@ bool sfc::cfw::PositionQuerier::attackIntersectsPiece(const Piece aPiece1, const
                     
                 case PieceWKing: {
                     attacks |= KGBitboardUtil::kingAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), i, true);
-                    /// @todo: Handle castling
                     break;
                 }
                     
@@ -193,7 +188,6 @@ bool sfc::cfw::PositionQuerier::attackIntersectsPiece(const Piece aPiece1, const
                 }
                 case PieceBKing: {
                     attacks |= KGBitboardUtil::kingAttacks(whiteOccupied.to_ullong(), blackOccupied.to_ullong(), i, false);
-                    /// @todo: Handle castling
                     break;
                 }
                     
@@ -230,7 +224,7 @@ bool sfc::cfw::PositionQuerier::attackIntersectsPiece(const Piece aPiece1, const
     return false;
 }
 
-bool sfc::cfw::PositionQuerier::isKingInCheck(Color kingColor) const {
+bool sfc::cfw::PositionQuerier::isKingInCheck(const Color & kingColor) const {
     for (Piece i = ((kingColor == ColorWhite)?PieceBPawn:PieceWPawn);
          i <= ((kingColor == ColorWhite)?PieceBKnight:PieceWKnight);
          i++) {
@@ -242,7 +236,7 @@ bool sfc::cfw::PositionQuerier::isKingInCheck(Color kingColor) const {
     return false;
 }
 
-sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, Square enPassantTarget) const {
+sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(const Color & kingColor, const Square & enPassantTarget) const {
     Piece kingPiece = (kingColor == ColorWhite)?PieceWKing:PieceBKing;
     
     /*--------------- Check if king can escape ---------------*/
@@ -298,8 +292,10 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, S
         // Find if any move by the current side pieces can parry the check
         bool canParryCheckmate = false;
         for (unsigned short i = 0; i < 64; i++) {
+			Piece defendingPiece = (*position)[i];
+			
             // skip empty squares and opposite side pieces
-            if ((*position)[i] == PieceNone || getPieceColor((*position)[i]) != kingColor || (*position)[i] == kingPiece) continue;
+            if (defendingPiece == PieceNone || getPieceColor(defendingPiece) != kingColor || defendingPiece == kingPiece) continue;
             
             std::set<Square> pieceAttacks = attacksFrom(i, enPassantTarget);
             
@@ -307,10 +303,10 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, S
 				if (sq == currentKingPosition) continue;
                 std::shared_ptr<Position> temp = std::make_shared<Position>(*position);
                 temp->vacate(i);
-                temp->occupy(sq, (*position)[i]);
+                temp->occupy(sq, defendingPiece);
                 
                 // If piece is pawn and option is enpassant, remove the corresponding opponent's pawn
-				if (sq == enPassantTarget && (*position)[i] == makePiece(GenericPiecePawn, kingColor)) {
+				if (sq == enPassantTarget && defendingPiece == makePiece(GenericPiecePawn, kingColor)) {
 					// Test if the enpassant target is valid and then remove the opponent pawn
 					if (kingColor == ColorWhite && enPassantTarget.getRank() == 5) {
 						temp->vacate(Square(enPassantTarget.getFile(), enPassantTarget.getRank() - 1));
@@ -333,23 +329,30 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, S
             return KingStatusCheckMate;
         }
     }
+	
+	// At this point, if there is no checkmate but a single check
+	if (numChecks >= 1) {
+		return KingStatusCheck;
+	}
 	   
     // King does not have escape squares - look for other legal moves
     if (numChecks == 0 && !kingCanEscape) {
         bool legalMovesExist = false;
         for (unsigned short i = 0; i < 64; i++) {
+			Piece testPiece = (*position)[i];
+			
             // skip empty squares and opposite side pieces
-            if ((*position)[i] == PieceNone || getPieceColor((*position)[i]) != kingColor || (*position)[i] == kingPiece) continue;
+            if (testPiece == PieceNone || getPieceColor(testPiece) != kingColor || testPiece == kingPiece) continue;
             
             std::set<Square> pieceAttacks = attacksFrom(i, enPassantTarget);
             
             for (Square sq : pieceAttacks) {
                 std::shared_ptr<Position> temp = std::make_shared<Position>(*position);
                 temp->vacate(i);
-                temp->occupy(sq, (*position)[i]);
+                temp->occupy(sq, testPiece);
                 
                 // If piece is pawn and option is enpassant, remove the corresponding opponent's pawn
-                if (sq == enPassantTarget && (*position)[i] == makePiece(GenericPiecePawn, kingColor)) {
+                if (sq == enPassantTarget && testPiece == makePiece(GenericPiecePawn, kingColor)) {
                     if (kingColor == ColorWhite) {
                         temp->vacate(Square(enPassantTarget.getFile(), enPassantTarget.getRank() - 1));
                     } else {
@@ -371,11 +374,6 @@ sfc::cfw::KingStatus sfc::cfw::PositionQuerier::getKingStatus(Color kingColor, S
             return KingStatusStaleMate;
         }
     }
-    
-	// At this point, if there is no checkmate
-	if (numChecks >= 1) {
-		return KingStatusCheck;
-	}
 	
     return KingStatusNormal;
 }

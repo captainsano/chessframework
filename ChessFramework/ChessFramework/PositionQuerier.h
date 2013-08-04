@@ -30,13 +30,13 @@ namespace sfc {
                 }
             }
             
-            unsigned short pieceCount(const Piece aPieceType) const;
+            unsigned short pieceCount(const Piece & aPieceType) const;
             
-            std::set<Square> attacksFrom(const Square & aSquare, Square enPassantTarget = Square(0)) const;
+            std::set<Square> attacksFrom(const Square & aSquare, const Square & enPassantTarget = Square(0)) const;
             
-			bool attackIntersectsPiece(const Piece aPiece1, const Piece aPiece2) const;
-            bool isKingInCheck(Color kingColor) const;
-            KingStatus getKingStatus(Color kingColor, Square enPassantTarget = Square(0)) const;
+			bool attackIntersectsPiece(const Piece & aPiece1, const Piece & aPiece2) const;
+            bool isKingInCheck(const Color & kingColor) const;
+            KingStatus getKingStatus(const Color & kingColor, const Square & enPassantTarget = Square(0)) const;
         };
     }
 }

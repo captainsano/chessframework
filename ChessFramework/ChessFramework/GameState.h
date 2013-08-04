@@ -33,8 +33,8 @@ namespace sfc {
 			Square      enpassantTarget		= Square(0);
 			char        castlingOptions[4]	= {'-', '-', '-', '-'};
 			
-			KingStatus	whiteKingStatus		= KingStatusNormal;	/// @todo Change type to king status enum
-			KingStatus	blackKingStatus		= KingStatusNormal;	/// @todo Change type to king status enum
+			KingStatus	whiteKingStatus		= KingStatusNormal;	
+			KingStatus	blackKingStatus		= KingStatusNormal;
 			
 			void validate();
 			
