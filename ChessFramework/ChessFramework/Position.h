@@ -1,5 +1,5 @@
 //
-//  BitboardPosition.h
+//  Position.h
 //  ChessFramework
 //
 /// @author Santhos Baala RS

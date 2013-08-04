@@ -1,5 +1,5 @@
 //
-//  BitboardPositionQuerier.h
+//  PositionQuerier.h
 //  ChessFramework
 //
 /// @author Santhos Baala RS

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		63199A0217A0D9C500A9F1E9 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63199A0017A0D9C500A9F1E9 /* Piece.cpp */; };
 		63199A0317A0D9C500A9F1E9 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63199A0017A0D9C500A9F1E9 /* Piece.cpp */; };
+		6378756617AE4DB500A0CA16 /* KGBitboardUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6378756417AE4DB500A0CA16 /* KGBitboardUtil.cpp */; };
+		6378756717AE4DB500A0CA16 /* KGBitboardUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6378756417AE4DB500A0CA16 /* KGBitboardUtil.cpp */; };
 		63791948179A6784000C98E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63791947179A6784000C98E2 /* main.cpp */; };
 		6379194A179A6784000C98E2 /* ChessFramework.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63791949179A6784000C98E2 /* ChessFramework.1 */; };
 		63A2F95C17AA6C87007169AD /* GameReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63A2F95A17AA6C87007169AD /* GameReader.cpp */; };
@@ -32,8 +34,6 @@
 		ED7383BE17A9162E00839DC8 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7383BC17A9162E00839DC8 /* Move.cpp */; };
 		ED7383BF17A9162E00839DC8 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7383BC17A9162E00839DC8 /* Move.cpp */; };
 		ED7383C117A91CC900839DC8 /* MoveFactory_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = ED7383C017A91CC900839DC8 /* MoveFactory_Tests.mm */; };
-		EDBC239717A6627700B5BC2E /* KGBitboardUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDBC239517A6627700B5BC2E /* KGBitboardUtil.cpp */; };
-		EDBC239817A6627700B5BC2E /* KGBitboardUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDBC239517A6627700B5BC2E /* KGBitboardUtil.cpp */; };
 		EDD926E1179DB4BA00225C0A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD926E0179DB4BA00225C0A /* XCTest.framework */; };
 		EDD926E7179DB4BA00225C0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDD926E5179DB4BA00225C0A /* InfoPlist.strings */; };
 		EDE51CBD179E7CA900FD6CA8 /* Square_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = EDE51CBC179E7CA900FD6CA8 /* Square_Tests.mm */; };
@@ -67,6 +67,8 @@
 /* Begin PBXFileReference section */
 		63199A0017A0D9C500A9F1E9 /* Piece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Piece.cpp; sourceTree = "<group>"; };
 		63199A0117A0D9C500A9F1E9 /* Piece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Piece.h; sourceTree = "<group>"; };
+		6378756417AE4DB500A0CA16 /* KGBitboardUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KGBitboardUtil.cpp; sourceTree = "<group>"; };
+		6378756517AE4DB500A0CA16 /* KGBitboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGBitboardUtil.h; sourceTree = "<group>"; };
 		63791944179A6784000C98E2 /* ChessFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChessFramework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63791947179A6784000C98E2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		63791949179A6784000C98E2 /* ChessFramework.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ChessFramework.1; sourceTree = "<group>"; };
@@ -92,8 +94,6 @@
 		ED7383BC17A9162E00839DC8 /* Move.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Move.cpp; sourceTree = "<group>"; };
 		ED7383BD17A9162E00839DC8 /* Move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Move.h; sourceTree = "<group>"; };
 		ED7383C017A91CC900839DC8 /* MoveFactory_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveFactory_Tests.mm; sourceTree = "<group>"; };
-		EDBC239517A6627700B5BC2E /* KGBitboardUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KGBitboardUtil.cpp; path = ../../../KindergartenBitboard/KindergartenBitboard/KGBitboardUtil.cpp; sourceTree = "<group>"; };
-		EDBC239617A6627700B5BC2E /* KGBitboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGBitboardUtil.h; path = ../../../KindergartenBitboard/KindergartenBitboard/KGBitboardUtil.h; sourceTree = "<group>"; };
 		EDD926DE179DB4BA00225C0A /* ChessFramework Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ChessFramework Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD926E0179DB4BA00225C0A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		EDD926E4179DB4BA00225C0A /* ChessFramework Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ChessFramework Tests-Info.plist"; sourceTree = "<group>"; };
@@ -180,8 +180,8 @@
 		EDBC239417A6622C00B5BC2E /* KGBitboardUtil */ = {
 			isa = PBXGroup;
 			children = (
-				EDBC239517A6627700B5BC2E /* KGBitboardUtil.cpp */,
-				EDBC239617A6627700B5BC2E /* KGBitboardUtil.h */,
+				6378756417AE4DB500A0CA16 /* KGBitboardUtil.cpp */,
+				6378756517AE4DB500A0CA16 /* KGBitboardUtil.h */,
 			);
 			name = KGBitboardUtil;
 			sourceTree = "<group>";
@@ -315,10 +315,10 @@
 				ED038DF517A7969A00AD65E4 /* PositionQuerier.cpp in Sources */,
 				63AAD0E917A15AB40096168C /* GameState.cpp in Sources */,
 				63FBC21F17A96C4000734BC4 /* MoveFactory.cpp in Sources */,
-				EDBC239717A6627700B5BC2E /* KGBitboardUtil.cpp in Sources */,
 				ED038DF317A7969A00AD65E4 /* Position.cpp in Sources */,
 				EDE51CC0179E847100FD6CA8 /* Square.cpp in Sources */,
 				63199A0217A0D9C500A9F1E9 /* Piece.cpp in Sources */,
+				6378756617AE4DB500A0CA16 /* KGBitboardUtil.cpp in Sources */,
 				63791948179A6784000C98E2 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +330,7 @@
 				63199A0317A0D9C500A9F1E9 /* Piece.cpp in Sources */,
 				ED594D1517A6C5D40003E3B9 /* PositionQuerierRookAttack_Tests.mm in Sources */,
 				63AAD0EA17A15AB40096168C /* GameState.cpp in Sources */,
+				6378756717AE4DB500A0CA16 /* KGBitboardUtil.cpp in Sources */,
 				EDE51CC1179E847100FD6CA8 /* Square.cpp in Sources */,
 				63DACE1A179ED7C900593AED /* Position_Tests.mm in Sources */,
 				ED7383C117A91CC900839DC8 /* MoveFactory_Tests.mm in Sources */,
@@ -337,7 +338,6 @@
 				ED038DF617A7969A00AD65E4 /* PositionQuerier.cpp in Sources */,
 				ED7383BF17A9162E00839DC8 /* Move.cpp in Sources */,
 				ED594D1717A6CD180003E3B9 /* PositionQuerierQueenAttack_Tests.mm in Sources */,
-				EDBC239817A6627700B5BC2E /* KGBitboardUtil.cpp in Sources */,
 				ED594D1917A6D6E40003E3B9 /* PositionQuerierPawnAttack_Tests.mm in Sources */,
 				EDE51CBD179E7CA900FD6CA8 /* Square_Tests.mm in Sources */,
 				ED2D53D317A744E00098D5C4 /* PositionQuerierKingAttack_Tests.mm in Sources */,

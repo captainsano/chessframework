@@ -2,8 +2,9 @@
 //  MoveFactory.h
 //  ChessFramework
 //
-//  Created by Santhosbaala RS on 31/07/13.
-//  Copyright (c) 2013 64cloud. All rights reserved.
+/// @author Santhos Baala RS
+/// @copyright (c) 2013 64cloud. All rights reserved.
+/// @version 0.1
 //
 
 #ifndef __ChessFramework__MoveFactory__

@@ -96,7 +96,7 @@ sfc::cfw::Position::Position(const std::string & FENString) {
 		std::string::size_type StringIndex = 0;
 		for (int rank = 7; rank >= 0; rank--) {
 			for (int file = 0; file < 8; file++) {
-				Square s(file, rank);
+				unsigned short s = (rank << 3) | file;
 				switch (expandedFEN[StringIndex++]) {
 					case 'P':
 						wPawn.set(s);
