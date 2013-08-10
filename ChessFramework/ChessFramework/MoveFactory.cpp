@@ -436,7 +436,8 @@ std::vector<std::shared_ptr<sfc::cfw::Move>> sfc::cfw::MoveFactory::allLegalMove
 			for (auto to : attacks) {
 				// On pawn promotion, check all types of promotions
 				if (getGenericPiece(movingPiece) == GenericPiecePawn && (to.getRank() == 0 || to.getRank() == 7)) {
-					for (PromotablePiece p = PromotablePieceQueen; p <= PromotablePieceKnight; p++) {
+					for (PromotablePiece p = PromotablePieceQueen; p <= PromotablePieceKnight;
+						 p = static_cast<PromotablePiece>(static_cast<int>(p) + 1)) {
 						std::shared_ptr<Move> m = legalMove(beforeGameState, i, to, p);
 						if (m) {
 							legalMovesList.push_back(m);

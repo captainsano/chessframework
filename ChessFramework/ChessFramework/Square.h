@@ -59,7 +59,10 @@ namespace sfc {
 			}
 			
 			std::string getLabel() const {
-				return std::string{this->getFile() + 'a', this->getRank() + '1'};
+				std::string toReturn;
+				toReturn += (char)(this->getFile() + 'a');
+				toReturn += (char)(this->getRank() + '1');
+				return toReturn;
 			}
 		};
     }

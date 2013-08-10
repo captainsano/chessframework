@@ -13,7 +13,6 @@
 		6378756717AE4DB500A0CA16 /* KGBitboardUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6378756417AE4DB500A0CA16 /* KGBitboardUtil.cpp */; };
 		63791948179A6784000C98E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63791947179A6784000C98E2 /* main.cpp */; };
 		6379194A179A6784000C98E2 /* ChessFramework.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 63791949179A6784000C98E2 /* ChessFramework.1 */; };
-		63A2F95C17AA6C87007169AD /* GameReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63A2F95A17AA6C87007169AD /* GameReader.cpp */; };
 		63AAD0E917A15AB40096168C /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63AAD0E717A15AB40096168C /* GameState.cpp */; };
 		63AAD0EA17A15AB40096168C /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63AAD0E717A15AB40096168C /* GameState.cpp */; };
 		63DACE1A179ED7C900593AED /* Position_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63DACE19179ED7C900593AED /* Position_Tests.mm */; };
@@ -310,7 +309,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63A2F95C17AA6C87007169AD /* GameReader.cpp in Sources */,
 				ED7383BE17A9162E00839DC8 /* Move.cpp in Sources */,
 				ED038DF517A7969A00AD65E4 /* PositionQuerier.cpp in Sources */,
 				63AAD0E917A15AB40096168C /* GameState.cpp in Sources */,
@@ -444,7 +442,11 @@
 		6379194E179A6784000C98E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
 				DEAD_CODE_STRIPPING = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_FAST_MATH = YES;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_UNROLL_LOOPS = YES;
@@ -456,7 +458,11 @@
 		6379194F179A6784000C98E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
 				DEAD_CODE_STRIPPING = NO;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_FAST_MATH = YES;
 				GCC_UNROLL_LOOPS = YES;
 				LLVM_VECTORIZE_LOOPS = YES;

@@ -6,15 +6,34 @@
 #include <list>
 #include <utility>
 
+#include <unistd.h>
+
 #include "Move.h"
 #include "MoveFactory.h"
 #include "Position.h"
+#include "PositionQuerier.h"
 #include "GameState.h"
 
 #include <fstream>
-#include "GameReader.h"
 
 using namespace sfc::cfw;
+
+int main() {
+	
+	std::shared_ptr<GameState> g =
+	std::make_shared<GameState>("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", ColorWhite, "KQkq");
+	
+	std::cout << "\n" << g->getPosition()->prettyString() << std::endl;
+	
+	std::shared_ptr<Move> m = MoveFactory::legalMove(g, Square("e1"), Square("e4"));
+	
+	if (m) {
+		std::cout << "\nMove is legal" << std::endl;
+		std::cout << m->getGameStateAfterMove()->getPosition()->prettyString() << std::endl;
+	}
+}
+
+/*
 
 std::string SANString(const Move & m, const std::vector<std::shared_ptr<Move>> & allLegalMoves);
 
@@ -44,8 +63,13 @@ int main() {
 
 #else
 
-int main() {
-	std::ifstream inputFile("/Users/santhosbaala/Desktop/twic977_unannotated.pgn");
+int main(const int argc, const char * argv[]) {
+	if (argc == 1) {
+		std::cout << "\n\nUsage: " << argv[0] << " [filename.pgn]\n\n" << std::endl;
+		exit(0);
+	}
+	
+	std::ifstream inputFile("/Users/santhosbaala/Desktop/twic977.pgn");
 	
 	std::string inputString;
 	while (inputFile.good()) {
@@ -75,8 +99,8 @@ int main() {
 		
 		for (auto m : games[i].second) {
 			// Print the current FEN
-			std::cout << g->getPosition()->prettyString() << std::endl;
-			std::cout << g->getFEN() << " " << pawnHalfMoves << " " << moveNumber << std::endl;
+			// std::cout << g->getPosition()->prettyString() << std::endl;
+			// std::cout << g->getFEN() << " " << pawnHalfMoves << " " << moveNumber << std::endl;
 			
 			std::vector<std::shared_ptr<Move>> legalMoves;
 			std::list<std::pair<std::string, std::shared_ptr<Move>>> legalMoveSANPairList;
@@ -105,6 +129,51 @@ int main() {
 				}
 			}
 					
+			// Search again by inserting the fromSquare's file in the middle
+			if (playedMove == nullptr) {
+				for (auto legalMove : legalMoveSANPairList) {
+					std::string disambiguatedMove = {legalMove.first[0]};
+					disambiguatedMove += legalMove.second->getFromSquare().getLabel()[0];
+					disambiguatedMove += legalMove.first.substr(1);
+					
+					// Mark the ChessFramework representation of the played move
+					if (disambiguatedMove == m) {
+						playedMove = legalMove.second;
+						break;
+					}
+				}
+			}
+			
+			// If still legal move has not been found, then try to disambiguate based on rank
+			if (playedMove == nullptr) {
+				for (auto legalMove : legalMoveSANPairList) {
+					std::string disambiguatedMove = {legalMove.first[0]};
+					disambiguatedMove += legalMove.second->getFromSquare().getLabel()[1];
+					disambiguatedMove += legalMove.first.substr(1);
+					
+					// Mark the ChessFramework representation of the played move
+					if (disambiguatedMove == m) {
+						playedMove = legalMove.second;
+						break;
+					}
+				}
+			}
+			
+			// If still legal move has not been found, then try to disambiguate based the entire square
+			if (playedMove == nullptr) {
+				for (auto legalMove : legalMoveSANPairList) {
+					std::string disambiguatedMove = {legalMove.first[0]};
+					disambiguatedMove += legalMove.second->getFromSquare();
+					disambiguatedMove += legalMove.first.substr(1);
+					
+					// Mark the ChessFramework representation of the played move
+					if (disambiguatedMove == m) {
+						playedMove = legalMove.second;
+						break;
+					}
+				}
+			}
+			
 			if (playedMove == nullptr) {
 				std::cout << "\nPlayed move does not exist in list: " << m << " in game " << (i + 1) << std::endl;
 				abort();
@@ -132,10 +201,14 @@ int main() {
 		
 		// End of processing:
 		// std::cout << g->getPosition()->prettyString() << std::endl;
-		std::cout << g->getFEN() << " " << pawnHalfMoves << " " << moveNumber << std::endl;
+		// std::cout << g->getFEN() << " " << pawnHalfMoves << " " << moveNumber << std::endl;
+		
+		// sleep(2);	// Suspend so that the system does not overheat
 		
 		std::cout << std::endl;
 	}
+	
+	std::cout << "Move Generation Ended" << std::endl;
 }
 #endif
 
@@ -224,6 +297,18 @@ std::string SANString(const Move & m, const std::vector<std::shared_ptr<Move>> &
 		toReturn += m.getToSquare().getLabel();
 	}
 	
+	// Promotion
+	if (getGenericPiece(m.getPieceMoved()) == GenericPiecePawn && (m.getToSquare().getRank() == 7 || m.getToSquare().getRank() == 0)) {
+		toReturn += '=';
+		switch (m.getPromotedToPiece()) {
+			case PromotablePieceQueen:	toReturn += 'Q'; break;
+			case PromotablePieceRook:	toReturn += 'R'; break;
+			case PromotablePieceBishop: toReturn += 'B'; break;
+			case PromotablePieceKnight: toReturn += 'N'; break;
+			default: break;
+		}
+	}
+	
 	// Check/Checkmate
 	if (getPieceColor(m.getPieceMoved()) == ColorWhite) {
 		switch (m.getGameStateAfterMove()->getBlackKingStatus()) {
@@ -245,3 +330,5 @@ std::string SANString(const Move & m, const std::vector<std::shared_ptr<Move>> &
 	
 	return toReturn;
 }
+
+*/

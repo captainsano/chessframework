@@ -227,7 +227,7 @@ bool sfc::cfw::PositionQuerier::attackIntersectsPiece(const Piece & aPiece1, con
 bool sfc::cfw::PositionQuerier::isKingInCheck(const Color & kingColor) const {
     for (Piece i = ((kingColor == ColorWhite)?PieceBPawn:PieceWPawn);
          i <= ((kingColor == ColorWhite)?PieceBKnight:PieceWKnight);
-         i++) {
+         i = static_cast<Piece>(static_cast<int>(i) + 1)) {
         if (attackIntersectsPiece(i, (kingColor == ColorWhite)?PieceWKing:PieceBKing)) {
             return true;
         }
