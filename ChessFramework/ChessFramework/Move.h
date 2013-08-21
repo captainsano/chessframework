@@ -26,7 +26,8 @@ namespace sfc {
 		} CastlingType;
 		
 		class Move {
-            Piece   pieceMoved = PieceNone; // PieceNone indicates NULL Move (Chess Language)
+        protected:
+			Piece   pieceMoved = PieceNone; // PieceNone indicates NULL Move (Chess Language)
             Square  fromSquare = 0;
             Square  toSquare   = 0;
             
@@ -36,6 +37,7 @@ namespace sfc {
             std::shared_ptr<GameState> gameStateBeforeMove  = nullptr;
             std::shared_ptr<GameState> gameStateAfterMove   = nullptr;
             
+		
             // validity checks need not be done because MoveFactory is the sole
             // owner of this class
             Move() = default;

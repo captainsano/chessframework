@@ -28,7 +28,7 @@ namespace sfc {
         } KingStatus;
         
 		class GameState {
-			std::shared_ptr<Position>	position			= nullptr;
+			std::shared_ptr<Position>	position = nullptr;
 			Color       sideToMove			= ColorWhite;
 			Square      enpassantTarget		= Square(0);
 			char        castlingOptions[4]	= {'-', '-', '-', '-'};
@@ -90,6 +90,23 @@ namespace sfc {
             bool        hasSufficientMaterial() const;
             
             std::string getFEN(bool chess960 = false) const;
+			
+			inline bool operator==(const GameState & g) const {
+				return
+				(sideToMove == g.sideToMove) &&
+				(*(this->position) == *(g.position)) &&
+				(this->enpassantTarget == g.enpassantTarget) &&
+				(this->castlingOptions[0] == g.castlingOptions[0]) &&
+				(this->castlingOptions[1] == g.castlingOptions[1]) &&
+				(this->castlingOptions[2] == g.castlingOptions[2]) &&
+				(this->castlingOptions[3] == g.castlingOptions[3]) &&
+				(this->whiteKingStatus == g.whiteKingStatus) &&
+				(this->blackKingStatus == g.blackKingStatus);
+			}
+			
+			inline bool operator!=(const GameState & g) const {
+				return !(*this == g);
+			}
         };
 	}
 }

@@ -73,6 +73,26 @@ namespace sfc {
 				else if (bKnight[aSquare])	{ return PieceBKnight; }
 				return PieceNone;
 			}
+			
+			inline bool operator==(const Position & p) const {
+				return
+				(this->wPawn	== p.wPawn) &&
+				(this->wKing	== p.wKing) &&
+				(this->wQueen	== p.wQueen) &&
+				(this->wRook	== p.wRook) &&
+				(this->wBishop	== p.wBishop) &&
+				(this->wKnight	== p.wKnight) &&
+				(this->bPawn	== p.bPawn) &&
+				(this->bKing	== p.bKing) &&
+				(this->bQueen	== p.bQueen) &&
+				(this->bRook	== p.bRook)	&&
+				(this->bBishop	== p.bBishop) &&
+				(this->bKnight	== p.bKnight);
+			}
+			
+			inline bool operator!=(const Position & p) const {
+				return !(*this == p);
+			}
 		};
 	}
 }
