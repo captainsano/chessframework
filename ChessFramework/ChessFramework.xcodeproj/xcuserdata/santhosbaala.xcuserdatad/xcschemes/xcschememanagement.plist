@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ChessFrameworkLibrary.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>635B405717C484DA00D6BAE0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>63791943179A6784000C98E2</key>
 		<dict>
 			<key>primary</key>

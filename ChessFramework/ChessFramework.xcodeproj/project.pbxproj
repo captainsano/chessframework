@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		63199A0217A0D9C500A9F1E9 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63199A0017A0D9C500A9F1E9 /* Piece.cpp */; };
 		63199A0317A0D9C500A9F1E9 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63199A0017A0D9C500A9F1E9 /* Piece.cpp */; };
+		635B405C17C4850300D6BAE0 /* KGBitboardUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6378756417AE4DB500A0CA16 /* KGBitboardUtil.cpp */; };
+		635B405D17C4850300D6BAE0 /* Square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDE51CBE179E847100FD6CA8 /* Square.cpp */; };
+		635B405E17C4850300D6BAE0 /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63199A0017A0D9C500A9F1E9 /* Piece.cpp */; };
+		635B405F17C4850300D6BAE0 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63AAD0E717A15AB40096168C /* GameState.cpp */; };
+		635B406017C4850300D6BAE0 /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED038DEF17A7969A00AD65E4 /* Position.cpp */; };
+		635B406117C4850300D6BAE0 /* PositionQuerier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED038DF117A7969A00AD65E4 /* PositionQuerier.cpp */; };
+		635B406217C4850300D6BAE0 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7383BC17A9162E00839DC8 /* Move.cpp */; };
+		635B406317C4850300D6BAE0 /* MoveFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63FBC21D17A96C4000734BC4 /* MoveFactory.cpp */; };
 		6378756617AE4DB500A0CA16 /* KGBitboardUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6378756417AE4DB500A0CA16 /* KGBitboardUtil.cpp */; };
 		6378756717AE4DB500A0CA16 /* KGBitboardUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6378756417AE4DB500A0CA16 /* KGBitboardUtil.cpp */; };
 		63791948179A6784000C98E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63791947179A6784000C98E2 /* main.cpp */; };
@@ -66,6 +74,7 @@
 /* Begin PBXFileReference section */
 		63199A0017A0D9C500A9F1E9 /* Piece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Piece.cpp; sourceTree = "<group>"; };
 		63199A0117A0D9C500A9F1E9 /* Piece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Piece.h; sourceTree = "<group>"; };
+		635B405817C484DA00D6BAE0 /* libChessFrameworkLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libChessFrameworkLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6378756417AE4DB500A0CA16 /* KGBitboardUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KGBitboardUtil.cpp; sourceTree = "<group>"; };
 		6378756517AE4DB500A0CA16 /* KGBitboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGBitboardUtil.h; sourceTree = "<group>"; };
 		63791944179A6784000C98E2 /* ChessFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChessFramework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +114,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		635B405517C484DA00D6BAE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63791941179A6784000C98E2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -138,6 +154,7 @@
 			children = (
 				63791944179A6784000C98E2 /* ChessFramework */,
 				EDD926DE179DB4BA00225C0A /* ChessFramework Tests.xctest */,
+				635B405817C484DA00D6BAE0 /* libChessFrameworkLibrary.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -225,7 +242,34 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		635B405617C484DA00D6BAE0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		635B405717C484DA00D6BAE0 /* ChessFrameworkLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 635B405B17C484DA00D6BAE0 /* Build configuration list for PBXNativeTarget "ChessFrameworkLibrary" */;
+			buildPhases = (
+				635B405417C484DA00D6BAE0 /* Sources */,
+				635B405517C484DA00D6BAE0 /* Frameworks */,
+				635B405617C484DA00D6BAE0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChessFrameworkLibrary;
+			productName = ChessFrameworkLibrary;
+			productReference = 635B405817C484DA00D6BAE0 /* libChessFrameworkLibrary.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		63791943179A6784000C98E2 /* ChessFramework */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6379194D179A6784000C98E2 /* Build configuration list for PBXNativeTarget "ChessFramework" */;
@@ -289,6 +333,7 @@
 			targets = (
 				63791943179A6784000C98E2 /* ChessFramework */,
 				EDD926DD179DB4BA00225C0A /* ChessFramework Tests */,
+				635B405717C484DA00D6BAE0 /* ChessFrameworkLibrary */,
 			);
 		};
 /* End PBXProject section */
@@ -305,6 +350,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		635B405417C484DA00D6BAE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				635B405C17C4850300D6BAE0 /* KGBitboardUtil.cpp in Sources */,
+				635B405D17C4850300D6BAE0 /* Square.cpp in Sources */,
+				635B405E17C4850300D6BAE0 /* Piece.cpp in Sources */,
+				635B405F17C4850300D6BAE0 /* GameState.cpp in Sources */,
+				635B406017C4850300D6BAE0 /* Position.cpp in Sources */,
+				635B406117C4850300D6BAE0 /* PositionQuerier.cpp in Sources */,
+				635B406217C4850300D6BAE0 /* Move.cpp in Sources */,
+				635B406317C4850300D6BAE0 /* MoveFactory.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63791940179A6784000C98E2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -369,6 +429,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		635B405917C484DA00D6BAE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EXECUTABLE_PREFIX = lib;
+				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				LLVM_LTO = YES;
+				LLVM_VECTORIZE_LOOPS = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Debug;
+		};
+		635B405A17C484DA00D6BAE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				GCC_OPTIMIZATION_LEVEL = fast;
+				LLVM_LTO = YES;
+				LLVM_VECTORIZE_LOOPS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Release;
+		};
 		6379194B179A6784000C98E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -509,6 +601,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		635B405B17C484DA00D6BAE0 /* Build configuration list for PBXNativeTarget "ChessFrameworkLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				635B405917C484DA00D6BAE0 /* Debug */,
+				635B405A17C484DA00D6BAE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		6379193F179A6784000C98E2 /* Build configuration list for PBXProject "ChessFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
