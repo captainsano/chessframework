@@ -78,8 +78,9 @@ namespace sfc {
 		}
 		
 		Piece makePiece(const char & pieceSymbol, const Color & aColor);
-		GenericPiece makePiece(const char & pieceSymbol);
 		Piece makePieceCaseColor(const char & pieceSymbol);
+		
+		GenericPiece makeGenericPiece(const char & pieceSymbol);
 		
 		inline GenericPiece getGenericPiece(const Piece & aPiece) {
 			return (GenericPiece)(aPiece & 7);
@@ -88,6 +89,10 @@ namespace sfc {
 		inline GenericPiece getGenericPiece(const PromotablePiece & aPiece) {
 			return (GenericPiece)(aPiece & 7);
 		}
+		
+		
+		
+		PromotablePiece makePromotablePiece(const char & pieceSymbol);
 	}
 }
 

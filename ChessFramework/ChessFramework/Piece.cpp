@@ -33,7 +33,31 @@ sfc::cfw::Piece sfc::cfw::makePiece(const char & pieceSymbol, const Color & aCol
 	}
 }
 
-sfc::cfw::GenericPiece sfc::cfw::makePiece(const char & pieceSymbol) {
+sfc::cfw::Piece sfc::cfw::makePieceCaseColor(const char & pieceSymbol) {
+	switch (pieceSymbol) {
+		case 'p': return PieceBPawn;
+		case 'P': return PieceWPawn;
+			
+		case 'k': return PieceBKing;
+		case 'K': return PieceWKing;
+			
+		case 'q': return PieceBQueen;
+		case 'Q': return PieceWQueen;
+			
+		case 'r': return PieceBRook;
+		case 'R': return PieceWRook;
+			
+		case 'b': return PieceBBishop;
+		case 'B': return PieceWBishop;
+			
+		case 'n': return PieceBKnight;
+		case 'N': return PieceWKnight;
+			
+		default: return PieceNone;
+	}
+}
+
+sfc::cfw::GenericPiece sfc::cfw::makeGenericPiece(const char & pieceSymbol) {
 	switch (pieceSymbol) {
 		case 'p':
 		case 'P': return GenericPiecePawn;
@@ -57,26 +81,20 @@ sfc::cfw::GenericPiece sfc::cfw::makePiece(const char & pieceSymbol) {
 	}
 }
 
-sfc::cfw::Piece sfc::cfw::makePieceCaseColor(const char & pieceSymbol) {
+sfc::cfw::PromotablePiece sfc::cfw::makePromotablePiece(const char & pieceSymbol) {
 	switch (pieceSymbol) {
-		case 'p': return PieceBPawn;
-		case 'P': return PieceWPawn;
+		case 'q':
+		case 'Q': return PromotablePieceQueen;
 			
-		case 'k': return PieceBKing;
-		case 'K': return PieceWKing;
+		case 'r':
+		case 'R': return PromotablePieceRook;
 			
-		case 'q': return PieceBQueen;
-		case 'Q': return PieceWQueen;
+		case 'b':
+		case 'B': return PromotablePieceBishop;
 			
-		case 'r': return PieceBRook;
-		case 'R': return PieceWRook;
+		case 'n':
+		case 'N': return PromotablePieceKnight;
 			
-		case 'b': return PieceBBishop;
-		case 'B': return PieceWBishop;
-			
-		case 'n': return PieceBKnight;
-		case 'N': return PieceWKnight;
-			
-		default: return PieceNone;
+		default: return PromotablePieceNone;
 	}
 }
