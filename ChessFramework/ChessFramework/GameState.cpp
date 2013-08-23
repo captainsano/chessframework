@@ -26,14 +26,14 @@ void sfc::cfw::GameState::validate() {
 		// Check for Color Mismatch, if no mismatch, check if a pawn exists in the required (file, 5/4 rank)
 		if (sideToMove == ColorWhite && enpassantTarget.getRank() == 5) {
 			if ((*position)[Square(enpassantTarget.getFile(), 4)] != PieceBPawn) {
-				throw std::invalid_argument("Square for enpassant target not occupied by black pawn");
+				throw illegal_position_setup("Square for enpassant target not occupied by black pawn");
 			}
 		} else if (sideToMove == ColorBlack && enpassantTarget.getRank() == 2) {
 			if ((*position)[Square(enpassantTarget.getFile(), 3)] != PieceWPawn) {
-				throw std::invalid_argument("Square for enpassant target not occupied by white pawn");
+				throw illegal_position_setup("Square for enpassant target not occupied by white pawn");
 			}
 		} else {
-			throw std::invalid_argument("Color mismatch in enpassant target");
+			throw illegal_position_setup("Color mismatch in enpassant target");
 		}
 	}
  	
@@ -42,28 +42,28 @@ void sfc::cfw::GameState::validate() {
 	if (castlingOptions[0] != '-') {
 		Square requiredSquare(Square((castlingOptions[0] == 'K')?7:(std::tolower(castlingOptions[0]) - 'a'), 0));
 		if ((*position)[requiredSquare] != PieceWRook) {
-			throw std::invalid_argument("Rook not present at location indicated by castling options");
+			throw illegal_position_setup("Rook not present at location indicated by castling options");
 		}
 	}
 	
 	if (castlingOptions[1] != '-') {
 		Square requiredSquare(Square((castlingOptions[1] == 'Q')?0:(std::tolower(castlingOptions[1]) - 'a'), 0));
 		if ((*position)[requiredSquare] != PieceWRook) {
-			throw std::invalid_argument("Rook not present at location indicated by castling options");
+			throw illegal_position_setup("Rook not present at location indicated by castling options");
 		}
 	}
 	
 	if (castlingOptions[2] != '-') {
 		Square requiredSquare(Square((castlingOptions[2] == 'k')?7:(std::tolower(castlingOptions[2]) - 'a'), 7));
 		if ((*position)[requiredSquare] != PieceBRook) {
-			throw std::invalid_argument("Rook not present at location indicated by castling options");
+			throw illegal_position_setup("Rook not present at location indicated by castling options");
 		}
 	}
 	
 	if (castlingOptions[3] != '-') {
 		Square requiredSquare(Square((castlingOptions[3] == 'q')?0:(std::tolower(castlingOptions[3]) - 'a'), 7));
 		if ((*position)[requiredSquare] != PieceBRook) {
-			throw std::invalid_argument("Rook not present at location indicated by castling options");
+			throw illegal_position_setup("Rook not present at location indicated by castling options");
 		}
 	}
     
@@ -76,7 +76,7 @@ void sfc::cfw::GameState::validate() {
                 break;
             }
         }
-        if (!kingFound) throw std::invalid_argument("White castling options are set, but king is not in first rank");
+        if (!kingFound) throw illegal_position_setup("White castling options are set, but king is not in first rank");
     }
 	
     // Check for black king in eigth rank if the black castling options are set
@@ -88,23 +88,23 @@ void sfc::cfw::GameState::validate() {
                 break;
             }
         }
-        if (!kingFound) throw std::invalid_argument("White castling options are set, but king is not in first rank");
+        if (!kingFound) throw illegal_position_setup("White castling options are set, but king is not in first rank");
     }
 	
 	/*----- Check for errors in king piece count - only 1 king should be existent for each side -----*/
 	if (querier->pieceCount(PieceWKing) != 1 || querier->pieceCount(PieceBKing) != 1) {
-		throw std::invalid_argument("Position should contain only one white and black king");
+		throw illegal_position_setup("Position should contain only one white and black king");
 	}
     
 	/*------------ Check for errors in king status -------------*/
     if (querier->attackIntersectsPiece(PieceWKing, PieceBKing)) {
-        throw std::invalid_argument("Kings should not be placed adjacent to each other");
+        throw illegal_position_setup("Kings should not be placed adjacent to each other");
     }
     
     // Side being issued check should be the one to move
     if ((querier->isKingInCheck(ColorWhite) && sideToMove == ColorBlack) ||
         (querier->isKingInCheck(ColorBlack) && sideToMove == ColorWhite)) {
-        throw std::invalid_argument("The checked side should be the one to move");
+        throw illegal_position_setup("The checked side should be the one to move");
     }
 	
 	this->whiteKingStatus = querier->getKingStatus(ColorWhite, enpassantTarget);

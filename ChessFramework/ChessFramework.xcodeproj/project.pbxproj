@@ -80,14 +80,13 @@
 		63791944179A6784000C98E2 /* ChessFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChessFramework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63791947179A6784000C98E2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		63791949179A6784000C98E2 /* ChessFramework.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ChessFramework.1; sourceTree = "<group>"; };
-		63A2F95A17AA6C87007169AD /* GameReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameReader.cpp; path = "../../../../StockFish Engine/StockFish Engine/GameReader.cpp"; sourceTree = "<group>"; };
-		63A2F95B17AA6C87007169AD /* GameReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameReader.h; path = "../../../../StockFish Engine/StockFish Engine/GameReader.h"; sourceTree = "<group>"; };
 		63AAD0E717A15AB40096168C /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
 		63AAD0E817A15AB40096168C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		63DACE19179ED7C900593AED /* Position_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Position_Tests.mm; sourceTree = "<group>"; };
 		63F388F717A1131D00B44555 /* GameState_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameState_Tests.mm; sourceTree = "<group>"; };
 		63FBC21D17A96C4000734BC4 /* MoveFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveFactory.cpp; sourceTree = "<group>"; };
 		63FBC21E17A96C4000734BC4 /* MoveFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveFactory.h; sourceTree = "<group>"; };
+		63FFD2DA17C7829900221546 /* CFWExceptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFWExceptions.h; sourceTree = "<group>"; };
 		ED038DEF17A7969A00AD65E4 /* Position.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Position.cpp; sourceTree = "<group>"; };
 		ED038DF017A7969A00AD65E4 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		ED038DF117A7969A00AD65E4 /* PositionQuerier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PositionQuerier.cpp; sourceTree = "<group>"; };
@@ -162,10 +161,10 @@
 		63791946179A6784000C98E2 /* ChessFramework */ = {
 			isa = PBXGroup;
 			children = (
-				63A2F95D17AA6C97007169AD /* PGN Extractor */,
 				EDBC239417A6622C00B5BC2E /* KGBitboardUtil */,
 				63791947179A6784000C98E2 /* main.cpp */,
 				63791949179A6784000C98E2 /* ChessFramework.1 */,
+				63FFD2DA17C7829900221546 /* CFWExceptions.h */,
 				EDE51CBE179E847100FD6CA8 /* Square.cpp */,
 				EDE51CBF179E847100FD6CA8 /* Square.h */,
 				63199A0017A0D9C500A9F1E9 /* Piece.cpp */,
@@ -182,15 +181,6 @@
 				63FBC21E17A96C4000734BC4 /* MoveFactory.h */,
 			);
 			path = ChessFramework;
-			sourceTree = "<group>";
-		};
-		63A2F95D17AA6C97007169AD /* PGN Extractor */ = {
-			isa = PBXGroup;
-			children = (
-				63A2F95A17AA6C87007169AD /* GameReader.cpp */,
-				63A2F95B17AA6C87007169AD /* GameReader.h */,
-			);
-			name = "PGN Extractor";
 			sourceTree = "<group>";
 		};
 		EDBC239417A6622C00B5BC2E /* KGBitboardUtil */ = {
@@ -608,6 +598,7 @@
 				635B405A17C484DA00D6BAE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6379193F179A6784000C98E2 /* Build configuration list for PBXProject "ChessFramework" */ = {
 			isa = XCConfigurationList;

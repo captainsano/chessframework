@@ -9,10 +9,10 @@
 #include <vector>
 #include <regex>
 #include <cstdlib>
-#include <exception>
 #include <iostream>	/* For debugging */
 
 #include "Position.h"
+#include "CFWExceptions.h"
 
 bool sfc::cfw::Position::validateFEN(const std::string & FENString) {
 	// Check for FEN format errors
@@ -54,7 +54,7 @@ std::bitset<64> & sfc::cfw::Position::pieceBitmap(const Piece & aPieceType) {
             
         PieceNone:
         default:
-            throw std::invalid_argument("Cannot return a reference to PieceNone bitmap");
+            throw std::out_of_range("Cannot return a reference to PieceNone bitmap");
     }
 }
 
@@ -75,7 +75,7 @@ const std::bitset<64> & sfc::cfw::Position::pieceBitmap(const Piece & aPieceType
             
         PieceNone:
         default:
-            throw std::invalid_argument("Cannot return a reference to PieceNone bitmap");
+            throw std::out_of_range("Cannot return a reference to PieceNone bitmap");
     }
 }
 
@@ -138,7 +138,7 @@ sfc::cfw::Position::Position(const std::string & FENString) {
 			}
 		}
 	} else {
-		throw std::invalid_argument("FEN String format or count is invalid");
+		throw malformed_fen_string("FEN String format or count is invalid");
 	}
 	
 }

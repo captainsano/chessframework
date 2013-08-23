@@ -16,6 +16,7 @@
 #include "Piece.h"
 #include "Square.h"
 #include "Position.h"
+#include "CFWExceptions.h"
 
 namespace sfc {
 	namespace cfw {
@@ -51,12 +52,12 @@ namespace sfc {
 			enpassantTarget(aEnpassantTarget) {
 				/* Sanity Checks on castling */
 				if (aCastlingOptions.size() < 4) {
-					throw std::invalid_argument("Insufficient castling options information");
+					throw malformed_castling_options("Insufficient castling options information");
 				}
 				// check for valid characters in castling options string
 				/// @note In chess 960 the kingside rook can only be placed between c-h and queenside a-f
 				if (!std::regex_match(aCastlingOptions, std::regex("[KC-H\\-][QA-F\\-][kc-h\\-][qa-f\\-]"))) {
-					throw std::invalid_argument("Malformed castling options string");
+					throw malformed_castling_options("Malformed castling options string");
 				}
 				
 				this->castlingOptions[0] = (aCastlingOptions[0] == 'K')?'H':aCastlingOptions[0];
