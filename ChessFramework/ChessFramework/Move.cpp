@@ -38,38 +38,38 @@ std::string sfc::cfw::Move::getSANString() const {
 	std::string disambiguationString;
 	bool commonRank = false, commonFile = false, onlyToSquareIsCommon = false;
 		
-	for (auto otherMove : MoveFactory::allLegalMoves(gameStateBeforeMove, pieceMoved)) {
-		if (otherMove->fromSquare != fromSquare &&
-			otherMove->pieceMoved == pieceMoved &&
-			otherMove->toSquare == toSquare) {
-			
-			// Check if the pieces are in the same file, then use rank for disambiguation
-			if (otherMove->fromSquare.getFile() == fromSquare.getFile()) {
-				commonFile = true;
+	// The disambiguition string is not required for king and pawns
+	if (getGenericPiece(pieceMoved) != GenericPiecePawn && getGenericPiece(pieceMoved) != GenericPieceKing) {
+		for (auto otherMove : MoveFactory::allLegalMoves(gameStateBeforeMove, pieceMoved, fromSquare)) {
+			if (otherMove->toSquare == toSquare) {
+				// Check if the pieces are in the same file, then use rank for disambiguation
+				if (otherMove->fromSquare.getFile() == fromSquare.getFile()) {
+					commonFile = true;
+				}
+				
+				// Check if the pieces are in the same rank, then use file for disambiguation
+				if (otherMove->fromSquare.getRank() == fromSquare.getRank()) {
+					commonRank = true;
+				}
+				
+				// If both file and rank are not common, then file/rank can be used. SAN advices file
+				onlyToSquareIsCommon = true;
 			}
-			
-			// Check if the pieces are in the same rank, then use file for disambiguation
-			if (otherMove->fromSquare.getRank() == fromSquare.getRank()) {
-				commonRank = true;
-			}
-			
-			// If both file and rank are not common, then file/rank can be used. SAN advices file
-			onlyToSquareIsCommon = true;
 		}
-	}
-	
-	if (commonRank && commonFile) {
-		disambiguationString += fromSquare.getLabel();
-	} else if (commonRank) {
-		disambiguationString += fromSquare.getLabel()[0];	// Mark the file
-	} else if (commonFile) {
-		disambiguationString += fromSquare.getLabel()[1];	// Mark the rank
-	} else if (onlyToSquareIsCommon) {
-		disambiguationString += fromSquare.getLabel()[0];	// Use file
-	}
-	
-	if (disambiguationString.length() > 0 && getGenericPiece(pieceMoved) != GenericPiecePawn) {
-		toReturn += disambiguationString;
+		
+		if (commonRank && commonFile) {
+			disambiguationString += fromSquare.getLabel();
+		} else if (commonRank) {
+			disambiguationString += fromSquare.getLabel()[0];	// Mark the file
+		} else if (commonFile) {
+			disambiguationString += fromSquare.getLabel()[1];	// Mark the rank
+		} else if (onlyToSquareIsCommon) {
+			disambiguationString += fromSquare.getLabel()[0];	// Use file
+		}
+		
+		if (disambiguationString.length() > 0 && getGenericPiece(pieceMoved) != GenericPiecePawn) {
+			toReturn += disambiguationString;
+		}
 	}
 	
 	// Capture character

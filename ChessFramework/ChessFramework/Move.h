@@ -98,8 +98,9 @@ namespace sfc {
 			
 			std::string getSANString() const;
 			
-			friend std::shared_ptr<Move> MoveFactory::legalMove(std::shared_ptr<GameState> beforeGameState, Square fromSquare, Square toSquare, PromotablePiece promotedToPiece);
-			friend std::vector<std::shared_ptr<Move>> MoveFactory::allLegalMoves(std::shared_ptr<GameState>, Piece);
+			friend std::shared_ptr<Move> MoveFactory::legalMove(std::shared_ptr<GameState> , const Square &, const Square &, const PromotablePiece &);
+			friend std::vector<std::shared_ptr<Move>> MoveFactory::allLegalMoves(std::shared_ptr<GameState>, const Piece &);
+			friend std::vector<std::shared_ptr<Move>> MoveFactory::allLegalMoves(std::shared_ptr<GameState>, const Piece &, const Square &);
         };        
     }
 }
