@@ -54,7 +54,8 @@ namespace sfc {
 						
 			operator std::string () const { return this->getFEN(); }
 			std::string getFEN() const;
-                    
+			std::string getPiecePlacementString() const;	// FEN style continous 0-63
+            
 			// For debugging purposes only
 			std::string prettyString() const;
 			

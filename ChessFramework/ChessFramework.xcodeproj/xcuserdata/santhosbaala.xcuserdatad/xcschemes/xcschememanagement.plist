@@ -9,15 +9,35 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ChessFrameworkLibrary copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>ChessFrameworkLibrary.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>3</integer>
+		</dict>
+		<key>ChessFrameworkLibrary_iOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>635B405717C484DA00D6BAE0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>636FF77317D0C1E200B47925</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>636FF79C17D0CE3100B47925</key>
 		<dict>
 			<key>primary</key>
 			<true/>

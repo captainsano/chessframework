@@ -81,7 +81,8 @@ const std::bitset<64> & sfc::cfw::Position::pieceBitmap(const Piece & aPieceType
 
 sfc::cfw::Position::Position(const std::string & FENString) {
 	if (sfc::cfw::Position::validateFEN(FENString)) {
-		/// Expand the FEN @todo Write an algorithm such that expansion is not required [REFACTOR]
+		/// Expand the FEN
+		// TODO: Write an algorithm such that expansion is not required [REFACTOR]
 		std::string expandedFEN(FENString);
 		
 		expandedFEN = std::regex_replace(expandedFEN, std::regex("8"), "11111111");
@@ -225,6 +226,43 @@ std::string sfc::cfw::Position::getFEN() const {
 	}
 	
 	return FENString;
+}
+
+std::string sfc::cfw::Position::getPiecePlacementString() const {
+	std::string toReturn;
+	
+	for (unsigned short i = 0; i < 64; i++) {
+		Square s(i);
+		if (wPawn[s]) {
+			toReturn += "P";
+		} else if (wKing[s]) {
+			toReturn += "K";
+		} else if (wQueen[s]) {
+			toReturn += "Q";
+		} else if (wRook[s]) {
+			toReturn += "R";
+		} else if (wBishop[s]) {
+			toReturn += "B";
+		} else if (wKnight[s]) {
+			toReturn += "N";
+		} else if (bPawn[s]) {
+			toReturn += "p";
+		} else if (bKing[s]) {
+			toReturn += "k";
+		} else if (bQueen[s]) {
+			toReturn += "q";
+		} else if (bRook[s]) {
+			toReturn += "r";
+		} else if (bBishop[s]) {
+			toReturn += "b";
+		} else if (bKnight[s]) {
+			toReturn += "n";
+		} else {
+			toReturn += "1";
+		}
+	}
+	
+	return toReturn;
 }
 
 std::string sfc::cfw::Position::prettyString() const {
