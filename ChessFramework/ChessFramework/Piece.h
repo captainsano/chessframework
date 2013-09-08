@@ -90,9 +90,35 @@ namespace sfc {
 			return (GenericPiece)(aPiece & 7);
 		}
 		
-		
-		
 		PromotablePiece makePromotablePiece(const char & pieceSymbol);
+		
+		inline char getFENPieceSymbol(const PromotablePiece & aPiece, const Color & aColor = ColorWhite) {
+			switch (aPiece) {
+				case PromotablePieceNone: return ' ';
+				case PromotablePieceKnight: return (aColor == ColorWhite)?'N':'n';
+				case PromotablePieceBishop: return (aColor == ColorWhite)?'B':'b';
+				case PromotablePieceRook: return (aColor == ColorWhite)?'R':'r';
+				case PromotablePieceQueen: return (aColor == ColorWhite)?'Q':'q';
+			}
+		}
+		
+		inline char getFENPieceSymbol(const Piece & aPiece) {
+			switch (aPiece) {
+				case PieceWPawn: return 'P';
+				case PieceWKing: return 'K';
+				case PieceWQueen: return 'Q';
+				case PieceWRook: return 'R';
+				case PieceWBishop: return 'B';
+				case PieceWKnight: return 'N';
+				case PieceBPawn: return 'p';
+				case PieceBKing: return 'k';
+				case PieceBQueen: return 'q';
+				case PieceBRook: return 'r';
+				case PieceBBishop: return 'b';
+				case PieceBKnight: return 'n';
+				default: return '1';
+			}
+		}
 	}
 }
 

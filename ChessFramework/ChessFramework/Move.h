@@ -96,7 +96,7 @@ namespace sfc {
             std::shared_ptr<GameState> getGameStateBeforeMove() const   { return this->gameStateBeforeMove; }
             std::shared_ptr<GameState> getGameStateAfterMove() const    { return this->gameStateAfterMove; }
 			
-			std::string getSANString() const;
+			virtual std::string getSANString() const;
 			
 			friend std::shared_ptr<Move> MoveFactory::legalMove(std::shared_ptr<GameState> , const Square &, const Square &, const PromotablePiece &);
 			friend std::vector<std::shared_ptr<Move>> MoveFactory::allLegalMoves(std::shared_ptr<GameState>, const Piece &);
