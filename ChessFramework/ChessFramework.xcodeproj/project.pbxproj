@@ -74,6 +74,7 @@
 /* Begin PBXFileReference section */
 		63199A0017A0D9C500A9F1E9 /* Piece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Piece.cpp; sourceTree = "<group>"; };
 		63199A0117A0D9C500A9F1E9 /* Piece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Piece.h; sourceTree = "<group>"; };
+		6320D71C17DD9DF700F1B19E /* ChessFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChessFramework.h; sourceTree = "<group>"; };
 		635B405817C484DA00D6BAE0 /* libChessFrameworkLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libChessFrameworkLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6378756417AE4DB500A0CA16 /* KGBitboardUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KGBitboardUtil.cpp; sourceTree = "<group>"; };
 		6378756517AE4DB500A0CA16 /* KGBitboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGBitboardUtil.h; sourceTree = "<group>"; };
@@ -179,6 +180,7 @@
 				ED7383BD17A9162E00839DC8 /* Move.h */,
 				63FBC21D17A96C4000734BC4 /* MoveFactory.cpp */,
 				63FBC21E17A96C4000734BC4 /* MoveFactory.h */,
+				6320D71C17DD9DF700F1B19E /* ChessFramework.h */,
 			);
 			path = ChessFramework;
 			sourceTree = "<group>";

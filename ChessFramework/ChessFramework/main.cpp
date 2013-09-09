@@ -8,13 +8,9 @@
 
 #include <unistd.h>
 
-#include "Move.h"
-#include "MoveFactory.h"
-#include "Position.h"
-#include "PositionQuerier.h"
-#include "GameState.h"
-
 #include <fstream>
+
+#include "ChessFramework.h"
 
 using namespace sfc::cfw;
 
