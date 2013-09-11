@@ -33,8 +33,7 @@ std::shared_ptr<sfc::cfw::Move> sfc::cfw::MoveFactory::legalMove(std::shared_ptr
 																			  beforeGameState->getWhiteQueenSideCastlingOption(),
 																			  beforeGameState->getBlackKingSideCastlingOption(),
 																			  beforeGameState->getBlackQueenSideCastlingOption(),
-																		  },
-																		  beforeGameState->getEnpassantTarget())
+																		  })
 											  )
 		);
 	}
