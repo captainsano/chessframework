@@ -11,6 +11,11 @@
 std::string sfc::cfw::Move::getSANString() const {
 	std::string toReturn;
 	
+	// Check for NULL move:
+	if (fromSquare == toSquare) {
+		return "--";
+	}
+	
 	if (this->getCastlingType() == CastlingTypeKSide) {
 		toReturn = "O-O";
 	} else if (this->getCastlingType() == CastlingTypeQSide) {
